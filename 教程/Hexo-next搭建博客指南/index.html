@@ -402,16 +402,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/教程/Hexo-next搭建博客指南/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/教程/Hexo-next搭建博客指南/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -850,15 +840,43 @@ var jiathis_config={
           
 
   
-    <div class="comments" id="comments">
-      
-        <div id="gitment-container"></div>
-      
-    </div>
+    <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+        <div id="container" style="display:none"></div>
+        <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+        <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+        <script>
+        const myTheme = {
+          render(state, instance) {
+            const container = document.createElement('div');
+            container.lang = "en-US";
+            container.className = 'gitment-container gitment-root-container';
+            container.appendChild(instance.renderHeader(state, instance));
+            container.appendChild(instance.renderEditor(state, instance));
+            container.appendChild(instance.renderComments(state, instance));
+            container.appendChild(instance.renderFooter(state, instance));
+            return container;
+          }
+        }
+        function showGitment() {
+          $("#gitment_title").attr("style", "display:none");
+          $("#container").attr("style", "").addClass("gitment_container");
+          var gitment = new Gitment({
+            id: window.location.pathname,
+            theme: myTheme,
+            owner: 'HMY626',
+            repo: 'hmy626.github.io',
+            oauth: {
+              client_id: 'fb1306519898c1d23dd2',
+              client_secret: 'd2ab30c5efe1ee4afcee4c82df605601f71db971'
+            }
+          });
+          gitment.render('container');
+        }
+        </script>
+  
+    
 
   
-
-
 
         </div>
         
@@ -1192,8 +1210,8 @@ var jiathis_config={
 <!-- LOCAL: You can save these files to your site and update links -->
     
         
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+        <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+        <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
     
 <!-- END LOCAL -->
 
@@ -1202,19 +1220,17 @@ var jiathis_config={
     
       <script type="text/javascript">
       function renderGitment(){
-        var gitment = new Gitmint({
+        var gitment = new Gitment({
             id: window.location.pathname, 
-            owner: '30282809',
-            repo: 'HMY626.github.io',
-            
-            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            owner: '',
+            repo: '',
             
             oauth: {
             
             
                 client_secret: 'd2ab30c5efe1ee4afcee4c82df605601f71db971',
             
-                client_id: 'fb130659898c1d23dd2'
+                client_id: 'fb1306519898c1d23dd2'
             }});
         gitment.render('gitment-container');
       }
