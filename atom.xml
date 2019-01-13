@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Santu&#39;s Blog</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://hmy626.github.io/"/>
+  <updated>2019-01-13T09:03:09.967Z</updated>
+  <id>https://hmy626.github.io/</id>
+  
+  <author>
+    <name>Santu</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo+next搭建博客指南</title>
+    <link href="https://hmy626.github.io/%E6%95%99%E7%A8%8B/Hexo-next%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%8C%87%E5%8D%97/"/>
+    <id>https://hmy626.github.io/教程/Hexo-next搭建博客指南/</id>
+    <published>2019-01-13T06:43:03.000Z</published>
+    <updated>2019-01-13T09:03:09.967Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Hexo-next搭建博客指南&quot;&gt;&lt;a href=&quot;#Hexo-next搭建博客指南&quot; class=&quot;headerlink&quot; title=&quot;Hexo+next搭建博客指南&quot;&gt;&lt;/a&gt;Hexo+next搭建博客指南&lt;/h1&gt;&lt;p&gt;我以前用的博客系统是wordpres
+      
+    
+    </summary>
+    
+      <category term="教程" scheme="https://hmy626.github.io/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+      <category term="hexo" scheme="https://hmy626.github.io/tags/hexo/"/>
+    
+      <category term="next" scheme="https://hmy626.github.io/tags/next/"/>
+    
+      <category term="配置" scheme="https://hmy626.github.io/tags/%E9%85%8D%E7%BD%AE/"/>
+    
+  </entry>
+  
+</feed>
