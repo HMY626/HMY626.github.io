@@ -113,7 +113,7 @@
 <meta property="og:url" content="https://hmy626.github.io/tags/index.html">
 <meta property="og:site_name" content="Santu&#39;s Blog">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-13T11:14:13.189Z">
+<meta property="og:updated_time" content="2019-01-13T12:53:28.777Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tags">
 
@@ -351,45 +351,6 @@
 
 
           
-
-  
-    <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
-        <div id="container" style="display:none"></div>
-        <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-        <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-        <script>
-        const myTheme = {
-          render(state, instance) {
-            const container = document.createElement('div');
-            container.lang = "en-US";
-            container.className = 'gitment-container gitment-root-container';
-            container.appendChild(instance.renderHeader(state, instance));
-            container.appendChild(instance.renderEditor(state, instance));
-            container.appendChild(instance.renderComments(state, instance));
-            container.appendChild(instance.renderFooter(state, instance));
-            return container;
-          }
-        }
-        function showGitment() {
-          $("#gitment_title").attr("style", "display:none");
-          $("#container").attr("style", "").addClass("gitment_container");
-          var gitment = new Gitment({
-            id: window.location.pathname,
-            theme: myTheme,
-            owner: 'HMY626',
-            repo: 'hmy626.github.io',
-            oauth: {
-              client_id: 'fb1306519898c1d23dd2',
-              client_secret: 'd2ab30c5efe1ee4afcee4c82df605601f71db971'
-            }
-          });
-          gitment.render('container');
-        }
-        </script>
-  
-    
-
-  
 
         </div>
         
@@ -705,28 +666,6 @@
 
     
 
-    
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitment({
-            id: window.location.pathname, 
-            owner: '',
-            repo: '',
-            
-            oauth: {
-            
-            
-                client_secret: 'd2ab30c5efe1ee4afcee4c82df605601f71db971',
-            
-                client_id: 'fb1306519898c1d23dd2'
-            }});
-        gitment.render('gitment-container');
-      }
-
-      
-      renderGitment();
-      
-      </script>
     
 
 
