@@ -1,0 +1,1616 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+  <script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+ </script>
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "9c8869e0"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="openldap配置,radius配置,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Santu's Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="网络对抗原理实验二实验要求 用openldap搭建LDAP服务器，尝试对学生信息进行增删改查，信息包括但不限于学生id、密码、 邮箱、手机号、部门等。 配置 apache 服务器，配置 Basic 认证模块和需要认证的页面，使用用户名密码认证。 配置 apache 服务器，配置 LDAP 认证模块和需要认证的页面，使用 LDAP 存放的学生的用户名密码认证。 用freeradius搭建RADIUS">
+<meta name="keywords" content="openldap配置,radius配置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络对抗原理实验二">
+<meta property="og:url" content="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/index.html">
+<meta property="og:site_name" content="Santu&#39;s Blog">
+<meta property="og:description" content="网络对抗原理实验二实验要求 用openldap搭建LDAP服务器，尝试对学生信息进行增删改查，信息包括但不限于学生id、密码、 邮箱、手机号、部门等。 配置 apache 服务器，配置 Basic 认证模块和需要认证的页面，使用用户名密码认证。 配置 apache 服务器，配置 LDAP 认证模块和需要认证的页面，使用 LDAP 存放的学生的用户名密码认证。 用freeradius搭建RADIUS">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/F3F0911A-4F0D-4962-806C-E06676DFE1C3.png">
+<meta property="og:image" content="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/E59F10B0-B7DB-4B22-B15D-4D2AE0F8F36A.png">
+<meta property="og:image" content="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/9BB67CE1-F306-4039-9BF2-E3E85C3621FE.png">
+<meta property="og:image" content="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/EECCDE52-600D-4D75-8227-6FCC2DE943FA.png">
+<meta property="og:image" content="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/E932B380-12F1-4B1F-BC8B-4214DDA0A7B9.png">
+<meta property="og:image" content="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/3D5F049E-2D23-45D3-9EA4-9C839675C189.png">
+<meta property="og:image" content="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/CC055D81-8C43-41AD-B539-E60A03FA1337.png">
+<meta property="og:image" content="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/09157948-F2BB-49B1-94C0-71C5AB30DE0F.png">
+<meta property="og:image" content="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/a.png">
+<meta property="og:image" content="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/b.png">
+<meta property="og:image" content="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/c.png">
+<meta property="og:image" content="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/d.png">
+<meta property="og:image" content="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/e.png">
+<meta property="og:image" content="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/f.png">
+<meta property="og:image" content="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/g.png">
+<meta property="og:image" content="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/h.png">
+<meta property="og:image" content="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/i.png">
+<meta property="og:image" content="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/j.png">
+<meta property="og:image" content="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/k.png">
+<meta property="og:image" content="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/l.png">
+<meta property="og:image" content="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/m.png">
+<meta property="og:image" content="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/n.png">
+<meta property="og:image" content="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/o.png">
+<meta property="og:image" content="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/p.png">
+<meta property="og:image" content="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/q.png">
+<meta property="og:image" content="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/r.png">
+<meta property="og:image" content="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/09157948-F2BB-49B1-94C0-71C5AB30DE0F.png">
+<meta property="og:updated_time" content="2019-01-13T14:58:15.713Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="网络对抗原理实验二">
+<meta name="twitter:description" content="网络对抗原理实验二实验要求 用openldap搭建LDAP服务器，尝试对学生信息进行增删改查，信息包括但不限于学生id、密码、 邮箱、手机号、部门等。 配置 apache 服务器，配置 Basic 认证模块和需要认证的页面，使用用户名密码认证。 配置 apache 服务器，配置 LDAP 认证模块和需要认证的页面，使用 LDAP 存放的学生的用户名密码认证。 用freeradius搭建RADIUS">
+<meta name="twitter:image" content="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/F3F0911A-4F0D-4962-806C-E06676DFE1C3.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/">
+
+
+
+
+
+  <title>网络对抗原理实验二 | Santu's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+  <script type="text/javascript" color="0,0,0" opacity="0.8" zindex="-2" count="120" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/HMY626"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png" alt="Fork me on GitHub"></a>
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Santu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Santu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Santu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">网络对抗原理实验二</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-13T22:48:57+08:00">
+                2019-01-13
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-13T22:58:15+08:00">
+                2019-01-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络安全实验/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全实验</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="网络对抗原理实验二"><a href="#网络对抗原理实验二" class="headerlink" title="网络对抗原理实验二"></a>网络对抗原理实验二</h1><h2 id="实验要求"><a href="#实验要求" class="headerlink" title="实验要求"></a>实验要求</h2><ol>
+<li>用openldap搭建LDAP服务器，尝试对学生信息进行增删改查，信息包括但不限于学生id、密码、 邮箱、手机号、部门等。</li>
+<li>配置 apache 服务器，配置 Basic 认证模块和需要认证的页面，使用用户名密码认证。</li>
+<li>配置 apache 服务器，配置 LDAP 认证模块和需要认证的页面，使用 LDAP 存放的学生的用户名密码<br>认证。</li>
+<li>用freeradius搭建RADIUS服务器，尝试配置基于unix账号的认证，并用radtest验证服务有效。</li>
+<li>配置apache服务器，配置RADIUS认证模块和需要认证的页面，使用unix/Linux本地用户名密码 认证。</li>
+<li>在freeradius中配置ldap认证模块，和LDAP服务器互通，利用ldap账号密码认证用户身份，并用 radtest 测试通过。</li>
+</ol>
+<h2 id="实验环境：Ubuntu-16-04"><a href="#实验环境：Ubuntu-16-04" class="headerlink" title="实验环境：Ubuntu 16.04"></a>实验环境：Ubuntu 16.04</h2><h2 id="安装并配置ldap"><a href="#安装并配置ldap" class="headerlink" title="安装并配置ldap"></a>安装并配置ldap</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install slapd ldap-utils</span><br><span class="line">sudo dpkg-reconfigure slapd</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Omit OpenLDAP server configuration? =&gt; No</p>
+</blockquote>
+<blockquote>
+<p>DNS domain name? =&gt; example.com</p>
+</blockquote>
+<blockquote>
+<p>Organization name? =&gt; example</p>
+</blockquote>
+<blockquote>
+<p>Administrator password? =&gt; {<strong>**</strong>}</p>
+</blockquote>
+<blockquote>
+<p>Database backend? =&gt; MDB</p>
+</blockquote>
+<blockquote>
+<p>Remove the database when slapd is purged? =&gt; No</p>
+</blockquote>
+<blockquote>
+<p>Move old database? =&gt; Yes</p>
+</blockquote>
+<blockquote>
+<p>Allow LDAPv2 protocol? =&gt; No</p>
+</blockquote>
+<blockquote>
+<p>Done!</p>
+</blockquote>
+<h3 id="防火墙允许通过ldap程序端口"><a href="#防火墙允许通过ldap程序端口" class="headerlink" title="防火墙允许通过ldap程序端口"></a>防火墙允许通过ldap程序端口</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw allow ldap</span><br></pre></td></tr></table></figure>
+<h3 id="测试是否安装成功"><a href="#测试是否安装成功" class="headerlink" title="测试是否安装成功"></a>测试是否安装成功</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ldapwhoami -H ldap:// -x</span><br></pre></td></tr></table></figure>
+<p>结果如下所示：</p>
+<p><img src="/网络安全实验/网络对抗原理实验二/F3F0911A-4F0D-4962-806C-E06676DFE1C3.png" alt="coin"></p>
+<p>输出为anonymous，所以ldap安装成功。</p>
+<h3 id="配置ldap"><a href="#配置ldap" class="headerlink" title="配置ldap"></a>配置ldap</h3><blockquote>
+<p>新建一个student.ldif写下如下内容</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">dn: ou=student,dc=example,dc=com</span><br><span class="line">objectclass: top</span><br><span class="line">objectclass: organizationalUnit</span><br><span class="line">ou: student</span><br><span class="line"></span><br><span class="line">dn: uid=stu1,ou=student,dc=example,dc=com</span><br><span class="line">objectclass: person</span><br><span class="line">cn: 15069130025</span><br><span class="line">sn: 15069130025</span><br><span class="line">telephonenumber: 18300000000</span><br><span class="line">userPassword: student1</span><br><span class="line">objectclass: organizationalPerson</span><br><span class="line">postalAddress: XD</span><br><span class="line">objectclass: inetOrgPerson</span><br><span class="line">uid: 001</span><br><span class="line"></span><br><span class="line">dn: uid=stu2,ou=student,dc=example,dc=com</span><br><span class="line">objectclass: person</span><br><span class="line">cn: 1234567</span><br><span class="line">sn: 1234567</span><br><span class="line">telephonenumber: 18900000000</span><br><span class="line">userPassword: student2</span><br><span class="line">objectclass: organizationalPerson</span><br></pre></td></tr></table></figure>
+<p><img src="/网络安全实验/网络对抗原理实验二/E59F10B0-B7DB-4B22-B15D-4D2AE0F8F36A.png" alt="coin"></p>
+<h2 id="添加学生信息"><a href="#添加学生信息" class="headerlink" title="添加学生信息"></a>添加学生信息</h2><ul>
+<li>添加学生信息</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ldapadd -xWD &apos;cn=admin,dc=example,dc=com&apos; -f student.ldif</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查询学生信息</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ldapsearch -xWD &apos;cn=admin,dc=example,dc=com&apos; -b &apos;uid=stu1,ou=student,dc=example,dc=com&apos;</span><br></pre></td></tr></table></figure>
+<p><img src="/网络安全实验/网络对抗原理实验二/9BB67CE1-F306-4039-9BF2-E3E85C3621FE.png" alt="coin"></p>
+<h2 id="安装与配置apache服务器"><a href="#安装与配置apache服务器" class="headerlink" title="安装与配置apache服务器"></a>安装与配置apache服务器</h2><ul>
+<li>安装</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install apache2 apache2-dev</span><br><span class="line">sudo service apache2 restart</span><br><span class="line">sudo ufw allow in &quot;Apache Full&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>配置Basic认证</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/apache2/sites-enabled/000-default.conf</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>配置如下所示</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory /var/www/html&gt;</span><br><span class="line">	Options Indexes FollowSymLinks</span><br><span class="line">	AllowOverride authconfig</span><br><span class="line">	Order allow,deny</span><br><span class="line">	allow from all</span><br><span class="line">	AuthType Basic</span><br><span class="line">	AuthName &apos;santu&apos;</span><br><span class="line">	AuthBasicProvider file</span><br><span class="line">	AuthUserFile /var/www/html/.valid_user</span><br><span class="line">	Require valid-user</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="/网络安全实验/网络对抗原理实验二/EECCDE52-600D-4D75-8227-6FCC2DE943FA.png" alt="coin"></p>
+<blockquote>
+<p><strong>这里的注释是一会儿配置ldap时需要用到的</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>建立basic认证的密钥文件</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo htpasswd -bc /var/www/html/.valid_user santu &#123;[PASSWD]&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>然后访问web</p>
+</blockquote>
+<p><img src="/网络安全实验/网络对抗原理实验二/E932B380-12F1-4B1F-BC8B-4214DDA0A7B9.png" alt="coin"></p>
+<h2 id="配置apache使用ldap认证"><a href="#配置apache使用ldap认证" class="headerlink" title="配置apache使用ldap认证"></a>配置apache使用ldap认证</h2><blockquote>
+<p>修改apache2.conf</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/apache2/apache2.conf</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在apache2.conf文件开头中添加这一行导入模块</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Include mods-available/ldap.*</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>重启apache服务器，加载模块</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo service apache2 restart</span><br><span class="line">a2enmod ldap</span><br><span class="line">a2enmod authnz_ldap</span><br><span class="line">sudo service apache2 restart</span><br></pre></td></tr></table></figure>
+<p>我这里已经加载了<br><img src="/网络安全实验/网络对抗原理实验二/3D5F049E-2D23-45D3-9EA4-9C839675C189.png" alt="coin"></p>
+<blockquote>
+<p>接着，修改000-default.conf(就是上文中提到的那个注释),我这里选择这里选择注释掉AuthUserFile密钥文件，如果以后需要恢复basic认证时只需取消注释，并且将AuthBasicProvider后改为file即可</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory /var/www/html&gt;</span><br><span class="line">	Options Indexes FollowSymLinks</span><br><span class="line">	AllowOverride authconfig</span><br><span class="line">	Order allow,deny</span><br><span class="line">	allow from all</span><br><span class="line">	AuthType Basic</span><br><span class="line">	AuthName &apos;santu&apos;</span><br><span class="line">	AuthBasicProvider ldap</span><br><span class="line">	#AuthUserFile /var/www/html/.valid_user</span><br><span class="line">	AuthLDAPURL ldap://127.0.0.1/ou=student,dc=example,dc=com?uid</span><br><span class="line">	Require valid-user</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="/网络安全实验/网络对抗原理实验二/CC055D81-8C43-41AD-B539-E60A03FA1337.png" alt="coin"></p>
+<blockquote>
+<p>重启服务器</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service apache2 restart</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>现在，就可以用student.ldif中的学生信息进行登录验证了</p>
+</blockquote>
+<p><img src="/网络安全实验/网络对抗原理实验二/09157948-F2BB-49B1-94C0-71C5AB30DE0F.png" alt="coin"></p>
+<h2 id="apache使用freeradius认证"><a href="#apache使用freeradius认证" class="headerlink" title="apache使用freeradius认证"></a>apache使用freeradius认证</h2><ul>
+<li>安装freeradius之前先要确保已经安装了mysql、因为后来要用到、没有安装使用apt-get来安装</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install mysql-server</span><br></pre></td></tr></table></figure>
+<ul>
+<li>安装freeradius的部件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install libssl-dev libapache2-mod-auth-radius freeradius freeradius-ldap mysql-server freeradius-mysql</span><br></pre></td></tr></table></figure>
+<ul>
+<li>安装完成后freeradius就会自动启动了、由于我们要使用调试模式来启动freeradius、所以先关闭freeradius服务</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service freeradius stop</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改/etc/freeradius/下的users文件</li>
+</ul>
+<p><img src="/网络安全实验/网络对抗原理实验二/a.png" alt="coin"></p>
+<p>把这几行反注释、也就是使用一个名为steve、密码为testing的用户来测试一下是否通则登录freeradius服务器、保存后退出然后启动radius的调试模式。</p>
+<p><strong>注意点一</strong>：这里需要补充一点使用ubtuntu的apt-get方式来安装freeradius的位置会和源码不同、源码安装的默认位置是/usr/local/etc/raddb/而使用ubuntu的apt-get方式的配置文件则安置在/etc/freeradius/，我这里是使用apt-get来安装的，所以默认安装位置为/etc/freeradius/</p>
+<ul>
+<li>开启调试模式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">freeradius –X</span><br></pre></td></tr></table></figure>
+<p><img src="/网络安全实验/网络对抗原理实验二/b.png" alt="coin"></p>
+<ul>
+<li>然后打开另一个终端、使用radtest来测试用户是否能够通过</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">radtest steve testing localhost 1812 testing123</span><br></pre></td></tr></table></figure>
+<p>注意点：这里的测试就是上述的users文件里面默认的用户名和密码，只在还没启动mysql之前测试有效，而因为我已经启用了mysql中我自己的用户，所以这个就无效了。<br>这句前steve和testing代表用户和密码、localhost和1812则是freeradius的IP地址和端口号、testing123则是freeradius服务端与客户端之间通讯的key、由/etc/freeradius目录下的clients.conf定义、在client localhost字段的secret参数。<br>radtest成功通过后则会显示Access-Accept状态。另外，如果你一个不好运、确实在linux系统中存在steve的用户、这样子的话freeradius服务器则会跳过你现在的用户配置直接去查询系统的配置、这时的密码就会以系统密码为准、这里在users文件中定义的密码就会失效、而且如果改用户是禁止在linux上登录的话、则会直接把用户打回成 Access-Reject</p>
+<ul>
+<li>以下是我在mysql中创建了santu用户（下面会说）之后成功的验证</li>
+</ul>
+<p><img src="/网络安全实验/网络对抗原理实验二/c.png" alt="coin"></p>
+<ul>
+<li>服务器端代码为</li>
+</ul>
+<p><img src="/网络安全实验/网络对抗原理实验二/d.png" alt="coin"><br><img src="/网络安全实验/网络对抗原理实验二/e.png" alt="coin"><br><img src="/网络安全实验/网络对抗原理实验二/f.png" alt="coin"></p>
+<ul>
+<li>mysql与freeradius连接</li>
+</ul>
+<blockquote>
+<p>建立radius数据库</p>
+</blockquote>
+<p><img src="/网络安全实验/网络对抗原理实验二/g.png" alt="coin"></p>
+<blockquote>
+<p>然后建立radius数据库</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create database radius;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>之后使用exit退出mysql、然后建立一系统的表格、freeradius已经自带有sql脚本、我们执行这些脚本就可以自行建立了，首先定位到这些脚本所在目录</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/freeradius/sql/mysql</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>导入admin.sql</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p[PASSWORD] radius &lt; admin.sql</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>schema.sql同样也是照此格式来执行导入到数据库，如果结果正常的话，可以使用radius账户进入mysql数据库</p>
+</blockquote>
+<p><img src="/网络安全实验/网络对抗原理实验二/h.png" alt="coin"></p>
+<p>这里默认密码为radpass<br>这样我们就可以看到一些tables了</p>
+<blockquote>
+<p>配置freeradius</p>
+</blockquote>
+<ul>
+<li>修改/etc/freeradius/radiusd.conf 定位到该行</li>
+</ul>
+<p><img src="/网络安全实验/网络对抗原理实验二/i.png" alt="coin"></p>
+<p>将其反注释，启动sql.conf</p>
+<ul>
+<li>然后编辑/etc/freeradius/sql.conf</li>
+</ul>
+<p><img src="/网络安全实验/网络对抗原理实验二/j.png" alt="coin"></p>
+<p>默认情况下、使用apt-get命令来安装freeradius会自动检测到已经安装了mysql而自动把database设置为mysql、如果迩的不是这样显示请设置成mysql、然后再再看password这个参数、如果你之前已经更改了radius用户的密码、这里要做相应的修改、其余的参数就默认好了</p>
+<ul>
+<li>修改了sql.conf、再设置相应的设备通知其使用mysql作为数据存储设备</li>
+</ul>
+<p><img src="/网络安全实验/网络对抗原理实验二/k.png" alt="coin"></p>
+<p>把authorize{}字段下的file注释掉、反注释sql、这里的file指的就是usrs文件、将不再把用户信息写在users而使用mysql来存储用户信息 把accounting{} 字段下的sql反注释、启用sql来记录统计信息 把session{}字段下的sql反注释、启用用户同时登录限制功能、这里还需要修改其它地方、一会再说 把post-auth{} 字段的sql反注释、启用用户登录后进行数据记录功能</p>
+<ul>
+<li>接下来开启启用用户同时登录限制功能</li>
+</ul>
+<p><img src="/网络安全实验/网络对抗原理实验二/l.png" alt="coin"></p>
+<blockquote>
+<p>将这几行反注释</p>
+</blockquote>
+<p><img src="/网络安全实验/网络对抗原理实验二/m.png" alt="coin"></p>
+<p>这样整个对mysql的radius配置就已经完成了</p>
+<ul>
+<li>测试是否连接成功,在radius数据库建立几条用户信息以测试mysql+freeradius的用户认证是否成功，添上这几句</li>
+</ul>
+<p><img src="/网络安全实验/网络对抗原理实验二/n.png" alt="coin"></p>
+<blockquote>
+<p>结果为</p>
+</blockquote>
+<p><img src="/网络安全实验/网络对抗原理实验二/o.png" alt="coin"></p>
+<p>这就解释了一开始用radtest santu [<strong>**</strong>] localhost 1812 testing123命令会出现如下的应答</p>
+<p><img src="/网络安全实验/网络对抗原理实验二/p.png" alt="coin"></p>
+<p>注意：这些数据类型的属性值attribute都是特定的字符、不是随随便便自己写上去的、要查看定义这些属性的文件请查看迩当前配置文件的dictionary目录、其实里面也啥内容没定义到、只是写上了路径、一般会写上包含在</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$INCLUDE /usr/share/freeradius/dictionary</span><br></pre></td></tr></table></figure>
+<p>这里的意思就是整个dictionary文件被放置在这个文件中、其实这个文件也是个路径信息、所以真正定义的dictionary文件是放在/usr/share/freeradius/这个目录、比如Framed-IP-Address属性被定义在dictionary.rfc2865文件中、Cleartext-Password被定义在dictionary.freeradius.internal文件中</p>
+<p><strong>注意点</strong>：注意之前的freeradius服务必须先停掉、不然会出现冲突、然后再使用以上用户来测试</p>
+<p><img src="/网络安全实验/网络对抗原理实验二/q.png" alt="coin"></p>
+<p>返回Access-Accept状态的同时会返回相应reply表格的内容、先返回radreply的用户返回信息、再返回radgroupreply的所属组返回信息、返回成功就表示配置已经正确了。</p>
+<h2 id="配置freeradius-ldap"><a href="#配置freeradius-ldap" class="headerlink" title="配置freeradius-ldap"></a>配置freeradius-ldap</h2><ul>
+<li>配置/etc/freeradius/modules/ldap</li>
+</ul>
+<p><img src="/网络安全实验/网络对抗原理实验二/r.png" alt="coin"></p>
+<p>这里，apache2使用freeradius进行认证，并且radius和ldap连接，我们使用student.ldif中学生信息就可完成radtest认证。</p>
+<p><img src="/网络安全实验/网络对抗原理实验二/09157948-F2BB-49B1-94C0-71C5AB30DE0F.png" alt="coin"></p>
+<p>至此实验二大功告成！</p>
+
+      
+    </div>
+    
+    
+    
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+
+  <p><span>本文标题:</span>网络对抗原理实验二</p>
+  <p><span>文章作者:</span>Santu</p>
+  <p><span>发布时间:</span>2019年01月13日 - 22:48:57</p>
+  <p><span>最后更新:</span>2019年01月13日 - 22:58:15</p>
+  <p><span>原始链接:</span><a href="/网络安全实验/网络对抗原理实验二/" title="网络对抗原理实验二">https://hmy626.github.io/网络安全实验/网络对抗原理实验二/</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({   
+          title: "",   
+          text: '复制成功',   
+          html: false,
+          timer: 500,   
+          showConfirmButton: false
+        });
+      });
+    }));  
+</script>
+
+
+      
+    </div>
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Santu
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/" title="网络对抗原理实验二">https://hmy626.github.io/网络安全实验/网络对抗原理实验二/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/openldap配置/" rel="tag"><i class="fa fa-tag"></i> openldap配置</a>
+          
+            <a href="/tags/radius配置/" rel="tag"><i class="fa fa-tag"></i> radius配置</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/网络安全实验/网络对抗原理实验一/" rel="next" title="网络对抗原理实验一">
+                <i class="fa fa-chevron-left"></i> 网络对抗原理实验一
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/网络安全实验/网络对抗原理实验三/" rel="prev" title="网络对抗原理实验三">
+                网络对抗原理实验三 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+  <div>
+    
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------ 本文结束------</div>
+    
+</div>
+
+    
+  </div>
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div onclick="showGitment()" id="gitment_title" class="gitment_title">显示 Gitment 评论</div>
+        <div id="container" style="display:none"></div>
+        <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+        <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+        <script>
+        const myTheme = {
+          render(state, instance) {
+            const container = document.createElement('div');
+            container.lang = "en-US";
+            container.className = 'gitment-container gitment-root-container';
+            container.appendChild(instance.renderHeader(state, instance));
+            container.appendChild(instance.renderEditor(state, instance));
+            container.appendChild(instance.renderComments(state, instance));
+            container.appendChild(instance.renderFooter(state, instance));
+            return container;
+          }
+        }
+        function showGitment() {
+          $("#gitment_title").attr("style", "display:none");
+          $("#container").attr("style", "").addClass("gitment_container");
+          var gitment = new Gitment({
+            id: window.location.pathname,
+            theme: myTheme,
+            owner: 'HMY626',
+            repo: 'hmy626.github.io',
+            oauth: {
+              client_id: 'fb1306519898c1d23dd2',
+              client_secret: 'd2ab30c5efe1ee4afcee4c82df605601f71db971'
+            }
+          });
+          gitment.render('container');
+        }
+        </script>
+  
+    
+
+  
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Santu">
+            
+              <p class="site-author-name" itemprop="name">Santu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/HMY626" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:santu6v6@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/Santu47210220" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/steven.hua.750" target="_blank" title="FB Page">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#网络对抗原理实验二"><span class="nav-number">1.</span> <span class="nav-text">网络对抗原理实验二</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实验要求"><span class="nav-number">1.1.</span> <span class="nav-text">实验要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验环境：Ubuntu-16-04"><span class="nav-number">1.2.</span> <span class="nav-text">实验环境：Ubuntu 16.04</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装并配置ldap"><span class="nav-number">1.3.</span> <span class="nav-text">安装并配置ldap</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">1.3.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#防火墙允许通过ldap程序端口"><span class="nav-number">1.3.2.</span> <span class="nav-text">防火墙允许通过ldap程序端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试是否安装成功"><span class="nav-number">1.3.3.</span> <span class="nav-text">测试是否安装成功</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置ldap"><span class="nav-number">1.3.4.</span> <span class="nav-text">配置ldap</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加学生信息"><span class="nav-number">1.4.</span> <span class="nav-text">添加学生信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装与配置apache服务器"><span class="nav-number">1.5.</span> <span class="nav-text">安装与配置apache服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置apache使用ldap认证"><span class="nav-number">1.6.</span> <span class="nav-text">配置apache使用ldap认证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apache使用freeradius认证"><span class="nav-number">1.7.</span> <span class="nav-text">apache使用freeradius认证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置freeradius-ldap"><span class="nav-number">1.8.</span> <span class="nav-text">配置freeradius-ldap</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Santu</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">全站字数&#58;</span>
+    
+    <span title="全站字数">11.5k</span>
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+        <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitment({
+            id: window.location.pathname, 
+            owner: '',
+            repo: '',
+            
+            oauth: {
+            
+            
+                client_secret: 'd2ab30c5efe1ee4afcee4c82df605601f71db971',
+            
+                client_id: 'fb1306519898c1d23dd2'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <script type="text/javascript" src="/lib/clipboard/clipboard.js"></script>
+<script type="text/javascript" src="/js/src/custom.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
