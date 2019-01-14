@@ -1,0 +1,2153 @@
+<!DOCTYPE html>
+<html ⚡>
+  <head>
+    <meta charset="utf-8">
+    <link rel="canonical" href="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/" >
+    <title>网络对抗原理实验二 - Santu&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    
+    <meta property="og:title" content="网络对抗原理实验二">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/">
+	
+		<meta property="og:image" content="/amp-dist/sample/sample-substituteTitleImage.png">
+	
+	<meta property="og:site_name" content="Santu&#39;s Blog">
+	
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="Santu&#39;s Blog">
+	<meta name="twitter:url" content="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/">
+	<meta name="twitter:title" content="网络对抗原理实验二 - Santu&#39;s Blog">
+	
+    
+    	<meta name="twitter:image" content="/amp-dist/sample/sample-substituteTitleImage.png">
+	
+	
+	
+    
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>
+    <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+    <!--
+  	<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
+    -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "BlogPosting",
+			"headline": "网络对抗原理实验二",
+			
+			"mainEntityOfPage":{
+			    "@type":"WebPage",
+			    "@id":"https://hmy626.github.io/网络安全实验/网络对抗原理实验二/"
+			},
+			"datePublished": "2019-01-13T14:48:57.000Z",
+			"dateModified": "2019-01-13T14:58:15.713Z",
+			
+			"image": {
+				"@type": "ImageObject",
+				"url": "/amp-dist/sample/sample-substituteTitleImage.png",
+				"width" : "1024",
+				"height" : "800"
+			},
+			
+			"author": {
+			    "@type": "Person",
+			    "name": "Santu"
+			},
+			"publisher": {
+			    "@type": "Organization",
+			    "name": "Santu&#39;s Blog"
+			    
+			    ,
+			    "logo": {
+			      "@type": "ImageObject",
+			      "url": "https://hmy626.github.io/amp-dist/sample/sample-logo.png",
+			      "width": 600,
+			      "height": 60
+			    }
+			    
+			}
+		}
+	</script>
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	
+	<style amp-custom>
+		
+abbr,
+acronym,
+address,
+applet,
+big,
+blockquote,
+body,
+caption,
+cite,
+code,
+dd,
+del,
+dfn,
+div,
+dl,
+dt,
+em,
+fieldset,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+html,
+iframe,
+img,
+ins,
+kbd,
+label,
+legend,
+li,
+object,
+ol,
+p,
+pre,
+q,
+s,
+samp,
+small,
+span,
+strike,
+strong,
+sub,
+sup,
+table,
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr,
+tt,
+ul,
+var {
+  border: 0;
+  font-family: inherit;
+  font-size: 1rem;
+  font-style: inherit;
+  font-weight: inherit;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+abbr {
+  cursor: help;
+  border-bottom: 1px dotted;
+  font-variant: normal;
+}
+acronym {
+  border-bottom: 1px dotted;
+  font-variant: normal;
+}
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  background: #fff;
+  color: #2d3d40;
+  font-family: sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 2rem;
+  text-rendering: optimizelegibility;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner,
+figure.highlight td,
+.post .entry-content figure.highlight th {
+  border: 0;
+  padding: 0;
+}
+caption,
+table,
+td,
+th {
+  vertical-align: middle;
+}
+caption,
+td,
+th,
+.table-align-left {
+  text-align: left;
+}
+del {
+  text-decoration: line-through;
+}
+html {
+  font-size: 14px;
+}
+:root sub,
+:root sup {
+  vertical-align: baseline;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+a {
+  color: #e91e63;
+  text-decoration: none;
+  -webkit-transition: 0.7s;
+  -ms-transition: 0.7s;
+  -moz-transition: 0.7s;
+  -o-transition: 0.7s;
+  -webkit-transition: 0.7s;
+  -moz-transition: 0.7s;
+  -o-transition: 0.7s;
+  -ms-transition: 0.7s;
+  transition: 0.7s;
+  border: 0;
+  font-family: inherit;
+  font-size: 1rem;
+  font-style: inherit;
+  font-weight: inherit;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+a img {
+  border: none;
+}
+a:hover {
+  -webkit-transition: 0.2s;
+  -ms-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -o-transition: 0.2s;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -o-transition: 0.2s;
+  -ms-transition: 0.2s;
+  transition: 0.2s;
+  color: #930e3b;
+}
+@media (min-width: 481px) {
+  html {
+    font-size: 16px;
+  }
+}
+@media (min-width: 0px) and (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+}
+.clearfix:after {
+  clear: both;
+  visibility: hidden;
+  content: ".";
+  display: block;
+  height: 0;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.circle {
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+.thumbImg-w {
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+.thumbImg {
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.__web-inspector-hide-shortcut__ {
+  visibility: hidden ;
+}
+button {
+  -webkit-box-align: start;
+  -moz-box-align: start;
+  -o-box-align: start;
+  -ms-flex-align: start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+  text-align: center;
+  cursor: default;
+  color: buttontext;
+  background-color: buttonface;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 2px 6px 3px;
+  border-width: 2px;
+  border-style: outset;
+  border-color: buttonface;
+  -webkit-border-image: initial;
+  -moz-border-image: initial;
+  -o-border-image: initial;
+  border-image: initial;
+  text-rendering: auto;
+  color: initial;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  margin: 0em 0em 0em 0em;
+  font: 11px system-ui;
+  -webkit-writing-mode: horizontal-tb;
+  -webkit-appearance: button;
+}
+.hamburger {
+  display: inline-block;
+  background-color: transparent;
+  background-image: url("data:image/svg+xmlutf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-3 -6 24 24\"><path fill=\"#4A4A4A\" d=\"M0 12h18v-2H0v2M0 7h18V5H0v2M0 0v2h18V0H0\"/></svg>");
+  background-repeat: no-repeat;
+  -webkit-background-size: 30px 24px;
+  -moz-background-size: 30px 24px;
+  background-size: 30px 24px;
+  background-position: center center;
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  -ms-flex-item-align: center;
+  -ms-grid-row-align: center;
+  -webkit-align-self: center;
+  align-self: center;
+  -ms-flex-item-align: center;
+}
+.nav ul:after {
+  clear: both;
+  visibility: hidden;
+}
+.nav,
+.nav-icon {
+  position: relative;
+}
+.nav ul {
+  display: block;
+}
+.nav ul li {
+  display: block;
+}
+.nav ul li a {
+  display: block;
+}
+.tab {
+  position: relative;
+  color: #424242;
+  padding: 6px;
+  margin: 0 4px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 400;
+  -webkit-transition: 0.1s ease color;
+  -webkit-transition: 0.1s ease color;
+  -moz-transition: 0.1s ease color;
+  -o-transition: 0.1s ease color;
+  -ms-transition: 0.1s ease color;
+  transition: 0.1s ease color;
+}
+amp-sidebar {
+  width: 200px;
+}
+amp-sidebar ul {
+  padding: 10px 0;
+}
+amp-sidebar li a {
+  display: block;
+  padding: 10px 20px;
+}
+header {
+  height: 60px;
+  background-color: #222f31;
+  -webkit-box-shadow: 0 -1px 0 #3c5155 inset, 0 -3px 0 #1e292b inset;
+  box-shadow: 0 -1px 0 #3c5155 inset, 0 -3px 0 #1e292b inset;
+  -webkit-box-shadow: 0 -1px 0 #3c5155 inset, 0 -3px 0 #1e292b inset;
+}
+header .header-title a {
+  padding: 0 0 0 20px;
+  height: 60px;
+  line-height: 60px;
+  font-size: 20px;
+  color: #fff;
+  letter-spacing: 0.2em;
+}
+header .nav-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  -webkit-box-pack: justify;
+  -moz-box-pack: justify;
+  -o-box-pack: justify;
+  -ms-flex-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+header .left-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-box-pack: start;
+  -moz-box-pack: start;
+  -o-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  font-size: 20px;
+  margin-left: 0;
+  font-weight: 300;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-box-pack: start;
+  -moz-box-pack: start;
+  -o-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  text-align: left;
+  width: auto;
+  font-size: 15px;
+}
+header .right {
+  font-size: 15px;
+}
+header .alt {
+  padding: 0;
+  text-align: right;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  -webkit-box-align: stretch;
+  -moz-box-align: stretch;
+  -o-box-align: stretch;
+  -ms-flex-align: stretch;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+.blog-title a {
+  position: relative;
+}
+button {
+  -webkit-box-align: start;
+  -moz-box-align: start;
+  -o-box-align: start;
+  -ms-flex-align: start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+  text-align: center;
+  cursor: default;
+  color: buttontext;
+  background-color: buttonface;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 2px 6px 3px;
+  border-width: 2px;
+  border-style: outset;
+  border-color: buttonface;
+  -webkit-border-image: initial;
+  -moz-border-image: initial;
+  -o-border-image: initial;
+  border-image: initial;
+  text-rendering: auto;
+  color: initial;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  margin: 0em 0em 0em 0em;
+  font: 11px system-ui;
+  -webkit-writing-mode: horizontal-tb;
+  -webkit-appearance: button;
+}
+.__web-inspector-hide-shortcut__ {
+  visibility: hidden ;
+}
+.hamburger {
+  display: inline-block;
+  background-color: transparent;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-3 -6 24 24\"><path fill=\"#FFF\" d=\"M0 12h18v-2H0v2M0 7h18V5H0v2M0 0v2h18V0H0\"/></svg>");
+  background-repeat: no-repeat;
+  -webkit-background-size: 30px 24px;
+  -moz-background-size: 30px 24px;
+  background-size: 30px 24px;
+  background-position: center center;
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  -ms-flex-item-align: center;
+  -ms-grid-row-align: center;
+  -webkit-align-self: center;
+  align-self: center;
+  -ms-flex-item-align: center;
+}
+.tab {
+  position: relative;
+  color: #2d3d40;
+  padding: 6px;
+  margin: 0 4px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 400;
+  -webkit-transition: 0.1s ease color;
+  -webkit-transition: 0.1s ease color;
+  -moz-transition: 0.1s ease color;
+  -o-transition: 0.1s ease color;
+  -ms-transition: 0.1s ease color;
+  transition: 0.1s ease color;
+}
+amp-sidebar {
+  width: 250px;
+  background-color: #182022;
+}
+amp-sidebar ul {
+  padding: 10px 0;
+}
+amp-sidebar li {
+  border-top: 1px solid #2f4043;
+}
+amp-sidebar li:last-child {
+  border-bottom: 1px solid #2f4043;
+}
+amp-sidebar li a {
+  color: #fff;
+  font-weight: bold;
+  display: block;
+  padding: 10px 20px;
+}
+amp-sidebar li a:hover {
+  color: #ccc;
+  background-color: #030404;
+}
+.categories-header {
+  background-color: #2d3d40;
+  padding: 0rem 0.8rem;
+}
+.categories-header a {
+  color: #fff;
+}
+.categories-header a:hover {
+  color: #fff;
+}
+.categories-header .breadcrumb ol li {
+  list-style: none;
+  display: inline-block;
+  margin: 0;
+}
+.categories-header .breadcrumb ol li span {
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+.categories-header .breadcrumb ol li:after {
+  content: "/";
+  color: #fff;
+  display: inline-block;
+  margin: 0 0.4rem;
+}
+.categories-header .breadcrumb ol li:last-child:after {
+  content: "";
+  margin: 0;
+}
+.entry-header {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.entry-header .flx:first-child {
+  margin: 0 1rem 0 0;
+}
+.header-cap {
+  -webkit-flex-grow: 3;
+  -webkit-box-flex: 3;
+  -moz-box-flex: 3;
+  -o-box-flex: 3;
+  -ms-box-flex: 3;
+  box-flex: 3;
+  -webkit-flex-grow: 3;
+  flex-grow: 3;
+}
+.title-cover {
+  background-color: #fff;
+  color: #2d3d40;
+  padding: 1.5rem 0.8rem 0 0.8rem;
+}
+.title-cover a {
+  font-size: 1.2rem;
+  color: #2d3d40;
+  text-align: left;
+  font-weight: bold;
+}
+.entry-title {
+  margin: 0;
+}
+.entry-meta-header {
+  font-size: 0.85rem;
+  text-align: center;
+}
+.entry-meta-header .date {
+  font-family: sans-serif;
+}
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  color: #2d3d40;
+  text-decoration: none;
+}
+h1 a:hover,
+h2 a:hover,
+h3 a:hover,
+h4 a:hover,
+h5 a:hover,
+h6 a:hover {
+  color: #e91e63;
+}
+#container {
+  margin-left: auto;
+  margin-right: auto;
+}
+#main {
+  margin-bottom: 3em;
+  padding-left: 0;
+}
+.post {
+  margin-bottom: 3rem;
+  position: relative;
+}
+.entry-content {
+  margin: 0 0.6rem;
+  font-size: 1rem;
+}
+.entry-content h1 {
+  font-size: 1.7rem;
+  line-height: 1.5;
+  margin: 1em 0 0.8em;
+}
+.entry-content h2,
+.entry-content h3,
+.entry-content h4,
+.entry-content h5,
+.entry-content h6,
+.entry-content h2 span,
+.entry-content h3 span,
+.entry-content h4 span,
+.entry-content h5 span,
+.entry-content h6 span {
+  color: #98b8be;
+  font-weight: bold;
+}
+.entry-content h2,
+.entry-content h2 span {
+  font-size: 1.8rem;
+  line-height: 2.6rem;
+  text-align: center;
+}
+.entry-content h2 {
+  border-bottom: 2px solid #cce4e8;
+  margin: 4.5rem 0 0.5em;
+  padding: 0.8em 0;
+}
+.entry-content h3,
+.entry-content h3 span {
+  font-size: 1.6rem;
+  line-height: 2.2rem;
+  text-align: center;
+}
+.entry-content h3 {
+  margin: 3.6rem 0.8rem 3rem 0.8rem;
+  padding: 0;
+}
+.entry-content h4,
+.entry-content h4 span {
+  font-size: 1.4rem;
+  line-height: 2rem;
+  text-align: center;
+}
+.entry-content h4 {
+  margin: 3.6rem 0.8rem 3rem 0.8rem;
+  padding: 0;
+}
+.entry-content h5,
+.entry-content h5 span {
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  text-align: center;
+}
+.entry-content h5 {
+  margin: 3.6rem 0.8rem 3rem 0.8rem;
+  padding: 0;
+}
+.entry-content h6,
+.entry-content h6 span {
+  font-size: 1.1rem;
+  line-height: 1.6rem;
+  text-align: center;
+}
+.entry-content h6 {
+  margin: 3.6rem 0.8rem 3rem 0.8rem;
+  padding: 0;
+}
+.entry-content p {
+  font-size: 1rem;
+  letter-spacing: 0.05rem;
+  line-height: 2.2rem;
+  margin: 3rem 0.8rem;
+}
+.entry-content p a {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  display: inline;
+  border-bottom: 1px dashed #f1729d;
+  padding-bottom: 0.3rem;
+}
+.entry-content p a:hover {
+  border-bottom: 1px dashed #9c0f3f;
+  padding-bottom: 0.4rem;
+}
+.entry-content em {
+  background-color: #f9f5d1;
+  color: #886d00;
+  font-style: normal;
+  margin: 0 2px;
+  padding: 0.4em;
+}
+.entry-content strong {
+  color: #871c1c;
+  font-style: normal;
+  margin: 0 2px;
+  padding: 0.4em;
+  background-color: #fadcdc;
+}
+.entry-content hr {
+  border: 0;
+  border-top: 3px solid #cce4e8;
+  margin: 3rem auto;
+  width: 20%;
+}
+.entry-content img,
+.entry-content video {
+  display: block;
+  height: auto;
+  margin: auto;
+  max-width: 100%;
+}
+.entry-content iframe {
+  width: 100% ;
+}
+.entry-content blockquote {
+  margin: 3rem 0.8rem;
+  padding: 1rem 1.8rem;
+  position: relative;
+  background-color: none;
+  border-left: 3px solid #98b8be;
+  font-style: italic;
+}
+.entry-content blockquote p {
+  margin: 0.5rem 0;
+}
+.entry-content blockquote blockquote {
+  border-left: none;
+}
+.entry-content .table-wrapper {
+  margin: 3rem 0.8rem;
+}
+.entry-content table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  overflow: auto;
+  display: block;
+  font-size: 0.85rem;
+  margin: 0 auto;
+  width: auto;
+}
+.entry-content td,
+.entry-content th {
+  line-height: 1.8em;
+  padding: 0.8rem 0.8rem;
+  font-size: 0.85rem;
+}
+.entry-content td em,
+.entry-content th em,
+.entry-content td strong,
+.entry-content th strong,
+.entry-content td a,
+.entry-content th a {
+  font-size: 0.85rem;
+}
+.entry-content td {
+  border: 1px solid #c4c4c4;
+}
+.entry-content th {
+  background-color: #ecf5f7;
+  border: 1px solid #c4c4c4;
+}
+.entry-content .table-align-center {
+  text-align: center;
+}
+.entry-content .table-align-right {
+  text-align: right;
+}
+.entry-content ul,
+.entry-content ol,
+.entry-content dl {
+  margin: 3rem 0 3rem 1.6rem;
+  padding: 0;
+  list-style: none;
+  font-size: 1rem;
+}
+.entry-content ul li,
+.entry-content ol li,
+.entry-content dl li {
+  line-height: 2rem;
+  position: relative;
+  padding: 0;
+}
+.entry-content ul li p,
+.entry-content ol li p,
+.entry-content dl li p {
+  line-height: 2rem;
+  margin: 0;
+}
+.entry-content ul li p:not(:first-child),
+.entry-content ol li p:not(:first-child),
+.entry-content dl li p:not(:first-child) {
+  color: #57767c;
+  margin: 0.5rem;
+}
+.entry-content ul li ul,
+.entry-content ol li ul,
+.entry-content dl li ul,
+.entry-content ul li ol,
+.entry-content ol li ol,
+.entry-content dl li ol,
+.entry-content ul li dl,
+.entry-content ol li dl,
+.entry-content dl li dl {
+  margin: 1rem;
+}
+.entry-content ul li {
+  margin: 0.4rem 0 0.4rem 0.8rem;
+}
+.entry-content ul li::after {
+  position: absolute;
+  display: block;
+  content: '';
+  top: 0.75rem;
+  left: -1rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: #cce4e8;
+  border-radius: 100%;
+}
+.entry-content ol {
+  counter-reset: number;
+}
+.entry-content ol li {
+  margin: 0.4rem 0 0.4rem 2rem;
+}
+.entry-content ol li p:first-child {
+  display: inline-block;
+  line-height: 1.6rem;
+  height: 1.6rem;
+}
+.entry-content ol li:before {
+  position: absolute;
+  display: inline-block;
+  float: left;
+  margin: 0 0.2rem 0 0;
+  padding: 0;
+  counter-increment: number;
+  content: counter(number);
+  left: -2.2rem;
+  top: 0.2rem;
+  background-color: #98b8be;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.8rem;
+  line-height: 1.6rem;
+}
+kbd {
+  font-family: sans-serif;
+  text-align: center;
+  display: inline-block;
+  color: #425a5e;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-border-radius: 3px;
+  -webkit-box-shadow: 0 0 10px #e8e8e8 inset, 0 1px 0 #c3c3c3, 0 2px 0 #c9c9c9, 0 3px 3px #333;
+  box-shadow: 0 0 10px #e8e8e8 inset, 0 1px 0 #c3c3c3, 0 2px 0 #c9c9c9, 0 3px 3px #333;
+  -webkit-box-shadow: 0 0 10px #e2e2e2 inset, 0 1px 0 #c3c3c3, 0 2px 0 #c9c9c9, 0 3px 3px #333;
+  -webkit-font-smoothing: subpixel-antialiased;
+  background: #fff;
+  border-left: 1px solid #fff;
+  border-radius: 3px;
+  border-right: 1px solid #e6e6e6;
+  border-top: 1px solid #fff;
+  font-size: 0.85rem;
+  line-height: 1rem;
+  margin: 5px;
+  padding: 6px 8px 3px;
+  text-shadow: 0 1px 0 #fff;
+  vertical-align: baseline;
+  
+}
+img.responsive-img {
+  height: auto;
+  max-width: 100%;
+}
+video.responsive-video {
+  height: auto;
+  max-width: 100%;
+}
+amp-instagram,
+amp-vimeo,
+amp-video,
+amp-youtube,
+amp-twitter,
+.soundcloud-wrapper,
+.amp-img-wrapper,
+.googleAdPost,
+.ad-footer {
+  margin: 3rem 0.8rem;
+}
+code,
+figure.highlight .code,
+pre {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+code,
+pre,
+samp {
+  font-family: Menlo, Consolas, Monaco, Consolas, monospace;
+}
+p code {
+  font-size: 1rem;
+}
+code,
+pre {
+  font-size: 0.85rem;
+  letter-spacing: 0.05rem;
+  background-color: #ecf5f7;
+  color: #007e96;
+}
+code {
+  margin: 0 3px;
+  padding: 0.4em;
+}
+samp {
+  font-size: 0.85rem;
+  letter-spacing: 0.05rem;
+}
+sub,
+sup {
+  font-size: 0.75rem;
+  line-height: 0;
+  position: relative;
+}
+sub {
+  bottom: -0.2em;
+}
+sup {
+  top: -0.5em;
+}
+pre {
+  font-size: 1rem;
+  letter-spacing: 0.05rem;
+  margin: 0 3px;
+  padding: 15px;
+  -webkit-background-clip: padding;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  border: 0;
+  line-height: 1.3rem;
+  overflow-x: auto;
+}
+pre .addition,
+pre .css .tag,
+pre .keyword,
+pre .method,
+pre .nginx .title,
+pre .request,
+pre .status,
+pre .winutils {
+  color: #66d9ef;
+}
+pre .attr_selector,
+pre .cdata,
+pre .clojure .title,
+pre .diff .change,
+pre .important {
+  color: #9882eb;
+}
+pre .preprocessor {
+  color: #9882eb;
+}
+pre .preprocessor .keyword {
+  color: #9882eb;
+}
+pre .shebang,
+pre .special,
+pre .subst {
+  color: #9882eb;
+}
+pre .symbol {
+  color: #9882eb;
+}
+pre .symbol .string {
+  color: #9882eb;
+}
+pre .attribute,
+pre .class .title,
+pre .constant,
+pre .haskell .type,
+pre .lisp .body,
+pre .parent,
+pre .smalltalk .number,
+pre .variable {
+  color: #a6e22e;
+}
+pre .built_in,
+pre .chunk,
+pre .decorator,
+pre .id,
+pre .identifier,
+pre .literal,
+pre .localvars,
+pre .title,
+pre .vhdl,
+pre .deletion {
+  color: #f92672;
+}
+pre .command,
+pre .hexcolor,
+pre .number,
+pre .phpdoc,
+pre .regexp,
+pre .string,
+pre .tag .value,
+pre .tex .formula {
+  color: #e6db74;
+}
+pre .comment,
+pre .diff .header,
+pre .doctype,
+pre .javadoc,
+pre .lisp .string,
+pre .pi,
+pre .template_comment {
+  color: #75715e;
+  font-weight: normal;
+}
+.line {
+  font-size: 0.85rem;
+  letter-spacing: 0.05rem;
+  line-height: 2rem;
+  color: #f8f8f2;
+}
+.line span {
+  font-size: 0.85rem;
+  letter-spacing: 0.05rem;
+}
+.gist {
+  background: #fff;
+  border: 1px solid color-gutter;
+  color: #f8f8f2;
+  line-height: 1.6rem;
+  margin-top: 15px;
+  overflow: auto;
+  padding: 7px 15px;
+}
+.gist .gist-file {
+  border: none;
+  font-family: inherit;
+  font-size: 1rem;
+  letter-spacing: 0;
+  margin: 0;
+}
+.gist .gist-file .gist-data {
+  background: 0 0;
+  border-bottom: none;
+}
+.gist .gist-file .gist-data pre {
+  font-family: Menlo, Consolas, Monaco, Consolas, monospace;
+  padding: 0 ;
+}
+.gist .gist-file .gist-meta {
+  background: 0 0;
+  color: #f8f8f2;
+  font-size: 1rem;
+  margin-top: 5px;
+  padding: 0;
+}
+.gist .gist-file .gist-meta a {
+  color: #f8f8f2;
+}
+.gist .gist-file .gist-meta a:visited {
+  color: #f8f8f2;
+}
+figure.highlight {
+  font-size: 0.95rem;
+  margin: 3rem 0.8rem;
+  background: #263338;
+  border: 1px solid color-gutter;
+  line-height: 2rem;
+  overflow: auto;
+  position: relative;
+}
+figure.highlight .code {
+  padding: 0 1em 1em 1em;
+  color: #f8f8f2;
+}
+figure.highlight .gutter {
+  display: none;
+}
+figure.highlight figcaption {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #e9e9d6;
+  background-color: #1e282c;
+  padding: 0.6em 1em;
+}
+figure.highlight figcaption a {
+  position: absolute;
+  right: 1rem;
+}
+figure.highlight figcaption:before {
+  content: "\f121";
+  font-family: "fontawesome";
+  text-align: center;
+  display: inline-block;
+  margin-right: 0.6em;
+}
+figure.highlight pre {
+  background: 0 0;
+  border: none;
+  margin: 0;
+  padding: 0.5rem;
+}
+figure.highlight table {
+  border-spacing: 0;
+  margin: 0;
+}
+figure.highlight th {
+  border: 0;
+  font-weight: 400;
+  padding: 0;
+}
+figure.highlight td {
+  border: 0;
+  font-size: 1.1rem;
+  padding: 0;
+}
+.entry-content .toc {
+  background: #fff;
+  padding: 0.5rem;
+  margin: 3rem 0;
+  border: 1px solid #cce4e8;
+  border-radius: 2px;
+}
+.entry-content .toc ul {
+  margin-bottom: 0;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid #5d8b93;
+  border-radius: 2px;
+}
+.entry-content .toc ul:first-child {
+  border-top: none;
+}
+.entry-content .toc ul ul,
+.entry-content .toc ul ol {
+  margin-bottom: 0;
+  padding: 0;
+  margin: 0;
+}
+.entry-content .toc ul li {
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid #5d8b93;
+}
+.entry-content .toc ul li:first-child {
+  border-top: none;
+}
+.entry-content .toc ul li::after,
+.entry-content .toc ul li::before {
+  content: normal;
+}
+.entry-content .toc ul li a {
+  font-size: 1.2rem;
+  font-weight: bold;
+  display: block;
+  padding: 1rem;
+  background-color: #3d5b61;
+  color: #fff;
+  -webkit-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -ms-transition: 0.3s;
+  transition: 0.3s;
+}
+.entry-content .toc ul li a:hover {
+  color: #fff;
+  background-color: #2c4145;
+}
+.entry-content .toc ul li a:before {
+  content: "\f02d";
+  font-family: "fontawesome";
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  margin-right: 0.8rem;
+}
+.entry-content .toc ul li ul,
+.entry-content .toc ul li ol {
+  margin-bottom: 0;
+  padding: 0;
+  margin: 0;
+}
+.entry-content .toc ul li ul li a,
+.entry-content .toc ul li ol li a {
+  padding: 0.5rem 0.75rem 0.5rem 2rem;
+  font-size: 0.9rem;
+  background-color: #416167;
+}
+.entry-content .toc ul li ul li a:before,
+.entry-content .toc ul li ol li a:before {
+  content: "\f0da";
+  font-family: "fontawesome";
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  margin-right: 0.6rem;
+}
+.entry-content .toc ul li ul li ul li a,
+.entry-content .toc ul li ol li ul li a {
+  padding: 0.5rem 0.75rem 0.5rem 4rem;
+}
+.entry-content .toc ul li ul li ul li a:before,
+.entry-content .toc ul li ol li ul li a:before {
+  content: none;
+}
+.meta-content {
+  background-color: #fff;
+  margin: 1.5rem 0.8rem;
+  padding: 0;
+  border-top: 1px dotted #cce4e8;
+  letter-spacing: 0.05rem;
+}
+.meta-wrapper {
+  margin: 3rem 0.8rem;
+  padding: 0;
+  background-color: #fff;
+}
+h6.tag,
+h6.categories {
+  color: #2d3d40;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+.article-tag-list {
+  padding: 0;
+}
+.article-tag,
+.article-tag-list,
+.article-categories,
+.article-categories-list {
+  padding: 0;
+  margin: 0;
+}
+.article-categories {
+  margin-bottom: 1.6em;
+}
+.article-tag-list li,
+.article-categories-list li {
+  list-style: none;
+  display: inline-block;
+  padding: 0;
+  margin: 0.2rem 0.1rem;
+}
+.article-tag-list li a,
+.article-categories-list li a {
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 0.4rem 0.8rem;
+  margin: 0;
+  background-color: #ecf5f7;
+  color: #2d3d40;
+  border-radius: 2px;
+  display: block;
+}
+.article-tag-list li a:before,
+.article-categories-list li a:before {
+  content: "#";
+}
+.article-tag-list li a:hover,
+.article-categories-list li a:hover {
+  color: #fff;
+  background-color: #2d3d40;
+}
+.widget {
+  margin: 1.5rem 0.8rem;
+  padding: 0;
+}
+.widget-h {
+  text-align: center;
+  margin: 1.6rem 0;
+}
+.widget-h h6 {
+  color: #fff;
+  background-color: #2d3d40;
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+.posts-list li {
+  list-style: none;
+  margin: 0.8rem 0;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.posts-list li .posts-list-link {
+  -webkit-flex-grow: 3;
+  -webkit-box-flex: 3;
+  -moz-box-flex: 3;
+  -o-box-flex: 3;
+  -ms-box-flex: 3;
+  box-flex: 3;
+  -webkit-flex-grow: 3;
+  flex-grow: 3;
+}
+.posts-list li .posts-list-link a {
+  color: #2d3d40;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+.posts-list li .posts-list-link a:hover {
+  color: #e91e63;
+}
+.posts-list li .posts-list-meta {
+  font-size: 0.7rem;
+}
+.posts-list li .flx:first-child {
+  margin: 0 1rem 0 0;
+}
+.posts-list li amp-img {
+  border-radius: 2px;
+}
+#footer {
+  background-color: #2d3d40;
+  color: #fff;
+  display: block;
+  font-size: 1rem;
+  letter-spacing: 0.05rem;
+  line-height: 2rem;
+  margin: 3rem 0 0 0;
+  padding: 0;
+}
+.site-author-info {
+  margin: 0;
+  padding: 3rem 1.6rem;
+}
+.site-author-info h6 {
+  font-size: 1rem;
+  color: #fff;
+  font-weight: bold;
+  display: inline-block;
+  background-color: #222f31;
+  padding: 0.4rem 0.8rem;
+}
+.site-author-info-wrapper {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.site-author-info-wrapper .flx:first-child {
+  margin: 0 1rem 0 0;
+}
+.authorCap-wrapper {
+  -webkit-flex-grow: 3;
+  -webkit-box-flex: 3;
+  -moz-box-flex: 3;
+  -o-box-flex: 3;
+  -ms-box-flex: 3;
+  box-flex: 3;
+  -webkit-flex-grow: 3;
+  flex-grow: 3;
+}
+.authorCap {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+.authorReading {
+  font-size: 0.7rem;
+}
+.site-author-desc {
+  font-size: 0.8rem;
+  line-height: 1.6rem;
+  margin: 1.4rem 0;
+}
+.copyright-tool {
+  margin: 0;
+  padding: 1.5rem 1.6rem;
+  border-top: 1px solid #384b4f;
+}
+.copyright-notice p {
+  font-size: 0.6rem;
+  letter-spacing: 0.05rem;
+  line-height: 1.2rem;
+  color: #8ba8ae;
+}
+.copyright-title {
+  font-size: 1rem;
+  text-align: center;
+  margin: 0.8rem 0 0.4rem 0;
+}
+.copyright-license {
+  margin: 0.4rem 0 0.8rem 0;
+  font-size: 0.7rem;
+  text-align: center;
+}
+.copyright-license a {
+  color: #e6e6e6;
+  font-size: 0.7rem;
+}
+.copyright-license a:hover {
+  color: #b3b3b3;
+}
+.sns-link {
+  margin: 0;
+  text-align: center;
+}
+.sns-link a {
+  display: inline-block;
+  font-size: 1.6rem;
+  text-align: center;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  padding: 0.6rem;
+  margin: 0 0.1rem;
+  background-color: #222f31;
+  color: #fff;
+  border-radius: 4px;
+}
+.sns-link a:hover {
+  color: #ccc;
+  background-color: #030404;
+}
+.footer-menu {
+  padding: 1.5rem 0.8rem;
+  border-top: 1px solid #384b4f;
+}
+.footer-menu ul li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.footer-menu ul li a {
+  display: block;
+  padding: 0.6rem;
+  margin: 0.2rem 1.6rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #222f31;
+  border-radius: 4px;
+  text-align: center;
+  font-weight: bold;
+}
+.footer-menu ul li a:hover {
+  color: #ccc;
+  background-color: #030404;
+}
+.social-share {
+  margin: 1.5rem 0.8rem;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+.social-share amp-social-share,
+.social-share .sbtn {
+  margin: 5px;
+}
+.sbtn {
+  padding: 0;
+  width: 4rem;
+  height: 3rem;
+  line-height: 3rem;
+  color: #fff;
+  font-size: 1.2rem;
+  text-align: center;
+  border-radius: 4px;
+}
+.sbtn:hover {
+  color: #fff;
+}
+.tw {
+  background-color: #1cafe8;
+}
+.tw:hover {
+  background-color: #0f6b8f;
+}
+.fb {
+  background-color: #4f677f;
+}
+.fb:hover {
+  background-color: #283440;
+}
+.ht {
+  background-color: #35acda;
+}
+.ht:hover {
+  background-color: #1a6e8f;
+}
+.gp {
+  background-color: #d56153;
+}
+.gp:hover {
+  background-color: #9c3326;
+}
+.tb {
+  background-color: #465f79;
+}
+.tb:hover {
+  background-color: #212c38;
+}
+.icon-hatena:before {
+  content: "B";
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+#totop {
+  position: fixed;
+  bottom: 2rem;
+  right: 1.6rem;
+  font-size: 1.2rem;
+  z-index: 995;
+}
+#totop a {
+  background: rgba(152,184,190,0.6);
+  text-decoration: none;
+  color: #fff;
+  padding: 0.8rem;
+  border-radius: 50%;
+}
+#totop a:before {
+  content: "\f062";
+  font-family: "fontawesome";
+  font-size: 1.2rem;
+}
+#totop a:hover {
+  text-decoration: none;
+  background: #5d8b93;
+  color: #fff;
+  line-height: 2.3em;
+}
+@media (min-width: 800px) {
+  .title-cover,
+  .entry-content,
+  .categories,
+  .meta-content,
+  .site-author-info {
+    width: 780px;
+    margin: 0 auto;
+  }
+  .nav-container {
+    width: 800px;
+    margin: 0 auto;
+  }
+}
+@media (min-width: 0px) and (max-width: 480px) {
+  .site-author-info-wrapper {
+    display: block;
+  }
+  .gravatar-area {
+    text-align: center;
+  }
+  .gravatar-area amp-img {
+    display: inline-block;
+  }
+  .entry-content td,
+  .entry-content th {
+    line-height: 1.8em;
+    padding: 0.6rem 0.6rem;
+    font-size: 0.5rem;
+  }
+  .entry-content td em,
+  .entry-content th em,
+  .entry-content td strong,
+  .entry-content th strong,
+  .entry-content td a,
+  .entry-content th a {
+    font-size: 0.5rem;
+  }
+}
+
+	</style>
+	
+  </head>
+  <body>
+  	
+  	
+  	<!-- google analytics -->
+  	
+  	
+  	
+  	<!-- menu -->
+  	<header>
+  		<div class="nav-container">
+	  		<div class="left-nav">
+	  			<div class="header-title">
+	  				<a href="/">Santu&#39;s Blog</a>
+	  			</div>
+	  		</div>
+	  		
+	  	</div>
+    </header>
+  	
+  	
+  	<!-- sidebar -->
+  	
+  	
+  	<!-- container -->
+  	<div id="container">
+	  	<div id="main">
+		    <article id="post-网络对抗原理实验二" class="post">
+		    
+		   		<!-- categories and bread crumb -->
+		    	
+				<div class="categories-header">
+					<div class="categories">
+						<div class="breadcrumb inline-icon">
+							<ol itemscope itemtype="http://schema.org/BreadcrumbList">
+							  <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+							    <a itemprop="item" href="/">
+							    	<span class="sns-icon home-icon"></span>
+							        <span itemprop="name"><span class="fa fa-fw fa-home"></span></span>
+							    </a>
+							    <meta itemprop="position" content="1" />
+							  </li>
+
+								
+						    		<li itemprop="itemListElement" itemscope
+									      itemtype="http://schema.org/ListItem">
+									    <a itemprop="item" href="/categories/网络安全实验/">
+									      
+									      	<span class="sns-icon folder-icon"></span>
+									      
+									      <span itemprop="name">网络安全实验</span>
+									    </a>
+									    <meta itemprop="position" content="2" />
+									</li>
+								
+							</ol>
+						</div>
+					</div>
+				</div>
+				
+		    
+		    	<!-- entry title -->
+				<div class="title-cover">
+					<div class="entry-header">
+						
+						
+						
+			          	<div class="header-thumb flx">
+			          		<div class="thumbImg-w circle">
+			          			<amp-img class="thumbImg" layout="fixed" width="128" height="100" src="/amp-dist/sample/sample-substituteTitleImage.png">
+			          			</amp-img>
+			          		</div>
+			          	</div>
+			            
+			            
+			            <div class="header-cap flx">
+							
+							  <h1 class="article-title entry-title" itemprop="name">
+							    <a href="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/" target="_blank" itemprop="url">网络对抗原理实验二</a>
+							  </h1>
+							
+						</div>
+					</div>
+					
+					<!-- datePublished -->
+					<div class="entry-meta-header">
+						<span class="meta-elements date">
+							<span class="fa fa-fw fa-clock-o"></span>
+							<time datetime="2019-01-13" itemprop="datePublished">2019.01.13</time>
+						</span>
+					</div>
+				</div>
+				
+				
+				
+				<!-- entry content -->
+			    <div class="entry-content ecp">
+			    	<!-- social share button -->
+			    	
+			    	
+			    	
+                    <!-- google Adsense Matched content -->
+                    
+                    
+			    	<!-- content -->
+			  		<h1 id="&#x7F51;&#x7EDC;&#x5BF9;&#x6297;&#x539F;&#x7406;&#x5B9E;&#x9A8C;&#x4E8C;"><a href="#&#x7F51;&#x7EDC;&#x5BF9;&#x6297;&#x539F;&#x7406;&#x5B9E;&#x9A8C;&#x4E8C;" class="headerlink" title="&#x7F51;&#x7EDC;&#x5BF9;&#x6297;&#x539F;&#x7406;&#x5B9E;&#x9A8C;&#x4E8C;"></a>&#x7F51;&#x7EDC;&#x5BF9;&#x6297;&#x539F;&#x7406;&#x5B9E;&#x9A8C;&#x4E8C;</h1><h2 id="&#x5B9E;&#x9A8C;&#x8981;&#x6C42;"><a href="#&#x5B9E;&#x9A8C;&#x8981;&#x6C42;" class="headerlink" title="&#x5B9E;&#x9A8C;&#x8981;&#x6C42;"></a>&#x5B9E;&#x9A8C;&#x8981;&#x6C42;</h2><ol>
+<li>&#x7528;openldap&#x642D;&#x5EFA;LDAP&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x5C1D;&#x8BD5;&#x5BF9;&#x5B66;&#x751F;&#x4FE1;&#x606F;&#x8FDB;&#x884C;&#x589E;&#x5220;&#x6539;&#x67E5;&#xFF0C;&#x4FE1;&#x606F;&#x5305;&#x62EC;&#x4F46;&#x4E0D;&#x9650;&#x4E8E;&#x5B66;&#x751F;id&#x3001;&#x5BC6;&#x7801;&#x3001; &#x90AE;&#x7BB1;&#x3001;&#x624B;&#x673A;&#x53F7;&#x3001;&#x90E8;&#x95E8;&#x7B49;&#x3002;</li>
+<li>&#x914D;&#x7F6E; apache &#x670D;&#x52A1;&#x5668;&#xFF0C;&#x914D;&#x7F6E; Basic &#x8BA4;&#x8BC1;&#x6A21;&#x5757;&#x548C;&#x9700;&#x8981;&#x8BA4;&#x8BC1;&#x7684;&#x9875;&#x9762;&#xFF0C;&#x4F7F;&#x7528;&#x7528;&#x6237;&#x540D;&#x5BC6;&#x7801;&#x8BA4;&#x8BC1;&#x3002;</li>
+<li>&#x914D;&#x7F6E; apache &#x670D;&#x52A1;&#x5668;&#xFF0C;&#x914D;&#x7F6E; LDAP &#x8BA4;&#x8BC1;&#x6A21;&#x5757;&#x548C;&#x9700;&#x8981;&#x8BA4;&#x8BC1;&#x7684;&#x9875;&#x9762;&#xFF0C;&#x4F7F;&#x7528; LDAP &#x5B58;&#x653E;&#x7684;&#x5B66;&#x751F;&#x7684;&#x7528;&#x6237;&#x540D;&#x5BC6;&#x7801;<br>&#x8BA4;&#x8BC1;&#x3002;</li>
+<li>&#x7528;freeradius&#x642D;&#x5EFA;RADIUS&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x5C1D;&#x8BD5;&#x914D;&#x7F6E;&#x57FA;&#x4E8E;unix&#x8D26;&#x53F7;&#x7684;&#x8BA4;&#x8BC1;&#xFF0C;&#x5E76;&#x7528;radtest&#x9A8C;&#x8BC1;&#x670D;&#x52A1;&#x6709;&#x6548;&#x3002;</li>
+<li>&#x914D;&#x7F6E;apache&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x914D;&#x7F6E;RADIUS&#x8BA4;&#x8BC1;&#x6A21;&#x5757;&#x548C;&#x9700;&#x8981;&#x8BA4;&#x8BC1;&#x7684;&#x9875;&#x9762;&#xFF0C;&#x4F7F;&#x7528;unix/Linux&#x672C;&#x5730;&#x7528;&#x6237;&#x540D;&#x5BC6;&#x7801; &#x8BA4;&#x8BC1;&#x3002;</li>
+<li>&#x5728;freeradius&#x4E2D;&#x914D;&#x7F6E;ldap&#x8BA4;&#x8BC1;&#x6A21;&#x5757;&#xFF0C;&#x548C;LDAP&#x670D;&#x52A1;&#x5668;&#x4E92;&#x901A;&#xFF0C;&#x5229;&#x7528;ldap&#x8D26;&#x53F7;&#x5BC6;&#x7801;&#x8BA4;&#x8BC1;&#x7528;&#x6237;&#x8EAB;&#x4EFD;&#xFF0C;&#x5E76;&#x7528; radtest &#x6D4B;&#x8BD5;&#x901A;&#x8FC7;&#x3002;</li>
+</ol>
+<h2 id="&#x5B9E;&#x9A8C;&#x73AF;&#x5883;&#xFF1A;Ubuntu-16-04"><a href="#&#x5B9E;&#x9A8C;&#x73AF;&#x5883;&#xFF1A;Ubuntu-16-04" class="headerlink" title="&#x5B9E;&#x9A8C;&#x73AF;&#x5883;&#xFF1A;Ubuntu 16.04"></a>&#x5B9E;&#x9A8C;&#x73AF;&#x5883;&#xFF1A;Ubuntu 16.04</h2><h2 id="&#x5B89;&#x88C5;&#x5E76;&#x914D;&#x7F6E;ldap"><a href="#&#x5B89;&#x88C5;&#x5E76;&#x914D;&#x7F6E;ldap" class="headerlink" title="&#x5B89;&#x88C5;&#x5E76;&#x914D;&#x7F6E;ldap"></a>&#x5B89;&#x88C5;&#x5E76;&#x914D;&#x7F6E;ldap</h2><h3 id="&#x5B89;&#x88C5;"><a href="#&#x5B89;&#x88C5;" class="headerlink" title="&#x5B89;&#x88C5;"></a>&#x5B89;&#x88C5;</h3><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install slapd ldap-utils</span><br><span class="line">sudo dpkg-reconfigure slapd</span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>Omit OpenLDAP server configuration? =&gt; No</p>
+</blockquote>
+<blockquote>
+<p>DNS domain name? =&gt; example.com</p>
+</blockquote>
+<blockquote>
+<p>Organization name? =&gt; example</p>
+</blockquote>
+<blockquote>
+<p>Administrator password? =&gt; {<strong>**</strong>}</p>
+</blockquote>
+<blockquote>
+<p>Database backend? =&gt; MDB</p>
+</blockquote>
+<blockquote>
+<p>Remove the database when slapd is purged? =&gt; No</p>
+</blockquote>
+<blockquote>
+<p>Move old database? =&gt; Yes</p>
+</blockquote>
+<blockquote>
+<p>Allow LDAPv2 protocol? =&gt; No</p>
+</blockquote>
+<blockquote>
+<p>Done!</p>
+</blockquote>
+<h3 id="&#x9632;&#x706B;&#x5899;&#x5141;&#x8BB8;&#x901A;&#x8FC7;ldap&#x7A0B;&#x5E8F;&#x7AEF;&#x53E3;"><a href="#&#x9632;&#x706B;&#x5899;&#x5141;&#x8BB8;&#x901A;&#x8FC7;ldap&#x7A0B;&#x5E8F;&#x7AEF;&#x53E3;" class="headerlink" title="&#x9632;&#x706B;&#x5899;&#x5141;&#x8BB8;&#x901A;&#x8FC7;ldap&#x7A0B;&#x5E8F;&#x7AEF;&#x53E3;"></a>&#x9632;&#x706B;&#x5899;&#x5141;&#x8BB8;&#x901A;&#x8FC7;ldap&#x7A0B;&#x5E8F;&#x7AEF;&#x53E3;</h3><figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw allow ldap</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="&#x6D4B;&#x8BD5;&#x662F;&#x5426;&#x5B89;&#x88C5;&#x6210;&#x529F;"><a href="#&#x6D4B;&#x8BD5;&#x662F;&#x5426;&#x5B89;&#x88C5;&#x6210;&#x529F;" class="headerlink" title="&#x6D4B;&#x8BD5;&#x662F;&#x5426;&#x5B89;&#x88C5;&#x6210;&#x529F;"></a>&#x6D4B;&#x8BD5;&#x662F;&#x5426;&#x5B89;&#x88C5;&#x6210;&#x529F;</h3><figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ldapwhoami -H ldap:// -x</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+<div class="amp-img-wrapper"><amp-img src="/&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#x5B9E;&#x9A8C;/&#x7F51;&#x7EDC;&#x5BF9;&#x6297;&#x539F;&#x7406;&#x5B9E;&#x9A8C;&#x4E8C;/F3F0911A-4F0D-4962-806C-E06676DFE1C3.png" width="603" height="85" layout="responsive"></amp-img></div>
+<p>&#x8F93;&#x51FA;&#x4E3A;anonymous&#xFF0C;&#x6240;&#x4EE5;ldap&#x5B89;&#x88C5;&#x6210;&#x529F;&#x3002;</p>
+<h3 id="&#x914D;&#x7F6E;ldap"><a href="#&#x914D;&#x7F6E;ldap" class="headerlink" title="&#x914D;&#x7F6E;ldap"></a>&#x914D;&#x7F6E;ldap</h3><blockquote>
+<p>&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;student.ldif&#x5199;&#x4E0B;&#x5982;&#x4E0B;&#x5185;&#x5BB9;</p>
+</blockquote>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">dn: ou=student,dc=example,dc=com</span><br><span class="line">objectclass: top</span><br><span class="line">objectclass: organizationalUnit</span><br><span class="line">ou: student</span><br><span class="line"></span><br><span class="line">dn: uid=stu1,ou=student,dc=example,dc=com</span><br><span class="line">objectclass: person</span><br><span class="line">cn: 15069130025</span><br><span class="line">sn: 15069130025</span><br><span class="line">telephonenumber: 18300000000</span><br><span class="line">userPassword: student1</span><br><span class="line">objectclass: organizationalPerson</span><br><span class="line">postalAddress: XD</span><br><span class="line">objectclass: inetOrgPerson</span><br><span class="line">uid: 001</span><br><span class="line"></span><br><span class="line">dn: uid=stu2,ou=student,dc=example,dc=com</span><br><span class="line">objectclass: person</span><br><span class="line">cn: 1234567</span><br><span class="line">sn: 1234567</span><br><span class="line">telephonenumber: 18900000000</span><br><span class="line">userPassword: student2</span><br><span class="line">objectclass: organizationalPerson</span><br></pre></td></tr></tbody></table></figure>
+<div class="amp-img-wrapper"><amp-img src="/&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#x5B9E;&#x9A8C;/&#x7F51;&#x7EDC;&#x5BF9;&#x6297;&#x539F;&#x7406;&#x5B9E;&#x9A8C;&#x4E8C;/E59F10B0-B7DB-4B22-B15D-4D2AE0F8F36A.png" width="508" height="552" layout="responsive"></amp-img></div>
+<h2 id="&#x6DFB;&#x52A0;&#x5B66;&#x751F;&#x4FE1;&#x606F;"><a href="#&#x6DFB;&#x52A0;&#x5B66;&#x751F;&#x4FE1;&#x606F;" class="headerlink" title="&#x6DFB;&#x52A0;&#x5B66;&#x751F;&#x4FE1;&#x606F;"></a>&#x6DFB;&#x52A0;&#x5B66;&#x751F;&#x4FE1;&#x606F;</h2><ul>
+<li>&#x6DFB;&#x52A0;&#x5B66;&#x751F;&#x4FE1;&#x606F;</li>
+</ul>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ldapadd -xWD &apos;cn=admin,dc=example,dc=com&apos; -f student.ldif</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>&#x67E5;&#x8BE2;&#x5B66;&#x751F;&#x4FE1;&#x606F;</li>
+</ul>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ldapsearch -xWD &apos;cn=admin,dc=example,dc=com&apos; -b &apos;uid=stu1,ou=student,dc=example,dc=com&apos;</span><br></pre></td></tr></tbody></table></figure>
+<div class="amp-img-wrapper"><amp-img src="/&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#x5B9E;&#x9A8C;/&#x7F51;&#x7EDC;&#x5BF9;&#x6297;&#x539F;&#x7406;&#x5B9E;&#x9A8C;&#x4E8C;/9BB67CE1-F306-4039-9BF2-E3E85C3621FE.png" width="1144" height="360" layout="responsive"></amp-img></div>
+<h2 id="&#x5B89;&#x88C5;&#x4E0E;&#x914D;&#x7F6E;apache&#x670D;&#x52A1;&#x5668;"><a href="#&#x5B89;&#x88C5;&#x4E0E;&#x914D;&#x7F6E;apache&#x670D;&#x52A1;&#x5668;" class="headerlink" title="&#x5B89;&#x88C5;&#x4E0E;&#x914D;&#x7F6E;apache&#x670D;&#x52A1;&#x5668;"></a>&#x5B89;&#x88C5;&#x4E0E;&#x914D;&#x7F6E;apache&#x670D;&#x52A1;&#x5668;</h2><ul>
+<li>&#x5B89;&#x88C5;</li>
+</ul>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install apache2 apache2-dev</span><br><span class="line">sudo service apache2 restart</span><br><span class="line">sudo ufw allow in &quot;Apache Full&quot;</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>&#x914D;&#x7F6E;Basic&#x8BA4;&#x8BC1;</li>
+</ul>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/apache2/sites-enabled/000-default.conf</span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>&#x914D;&#x7F6E;&#x5982;&#x4E0B;&#x6240;&#x793A;</p>
+</blockquote>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory /var/www/html&gt;</span><br><span class="line">	Options Indexes FollowSymLinks</span><br><span class="line">	AllowOverride authconfig</span><br><span class="line">	Order allow,deny</span><br><span class="line">	allow from all</span><br><span class="line">	AuthType Basic</span><br><span class="line">	AuthName &apos;santu&apos;</span><br><span class="line">	AuthBasicProvider file</span><br><span class="line">	AuthUserFile /var/www/html/.valid_user</span><br><span class="line">	Require valid-user</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></tbody></table></figure>
+<div class="amp-img-wrapper"><amp-img src="/&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#x5B9E;&#x9A8C;/&#x7F51;&#x7EDC;&#x5BF9;&#x6297;&#x539F;&#x7406;&#x5B9E;&#x9A8C;&#x4E8C;/EECCDE52-600D-4D75-8227-6FCC2DE943FA.png" width="1109" height="706" layout="responsive"></amp-img></div>
+<blockquote>
+<p><strong>&#x8FD9;&#x91CC;&#x7684;&#x6CE8;&#x91CA;&#x662F;&#x4E00;&#x4F1A;&#x513F;&#x914D;&#x7F6E;ldap&#x65F6;&#x9700;&#x8981;&#x7528;&#x5230;&#x7684;</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>&#x5EFA;&#x7ACB;basic&#x8BA4;&#x8BC1;&#x7684;&#x5BC6;&#x94A5;&#x6587;&#x4EF6;</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo htpasswd -bc /var/www/html/.valid_user santu {[PASSWD]}</span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>&#x7136;&#x540E;&#x8BBF;&#x95EE;web</p>
+</blockquote>
+<div class="amp-img-wrapper"><amp-img src="/&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#x5B9E;&#x9A8C;/&#x7F51;&#x7EDC;&#x5BF9;&#x6297;&#x539F;&#x7406;&#x5B9E;&#x9A8C;&#x4E8C;/E932B380-12F1-4B1F-BC8B-4214DDA0A7B9.png" width="974" height="753" layout="responsive"></amp-img></div>
+<h2 id="&#x914D;&#x7F6E;apache&#x4F7F;&#x7528;ldap&#x8BA4;&#x8BC1;"><a href="#&#x914D;&#x7F6E;apache&#x4F7F;&#x7528;ldap&#x8BA4;&#x8BC1;" class="headerlink" title="&#x914D;&#x7F6E;apache&#x4F7F;&#x7528;ldap&#x8BA4;&#x8BC1;"></a>&#x914D;&#x7F6E;apache&#x4F7F;&#x7528;ldap&#x8BA4;&#x8BC1;</h2><blockquote>
+<p>&#x4FEE;&#x6539;apache2.conf</p>
+</blockquote>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/apache2/apache2.conf</span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>&#x5728;apache2.conf&#x6587;&#x4EF6;&#x5F00;&#x5934;&#x4E2D;&#x6DFB;&#x52A0;&#x8FD9;&#x4E00;&#x884C;&#x5BFC;&#x5165;&#x6A21;&#x5757;</p>
+</blockquote>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Include mods-available/ldap.*</span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>&#x91CD;&#x542F;apache&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x52A0;&#x8F7D;&#x6A21;&#x5757;</p>
+</blockquote>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo service apache2 restart</span><br><span class="line">a2enmod ldap</span><br><span class="line">a2enmod authnz_ldap</span><br><span class="line">sudo service apache2 restart</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x6211;&#x8FD9;&#x91CC;&#x5DF2;&#x7ECF;&#x52A0;&#x8F7D;&#x4E86;<br></p><div class="amp-img-wrapper"><amp-img src="/&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#x5B9E;&#x9A8C;/&#x7F51;&#x7EDC;&#x5BF9;&#x6297;&#x539F;&#x7406;&#x5B9E;&#x9A8C;&#x4E8C;/3D5F049E-2D23-45D3-9EA4-9C839675C189.png" width="522" height="105" layout="responsive"></amp-img></div>
+<blockquote>
+<p>&#x63A5;&#x7740;&#xFF0C;&#x4FEE;&#x6539;000-default.conf(&#x5C31;&#x662F;&#x4E0A;&#x6587;&#x4E2D;&#x63D0;&#x5230;&#x7684;&#x90A3;&#x4E2A;&#x6CE8;&#x91CA;),&#x6211;&#x8FD9;&#x91CC;&#x9009;&#x62E9;&#x8FD9;&#x91CC;&#x9009;&#x62E9;&#x6CE8;&#x91CA;&#x6389;AuthUserFile&#x5BC6;&#x94A5;&#x6587;&#x4EF6;&#xFF0C;&#x5982;&#x679C;&#x4EE5;&#x540E;&#x9700;&#x8981;&#x6062;&#x590D;basic&#x8BA4;&#x8BC1;&#x65F6;&#x53EA;&#x9700;&#x53D6;&#x6D88;&#x6CE8;&#x91CA;&#xFF0C;&#x5E76;&#x4E14;&#x5C06;AuthBasicProvider&#x540E;&#x6539;&#x4E3A;file&#x5373;&#x53EF;</p>
+</blockquote>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory /var/www/html&gt;</span><br><span class="line">	Options Indexes FollowSymLinks</span><br><span class="line">	AllowOverride authconfig</span><br><span class="line">	Order allow,deny</span><br><span class="line">	allow from all</span><br><span class="line">	AuthType Basic</span><br><span class="line">	AuthName &apos;santu&apos;</span><br><span class="line">	AuthBasicProvider ldap</span><br><span class="line">	#AuthUserFile /var/www/html/.valid_user</span><br><span class="line">	AuthLDAPURL ldap://127.0.0.1/ou=student,dc=example,dc=com?uid</span><br><span class="line">	Require valid-user</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></tbody></table></figure>
+<div class="amp-img-wrapper"><amp-img src="/&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#x5B9E;&#x9A8C;/&#x7F51;&#x7EDC;&#x5BF9;&#x6297;&#x539F;&#x7406;&#x5B9E;&#x9A8C;&#x4E8C;/CC055D81-8C43-41AD-B539-E60A03FA1337.png" width="786" height="262" layout="responsive"></amp-img></div>
+<blockquote>
+<p>&#x91CD;&#x542F;&#x670D;&#x52A1;&#x5668;</p>
+</blockquote>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service apache2 restart</span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>&#x73B0;&#x5728;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x7528;student.ldif&#x4E2D;&#x7684;&#x5B66;&#x751F;&#x4FE1;&#x606F;&#x8FDB;&#x884C;&#x767B;&#x5F55;&#x9A8C;&#x8BC1;&#x4E86;</p>
+</blockquote>
+<div class="amp-img-wrapper"><amp-img src="/&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#x5B9E;&#x9A8C;/&#x7F51;&#x7EDC;&#x5BF9;&#x6297;&#x539F;&#x7406;&#x5B9E;&#x9A8C;&#x4E8C;/09157948-F2BB-49B1-94C0-71C5AB30DE0F.png" width="1158" height="734" layout="responsive"></amp-img></div>
+<h2 id="apache&#x4F7F;&#x7528;freeradius&#x8BA4;&#x8BC1;"><a href="#apache&#x4F7F;&#x7528;freeradius&#x8BA4;&#x8BC1;" class="headerlink" title="apache&#x4F7F;&#x7528;freeradius&#x8BA4;&#x8BC1;"></a>apache&#x4F7F;&#x7528;freeradius&#x8BA4;&#x8BC1;</h2><ul>
+<li>&#x5B89;&#x88C5;freeradius&#x4E4B;&#x524D;&#x5148;&#x8981;&#x786E;&#x4FDD;&#x5DF2;&#x7ECF;&#x5B89;&#x88C5;&#x4E86;mysql&#x3001;&#x56E0;&#x4E3A;&#x540E;&#x6765;&#x8981;&#x7528;&#x5230;&#x3001;&#x6CA1;&#x6709;&#x5B89;&#x88C5;&#x4F7F;&#x7528;apt-get&#x6765;&#x5B89;&#x88C5;</li>
+</ul>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install mysql-server</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>&#x5B89;&#x88C5;freeradius&#x7684;&#x90E8;&#x4EF6;</li>
+</ul>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install libssl-dev libapache2-mod-auth-radius freeradius freeradius-ldap mysql-server freeradius-mysql</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>&#x5B89;&#x88C5;&#x5B8C;&#x6210;&#x540E;freeradius&#x5C31;&#x4F1A;&#x81EA;&#x52A8;&#x542F;&#x52A8;&#x4E86;&#x3001;&#x7531;&#x4E8E;&#x6211;&#x4EEC;&#x8981;&#x4F7F;&#x7528;&#x8C03;&#x8BD5;&#x6A21;&#x5F0F;&#x6765;&#x542F;&#x52A8;freeradius&#x3001;&#x6240;&#x4EE5;&#x5148;&#x5173;&#x95ED;freeradius&#x670D;&#x52A1;</li>
+</ul>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service freeradius stop</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>&#x4FEE;&#x6539;/etc/freeradius/&#x4E0B;&#x7684;users&#x6587;&#x4EF6;</li>
+</ul>
+<div class="amp-img-wrapper"><amp-img src="/&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#x5B9E;&#x9A8C;/&#x7F51;&#x7EDC;&#x5BF9;&#x6297;&#x539F;&#x7406;&#x5B9E;&#x9A8C;&#x4E8C;/a.png" width="645" height="249" layout="responsive"></amp-img></div>
+<p>&#x628A;&#x8FD9;&#x51E0;&#x884C;&#x53CD;&#x6CE8;&#x91CA;&#x3001;&#x4E5F;&#x5C31;&#x662F;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;steve&#x3001;&#x5BC6;&#x7801;&#x4E3A;testing&#x7684;&#x7528;&#x6237;&#x6765;&#x6D4B;&#x8BD5;&#x4E00;&#x4E0B;&#x662F;&#x5426;&#x901A;&#x5219;&#x767B;&#x5F55;freeradius&#x670D;&#x52A1;&#x5668;&#x3001;&#x4FDD;&#x5B58;&#x540E;&#x9000;&#x51FA;&#x7136;&#x540E;&#x542F;&#x52A8;radius&#x7684;&#x8C03;&#x8BD5;&#x6A21;&#x5F0F;&#x3002;</p>
+<p><strong>&#x6CE8;&#x610F;&#x70B9;&#x4E00;</strong>&#xFF1A;&#x8FD9;&#x91CC;&#x9700;&#x8981;&#x8865;&#x5145;&#x4E00;&#x70B9;&#x4F7F;&#x7528;ubtuntu&#x7684;apt-get&#x65B9;&#x5F0F;&#x6765;&#x5B89;&#x88C5;freeradius&#x7684;&#x4F4D;&#x7F6E;&#x4F1A;&#x548C;&#x6E90;&#x7801;&#x4E0D;&#x540C;&#x3001;&#x6E90;&#x7801;&#x5B89;&#x88C5;&#x7684;&#x9ED8;&#x8BA4;&#x4F4D;&#x7F6E;&#x662F;/usr/local/etc/raddb/&#x800C;&#x4F7F;&#x7528;ubuntu&#x7684;apt-get&#x65B9;&#x5F0F;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x5219;&#x5B89;&#x7F6E;&#x5728;/etc/freeradius/&#xFF0C;&#x6211;&#x8FD9;&#x91CC;&#x662F;&#x4F7F;&#x7528;apt-get&#x6765;&#x5B89;&#x88C5;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x9ED8;&#x8BA4;&#x5B89;&#x88C5;&#x4F4D;&#x7F6E;&#x4E3A;/etc/freeradius/</p>
+<ul>
+<li>&#x5F00;&#x542F;&#x8C03;&#x8BD5;&#x6A21;&#x5F0F;</li>
+</ul>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">freeradius &#x2013;X</span><br></pre></td></tr></tbody></table></figure>
+<div class="amp-img-wrapper"><amp-img src="/&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#x5B9E;&#x9A8C;/&#x7F51;&#x7EDC;&#x5BF9;&#x6297;&#x539F;&#x7406;&#x5B9E;&#x9A8C;&#x4E8C;/b.png" width="865" height="612" layout="responsive"></amp-img></div>
+<ul>
+<li>&#x7136;&#x540E;&#x6253;&#x5F00;&#x53E6;&#x4E00;&#x4E2A;&#x7EC8;&#x7AEF;&#x3001;&#x4F7F;&#x7528;radtest&#x6765;&#x6D4B;&#x8BD5;&#x7528;&#x6237;&#x662F;&#x5426;&#x80FD;&#x591F;&#x901A;&#x8FC7;</li>
+</ul>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">radtest steve testing localhost 1812 testing123</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x6CE8;&#x610F;&#x70B9;&#xFF1A;&#x8FD9;&#x91CC;&#x7684;&#x6D4B;&#x8BD5;&#x5C31;&#x662F;&#x4E0A;&#x8FF0;&#x7684;users&#x6587;&#x4EF6;&#x91CC;&#x9762;&#x9ED8;&#x8BA4;&#x7684;&#x7528;&#x6237;&#x540D;&#x548C;&#x5BC6;&#x7801;&#xFF0C;&#x53EA;&#x5728;&#x8FD8;&#x6CA1;&#x542F;&#x52A8;mysql&#x4E4B;&#x524D;&#x6D4B;&#x8BD5;&#x6709;&#x6548;&#xFF0C;&#x800C;&#x56E0;&#x4E3A;&#x6211;&#x5DF2;&#x7ECF;&#x542F;&#x7528;&#x4E86;mysql&#x4E2D;&#x6211;&#x81EA;&#x5DF1;&#x7684;&#x7528;&#x6237;&#xFF0C;&#x6240;&#x4EE5;&#x8FD9;&#x4E2A;&#x5C31;&#x65E0;&#x6548;&#x4E86;&#x3002;<br>&#x8FD9;&#x53E5;&#x524D;steve&#x548C;testing&#x4EE3;&#x8868;&#x7528;&#x6237;&#x548C;&#x5BC6;&#x7801;&#x3001;localhost&#x548C;1812&#x5219;&#x662F;freeradius&#x7684;IP&#x5730;&#x5740;&#x548C;&#x7AEF;&#x53E3;&#x53F7;&#x3001;testing123&#x5219;&#x662F;freeradius&#x670D;&#x52A1;&#x7AEF;&#x4E0E;&#x5BA2;&#x6237;&#x7AEF;&#x4E4B;&#x95F4;&#x901A;&#x8BAF;&#x7684;key&#x3001;&#x7531;/etc/freeradius&#x76EE;&#x5F55;&#x4E0B;&#x7684;clients.conf&#x5B9A;&#x4E49;&#x3001;&#x5728;client localhost&#x5B57;&#x6BB5;&#x7684;secret&#x53C2;&#x6570;&#x3002;<br>radtest&#x6210;&#x529F;&#x901A;&#x8FC7;&#x540E;&#x5219;&#x4F1A;&#x663E;&#x793A;Access-Accept&#x72B6;&#x6001;&#x3002;&#x53E6;&#x5916;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x4E00;&#x4E2A;&#x4E0D;&#x597D;&#x8FD0;&#x3001;&#x786E;&#x5B9E;&#x5728;linux&#x7CFB;&#x7EDF;&#x4E2D;&#x5B58;&#x5728;steve&#x7684;&#x7528;&#x6237;&#x3001;&#x8FD9;&#x6837;&#x5B50;&#x7684;&#x8BDD;freeradius&#x670D;&#x52A1;&#x5668;&#x5219;&#x4F1A;&#x8DF3;&#x8FC7;&#x4F60;&#x73B0;&#x5728;&#x7684;&#x7528;&#x6237;&#x914D;&#x7F6E;&#x76F4;&#x63A5;&#x53BB;&#x67E5;&#x8BE2;&#x7CFB;&#x7EDF;&#x7684;&#x914D;&#x7F6E;&#x3001;&#x8FD9;&#x65F6;&#x7684;&#x5BC6;&#x7801;&#x5C31;&#x4F1A;&#x4EE5;&#x7CFB;&#x7EDF;&#x5BC6;&#x7801;&#x4E3A;&#x51C6;&#x3001;&#x8FD9;&#x91CC;&#x5728;users&#x6587;&#x4EF6;&#x4E2D;&#x5B9A;&#x4E49;&#x7684;&#x5BC6;&#x7801;&#x5C31;&#x4F1A;&#x5931;&#x6548;&#x3001;&#x800C;&#x4E14;&#x5982;&#x679C;&#x6539;&#x7528;&#x6237;&#x662F;&#x7981;&#x6B62;&#x5728;linux&#x4E0A;&#x767B;&#x5F55;&#x7684;&#x8BDD;&#x3001;&#x5219;&#x4F1A;&#x76F4;&#x63A5;&#x628A;&#x7528;&#x6237;&#x6253;&#x56DE;&#x6210; Access-Reject</p>
+<ul>
+<li>&#x4EE5;&#x4E0B;&#x662F;&#x6211;&#x5728;mysql&#x4E2D;&#x521B;&#x5EFA;&#x4E86;santu&#x7528;&#x6237;&#xFF08;&#x4E0B;&#x9762;&#x4F1A;&#x8BF4;&#xFF09;&#x4E4B;&#x540E;&#x6210;&#x529F;&#x7684;&#x9A8C;&#x8BC1;</li>
+</ul>
+<div class="amp-img-wrapper"><amp-img src="/&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#x5B9E;&#x9A8C;/&#x7F51;&#x7EDC;&#x5BF9;&#x6297;&#x539F;&#x7406;&#x5B9E;&#x9A8C;&#x4E8C;/c.png" width="865" height="246" layout="responsive"></amp-img></div>
+<ul>
+<li>&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x4EE3;&#x7801;&#x4E3A;</li>
+</ul>
+<div class="amp-img-wrapper"><amp-img src="/&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#x5B9E;&#x9A8C;/&#x7F51;&#x7EDC;&#x5BF9;&#x6297;&#x539F;&#x7406;&#x5B9E;&#x9A8C;&#x4E8C;/d.png" width="864" height="500" layout="responsive"></amp-img></div><br><div class="amp-img-wrapper"><amp-img src="/&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#x5B9E;&#x9A8C;/&#x7F51;&#x7EDC;&#x5BF9;&#x6297;&#x539F;&#x7406;&#x5B9E;&#x9A8C;&#x4E8C;/e.png" width="865" height="498" layout="responsive"></amp-img></div><br><div class="amp-img-wrapper"><amp-img src="/&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#x5B9E;&#x9A8C;/&#x7F51;&#x7EDC;&#x5BF9;&#x6297;&#x539F;&#x7406;&#x5B9E;&#x9A8C;&#x4E8C;/f.png" width="865" height="356" layout="responsive"></amp-img></div>
+<ul>
+<li>mysql&#x4E0E;freeradius&#x8FDE;&#x63A5;</li>
+</ul>
+<blockquote>
+<p>&#x5EFA;&#x7ACB;radius&#x6570;&#x636E;&#x5E93;</p>
+</blockquote>
+<div class="amp-img-wrapper"><amp-img src="/&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#x5B9E;&#x9A8C;/&#x7F51;&#x7EDC;&#x5BF9;&#x6297;&#x539F;&#x7406;&#x5B9E;&#x9A8C;&#x4E8C;/g.png" width="865" height="303" layout="responsive"></amp-img></div>
+<blockquote>
+<p>&#x7136;&#x540E;&#x5EFA;&#x7ACB;radius&#x6570;&#x636E;&#x5E93;</p>
+</blockquote>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create database radius;</span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>&#x4E4B;&#x540E;&#x4F7F;&#x7528;exit&#x9000;&#x51FA;mysql&#x3001;&#x7136;&#x540E;&#x5EFA;&#x7ACB;&#x4E00;&#x7CFB;&#x7EDF;&#x7684;&#x8868;&#x683C;&#x3001;freeradius&#x5DF2;&#x7ECF;&#x81EA;&#x5E26;&#x6709;sql&#x811A;&#x672C;&#x3001;&#x6211;&#x4EEC;&#x6267;&#x884C;&#x8FD9;&#x4E9B;&#x811A;&#x672C;&#x5C31;&#x53EF;&#x4EE5;&#x81EA;&#x884C;&#x5EFA;&#x7ACB;&#x4E86;&#xFF0C;&#x9996;&#x5148;&#x5B9A;&#x4F4D;&#x5230;&#x8FD9;&#x4E9B;&#x811A;&#x672C;&#x6240;&#x5728;&#x76EE;&#x5F55;</p>
+</blockquote>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/freeradius/sql/mysql</span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>&#x5BFC;&#x5165;admin.sql</p>
+</blockquote>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p[PASSWORD] radius &lt; admin.sql</span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>schema.sql&#x540C;&#x6837;&#x4E5F;&#x662F;&#x7167;&#x6B64;&#x683C;&#x5F0F;&#x6765;&#x6267;&#x884C;&#x5BFC;&#x5165;&#x5230;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x5982;&#x679C;&#x7ED3;&#x679C;&#x6B63;&#x5E38;&#x7684;&#x8BDD;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;radius&#x8D26;&#x6237;&#x8FDB;&#x5165;mysql&#x6570;&#x636E;&#x5E93;</p>
+</blockquote>
+<div class="amp-img-wrapper"><amp-img src="/&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#x5B9E;&#x9A8C;/&#x7F51;&#x7EDC;&#x5BF9;&#x6297;&#x539F;&#x7406;&#x5B9E;&#x9A8C;&#x4E8C;/h.png" width="865" height="485" layout="responsive"></amp-img></div>
+<p>&#x8FD9;&#x91CC;&#x9ED8;&#x8BA4;&#x5BC6;&#x7801;&#x4E3A;radpass<br>&#x8FD9;&#x6837;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4E00;&#x4E9B;tables&#x4E86;</p>
+<blockquote>
+<p>&#x914D;&#x7F6E;freeradius</p>
+</blockquote>
+<ul>
+<li>&#x4FEE;&#x6539;/etc/freeradius/radiusd.conf &#x5B9A;&#x4F4D;&#x5230;&#x8BE5;&#x884C;</li>
+</ul>
+<div class="amp-img-wrapper"><amp-img src="/&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#x5B9E;&#x9A8C;/&#x7F51;&#x7EDC;&#x5BF9;&#x6297;&#x539F;&#x7406;&#x5B9E;&#x9A8C;&#x4E8C;/i.png" width="814" height="111" layout="responsive"></amp-img></div>
+<p>&#x5C06;&#x5176;&#x53CD;&#x6CE8;&#x91CA;&#xFF0C;&#x542F;&#x52A8;sql.conf</p>
+<ul>
+<li>&#x7136;&#x540E;&#x7F16;&#x8F91;/etc/freeradius/sql.conf</li>
+</ul>
+<div class="amp-img-wrapper"><amp-img src="/&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#x5B9E;&#x9A8C;/&#x7F51;&#x7EDC;&#x5BF9;&#x6297;&#x539F;&#x7406;&#x5B9E;&#x9A8C;&#x4E8C;/j.png" width="865" height="525" layout="responsive"></amp-img></div>
+<p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#x3001;&#x4F7F;&#x7528;apt-get&#x547D;&#x4EE4;&#x6765;&#x5B89;&#x88C5;freeradius&#x4F1A;&#x81EA;&#x52A8;&#x68C0;&#x6D4B;&#x5230;&#x5DF2;&#x7ECF;&#x5B89;&#x88C5;&#x4E86;mysql&#x800C;&#x81EA;&#x52A8;&#x628A;database&#x8BBE;&#x7F6E;&#x4E3A;mysql&#x3001;&#x5982;&#x679C;&#x8FE9;&#x7684;&#x4E0D;&#x662F;&#x8FD9;&#x6837;&#x663E;&#x793A;&#x8BF7;&#x8BBE;&#x7F6E;&#x6210;mysql&#x3001;&#x7136;&#x540E;&#x518D;&#x518D;&#x770B;password&#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#x3001;&#x5982;&#x679C;&#x4F60;&#x4E4B;&#x524D;&#x5DF2;&#x7ECF;&#x66F4;&#x6539;&#x4E86;radius&#x7528;&#x6237;&#x7684;&#x5BC6;&#x7801;&#x3001;&#x8FD9;&#x91CC;&#x8981;&#x505A;&#x76F8;&#x5E94;&#x7684;&#x4FEE;&#x6539;&#x3001;&#x5176;&#x4F59;&#x7684;&#x53C2;&#x6570;&#x5C31;&#x9ED8;&#x8BA4;&#x597D;&#x4E86;</p>
+<ul>
+<li>&#x4FEE;&#x6539;&#x4E86;sql.conf&#x3001;&#x518D;&#x8BBE;&#x7F6E;&#x76F8;&#x5E94;&#x7684;&#x8BBE;&#x5907;&#x901A;&#x77E5;&#x5176;&#x4F7F;&#x7528;mysql&#x4F5C;&#x4E3A;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x8BBE;&#x5907;</li>
+</ul>
+<div class="amp-img-wrapper"><amp-img src="/&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#x5B9E;&#x9A8C;/&#x7F51;&#x7EDC;&#x5BF9;&#x6297;&#x539F;&#x7406;&#x5B9E;&#x9A8C;&#x4E8C;/k.png" width="865" height="24" layout="responsive"></amp-img></div>
+<p>&#x628A;authorize{}&#x5B57;&#x6BB5;&#x4E0B;&#x7684;file&#x6CE8;&#x91CA;&#x6389;&#x3001;&#x53CD;&#x6CE8;&#x91CA;sql&#x3001;&#x8FD9;&#x91CC;&#x7684;file&#x6307;&#x7684;&#x5C31;&#x662F;usrs&#x6587;&#x4EF6;&#x3001;&#x5C06;&#x4E0D;&#x518D;&#x628A;&#x7528;&#x6237;&#x4FE1;&#x606F;&#x5199;&#x5728;users&#x800C;&#x4F7F;&#x7528;mysql&#x6765;&#x5B58;&#x50A8;&#x7528;&#x6237;&#x4FE1;&#x606F;&#x2028;&#x628A;accounting{} &#x5B57;&#x6BB5;&#x4E0B;&#x7684;sql&#x53CD;&#x6CE8;&#x91CA;&#x3001;&#x542F;&#x7528;sql&#x6765;&#x8BB0;&#x5F55;&#x7EDF;&#x8BA1;&#x4FE1;&#x606F;&#x2028;&#x628A;session{}&#x5B57;&#x6BB5;&#x4E0B;&#x7684;sql&#x53CD;&#x6CE8;&#x91CA;&#x3001;&#x542F;&#x7528;&#x7528;&#x6237;&#x540C;&#x65F6;&#x767B;&#x5F55;&#x9650;&#x5236;&#x529F;&#x80FD;&#x3001;&#x8FD9;&#x91CC;&#x8FD8;&#x9700;&#x8981;&#x4FEE;&#x6539;&#x5176;&#x5B83;&#x5730;&#x65B9;&#x3001;&#x4E00;&#x4F1A;&#x518D;&#x8BF4;&#x2028;&#x628A;post-auth{} &#x5B57;&#x6BB5;&#x7684;sql&#x53CD;&#x6CE8;&#x91CA;&#x3001;&#x542F;&#x7528;&#x7528;&#x6237;&#x767B;&#x5F55;&#x540E;&#x8FDB;&#x884C;&#x6570;&#x636E;&#x8BB0;&#x5F55;&#x529F;&#x80FD;</p>
+<ul>
+<li>&#x63A5;&#x4E0B;&#x6765;&#x5F00;&#x542F;&#x542F;&#x7528;&#x7528;&#x6237;&#x540C;&#x65F6;&#x767B;&#x5F55;&#x9650;&#x5236;&#x529F;&#x80FD;</li>
+</ul>
+<div class="amp-img-wrapper"><amp-img src="/&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#x5B9E;&#x9A8C;/&#x7F51;&#x7EDC;&#x5BF9;&#x6297;&#x539F;&#x7406;&#x5B9E;&#x9A8C;&#x4E8C;/l.png" width="865" height="29" layout="responsive"></amp-img></div>
+<blockquote>
+<p>&#x5C06;&#x8FD9;&#x51E0;&#x884C;&#x53CD;&#x6CE8;&#x91CA;</p>
+</blockquote>
+<div class="amp-img-wrapper"><amp-img src="/&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#x5B9E;&#x9A8C;/&#x7F51;&#x7EDC;&#x5BF9;&#x6297;&#x539F;&#x7406;&#x5B9E;&#x9A8C;&#x4E8C;/m.png" width="865" height="142" layout="responsive"></amp-img></div>
+<p>&#x8FD9;&#x6837;&#x6574;&#x4E2A;&#x5BF9;mysql&#x7684;radius&#x914D;&#x7F6E;&#x5C31;&#x5DF2;&#x7ECF;&#x5B8C;&#x6210;&#x4E86;</p>
+<ul>
+<li>&#x6D4B;&#x8BD5;&#x662F;&#x5426;&#x8FDE;&#x63A5;&#x6210;&#x529F;,&#x5728;radius&#x6570;&#x636E;&#x5E93;&#x5EFA;&#x7ACB;&#x51E0;&#x6761;&#x7528;&#x6237;&#x4FE1;&#x606F;&#x4EE5;&#x6D4B;&#x8BD5;mysql+freeradius&#x7684;&#x7528;&#x6237;&#x8BA4;&#x8BC1;&#x662F;&#x5426;&#x6210;&#x529F;&#xFF0C;&#x6DFB;&#x4E0A;&#x8FD9;&#x51E0;&#x53E5;</li>
+</ul>
+<div class="amp-img-wrapper"><amp-img src="/&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#x5B9E;&#x9A8C;/&#x7F51;&#x7EDC;&#x5BF9;&#x6297;&#x539F;&#x7406;&#x5B9E;&#x9A8C;&#x4E8C;/n.png" width="795" height="202" layout="responsive"></amp-img></div>
+<blockquote>
+<p>&#x7ED3;&#x679C;&#x4E3A;</p>
+</blockquote>
+<div class="amp-img-wrapper"><amp-img src="/&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#x5B9E;&#x9A8C;/&#x7F51;&#x7EDC;&#x5BF9;&#x6297;&#x539F;&#x7406;&#x5B9E;&#x9A8C;&#x4E8C;/o.png" width="558" height="626" layout="responsive"></amp-img></div>
+<p>&#x8FD9;&#x5C31;&#x89E3;&#x91CA;&#x4E86;&#x4E00;&#x5F00;&#x59CB;&#x7528;radtest santu [<strong>**</strong>] localhost 1812 testing123&#x547D;&#x4EE4;&#x4F1A;&#x51FA;&#x73B0;&#x5982;&#x4E0B;&#x7684;&#x5E94;&#x7B54;</p>
+<div class="amp-img-wrapper"><amp-img src="/&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#x5B9E;&#x9A8C;/&#x7F51;&#x7EDC;&#x5BF9;&#x6297;&#x539F;&#x7406;&#x5B9E;&#x9A8C;&#x4E8C;/p.png" width="865" height="246" layout="responsive"></amp-img></div>
+<p>&#x6CE8;&#x610F;&#xFF1A;&#x8FD9;&#x4E9B;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x7684;&#x5C5E;&#x6027;&#x503C;attribute&#x90FD;&#x662F;&#x7279;&#x5B9A;&#x7684;&#x5B57;&#x7B26;&#x3001;&#x4E0D;&#x662F;&#x968F;&#x968F;&#x4FBF;&#x4FBF;&#x81EA;&#x5DF1;&#x5199;&#x4E0A;&#x53BB;&#x7684;&#x3001;&#x8981;&#x67E5;&#x770B;&#x5B9A;&#x4E49;&#x8FD9;&#x4E9B;&#x5C5E;&#x6027;&#x7684;&#x6587;&#x4EF6;&#x8BF7;&#x67E5;&#x770B;&#x8FE9;&#x5F53;&#x524D;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7684;dictionary&#x76EE;&#x5F55;&#x3001;&#x5176;&#x5B9E;&#x91CC;&#x9762;&#x4E5F;&#x5565;&#x5185;&#x5BB9;&#x6CA1;&#x5B9A;&#x4E49;&#x5230;&#x3001;&#x53EA;&#x662F;&#x5199;&#x4E0A;&#x4E86;&#x8DEF;&#x5F84;&#x3001;&#x4E00;&#x822C;&#x4F1A;&#x5199;&#x4E0A;&#x5305;&#x542B;&#x5728;</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$INCLUDE /usr/share/freeradius/dictionary</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x8FD9;&#x91CC;&#x7684;&#x610F;&#x601D;&#x5C31;&#x662F;&#x6574;&#x4E2A;dictionary&#x6587;&#x4EF6;&#x88AB;&#x653E;&#x7F6E;&#x5728;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x4E2D;&#x3001;&#x5176;&#x5B9E;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x4E5F;&#x662F;&#x4E2A;&#x8DEF;&#x5F84;&#x4FE1;&#x606F;&#x3001;&#x6240;&#x4EE5;&#x771F;&#x6B63;&#x5B9A;&#x4E49;&#x7684;dictionary&#x6587;&#x4EF6;&#x662F;&#x653E;&#x5728;/usr/share/freeradius/&#x8FD9;&#x4E2A;&#x76EE;&#x5F55;&#x3001;&#x6BD4;&#x5982;Framed-IP-Address&#x5C5E;&#x6027;&#x88AB;&#x5B9A;&#x4E49;&#x5728;dictionary.rfc2865&#x6587;&#x4EF6;&#x4E2D;&#x3001;Cleartext-Password&#x88AB;&#x5B9A;&#x4E49;&#x5728;dictionary.freeradius.internal&#x6587;&#x4EF6;&#x4E2D;</p>
+<p><strong>&#x6CE8;&#x610F;&#x70B9;</strong>&#xFF1A;&#x6CE8;&#x610F;&#x4E4B;&#x524D;&#x7684;freeradius&#x670D;&#x52A1;&#x5FC5;&#x987B;&#x5148;&#x505C;&#x6389;&#x3001;&#x4E0D;&#x7136;&#x4F1A;&#x51FA;&#x73B0;&#x51B2;&#x7A81;&#x3001;&#x7136;&#x540E;&#x518D;&#x4F7F;&#x7528;&#x4EE5;&#x4E0A;&#x7528;&#x6237;&#x6765;&#x6D4B;&#x8BD5;</p>
+<div class="amp-img-wrapper"><amp-img src="/&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#x5B9E;&#x9A8C;/&#x7F51;&#x7EDC;&#x5BF9;&#x6297;&#x539F;&#x7406;&#x5B9E;&#x9A8C;&#x4E8C;/q.png" width="865" height="246" layout="responsive"></amp-img></div>
+<p>&#x8FD4;&#x56DE;Access-Accept&#x72B6;&#x6001;&#x7684;&#x540C;&#x65F6;&#x4F1A;&#x8FD4;&#x56DE;&#x76F8;&#x5E94;reply&#x8868;&#x683C;&#x7684;&#x5185;&#x5BB9;&#x3001;&#x5148;&#x8FD4;&#x56DE;radreply&#x7684;&#x7528;&#x6237;&#x8FD4;&#x56DE;&#x4FE1;&#x606F;&#x3001;&#x518D;&#x8FD4;&#x56DE;radgroupreply&#x7684;&#x6240;&#x5C5E;&#x7EC4;&#x8FD4;&#x56DE;&#x4FE1;&#x606F;&#x3001;&#x8FD4;&#x56DE;&#x6210;&#x529F;&#x5C31;&#x8868;&#x793A;&#x914D;&#x7F6E;&#x5DF2;&#x7ECF;&#x6B63;&#x786E;&#x4E86;&#x3002;</p>
+<h2 id="&#x914D;&#x7F6E;freeradius-ldap"><a href="#&#x914D;&#x7F6E;freeradius-ldap" class="headerlink" title="&#x914D;&#x7F6E;freeradius-ldap"></a>&#x914D;&#x7F6E;freeradius-ldap</h2><ul>
+<li>&#x914D;&#x7F6E;/etc/freeradius/modules/ldap</li>
+</ul>
+<div class="amp-img-wrapper"><amp-img src="/&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#x5B9E;&#x9A8C;/&#x7F51;&#x7EDC;&#x5BF9;&#x6297;&#x539F;&#x7406;&#x5B9E;&#x9A8C;&#x4E8C;/r.png" width="729" height="216" layout="responsive"></amp-img></div>
+<p>&#x8FD9;&#x91CC;&#xFF0C;apache2&#x4F7F;&#x7528;freeradius&#x8FDB;&#x884C;&#x8BA4;&#x8BC1;&#xFF0C;&#x5E76;&#x4E14;radius&#x548C;ldap&#x8FDE;&#x63A5;&#xFF0C;&#x6211;&#x4EEC;&#x4F7F;&#x7528;student.ldif&#x4E2D;&#x5B66;&#x751F;&#x4FE1;&#x606F;&#x5C31;&#x53EF;&#x5B8C;&#x6210;radtest&#x8BA4;&#x8BC1;&#x3002;</p>
+<div class="amp-img-wrapper"><amp-img src="/&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#x5B9E;&#x9A8C;/&#x7F51;&#x7EDC;&#x5BF9;&#x6297;&#x539F;&#x7406;&#x5B9E;&#x9A8C;&#x4E8C;/09157948-F2BB-49B1-94C0-71C5AB30DE0F.png" width="1158" height="734" layout="responsive"></amp-img></div>
+<p>&#x81F3;&#x6B64;&#x5B9E;&#x9A8C;&#x4E8C;&#x5927;&#x529F;&#x544A;&#x6210;&#xFF01;</p>
+
+			  		
+			  		<!-- google Adsense -->
+			  		
+					
+					
+					
+					
+			    	
+					
+					<!-- google Adsense Matched content -->
+			  		
+			  	</div>
+				
+		  	</article>
+		  	
+		  	
+		  	<!-- TAGS -->
+		  	
+		  	<div class="meta-content">
+				
+				<div class="widget">
+				  	<h6 class="tag"><span class="fa fa-fw fa-tag"></span>TAGS</h6>
+				  	<div class="article-tag">
+						<ul class="article-tag-list">
+							
+					    		<li class="article-tag-list-item">
+					    			<a class="article-tag-list-link" href="/tags/openldap配置/">
+					    				openldap配置
+					    			</a>
+					    		</li>
+							
+					    		<li class="article-tag-list-item">
+					    			<a class="article-tag-list-link" href="/tags/radius配置/">
+					    				radius配置
+					    			</a>
+					    		</li>
+							
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+		  	
+		  	
+		  	<!-- Categories posts -->
+		  	
+		  	
+		  	
+		  	<!-- Detailed categories  posts -->
+		  	
+		  	
+		  	
+		  	<!-- Latests -->
+		  	
+			
+		</div>
+		
+		
+		<footer id="footer">
+		
+			
+			
+			
+			
+			<div class="copyright-tool">
+				
+				
+				
+				<div class="copyright-title">
+					<span>
+					&copy; 2019&nbsp;Santu&#39;s Blog
+					</span>
+				</div>
+				
+				<div class="copyright-license">
+					<aside>
+						Powered by <a href="https://hexo.io/">Hexo</a>. <a href="https://github.com/tea3/hexo-generator-amp">AMP-Theme</a> designed by <a href="https://github.com/tea3/">tea</a>.
+					</aside>
+				</div>
+			</div>
+			
+		</footer>
+		
+		
+	</div>
+	
+	
+  	<div id="totop"><a href="#"></a></div>
+  	
+  	
+  </body>
+</html>
