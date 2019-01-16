@@ -323,7 +323,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/">
+    <link itemprop="mainEntityOfPage" href="https://hmy626.github.io/网络安全实验/网络对抗原理实验三/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Santu">
@@ -342,7 +342,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/网络安全实验/网络对抗原理实验二/" itemprop="url">网络对抗原理实验二</a></h1>
+                <a class="post-title-link" href="/网络安全实验/网络对抗原理实验三/" itemprop="url">网络对抗原理实验三</a></h1>
         
 
         <div class="post-meta">
@@ -354,7 +354,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-13T22:48:57+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-13T23:00:21+08:00">
                 2019-01-13
               </time>
             
@@ -370,8 +370,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-13T22:58:15+08:00">
-                2019-01-13
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-14T00:05:28+08:00">
+                2019-01-14
               </time>
             
           </span>
@@ -420,7 +420,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.2k
+                  664
                 </span>
               
 
@@ -436,7 +436,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  8
+                  2
                 </span>
               
             </div>
@@ -459,221 +459,111 @@
       
         
           
-            <h1 id="网络对抗原理实验二"><a href="#网络对抗原理实验二" class="headerlink" title="网络对抗原理实验二"></a>网络对抗原理实验二</h1><h2 id="实验要求"><a href="#实验要求" class="headerlink" title="实验要求"></a>实验要求</h2><ol>
-<li>用openldap搭建LDAP服务器，尝试对学生信息进行增删改查，信息包括但不限于学生id、密码、 邮箱、手机号、部门等。</li>
-<li>配置 apache 服务器，配置 Basic 认证模块和需要认证的页面，使用用户名密码认证。</li>
-<li>配置 apache 服务器，配置 LDAP 认证模块和需要认证的页面，使用 LDAP 存放的学生的用户名密码<br>认证。</li>
-<li>用freeradius搭建RADIUS服务器，尝试配置基于unix账号的认证，并用radtest验证服务有效。</li>
-<li>配置apache服务器，配置RADIUS认证模块和需要认证的页面，使用unix/Linux本地用户名密码 认证。</li>
-<li>在freeradius中配置ldap认证模块，和LDAP服务器互通，利用ldap账号密码认证用户身份，并用 radtest 测试通过。</li>
+            <h1 id="网络对抗原理实验三"><a href="#网络对抗原理实验三" class="headerlink" title="网络对抗原理实验三"></a>网络对抗原理实验三</h1><h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><ul>
+<li>Ubuntu 16.04</li>
+<li>服务器接口 Apache 2.0 </li>
+<li>php版本 7.0.30</li>
+</ul>
+<h2 id="实验背景知识介绍"><a href="#实验背景知识介绍" class="headerlink" title="实验背景知识介绍"></a>实验背景知识介绍</h2><blockquote>
+<p>ModSecurity（<a href="https://www.modsecurity.org/）是开源的Web应用程序防火墙，它可以做为Apache的一个模块使用。ModSecurity可以保护网站防止各种攻击，包括XSS、SQLi、CSRF、DDoS、暴力破解等等。用户可以编写规则实现特定功能。" target="_blank" rel="noopener">https://www.modsecurity.org/）是开源的Web应用程序防火墙，它可以做为Apache的一个模块使用。ModSecurity可以保护网站防止各种攻击，包括XSS、SQLi、CSRF、DDoS、暴力破解等等。用户可以编写规则实现特定功能。</a></p>
+</blockquote>
+<h2 id="实验操作"><a href="#实验操作" class="headerlink" title="实验操作"></a>实验操作</h2><h3 id="安装并配置-ModSecurity-模块，搭建WAF"><a href="#安装并配置-ModSecurity-模块，搭建WAF" class="headerlink" title="安装并配置 ModSecurity 模块，搭建WAF"></a>安装并配置 ModSecurity 模块，搭建WAF</h3><ul>
+<li>安装ModSecurity</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install libapache2-mod-security2</span><br></pre></td></tr></table></figure>
+<p>上面命令会安装ModSecurity模块并自动激活。</p>
+<ul>
+<li>ModSecurity安装完成之后还需要创建一个配置文件，可以直接使用默认的配置文件做为蓝本：</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv /etc/modsecurity/modsecurity.conf-recommended /etc/modsecurity/modsecurity.conf</span><br></pre></td></tr></table></figure>
+<ul>
+<li>重启apache2</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service apache2 restart</span><br></pre></td></tr></table></figure>
+<h3 id="配置ModSecurity"><a href="#配置ModSecurity" class="headerlink" title="配置ModSecurity"></a>配置ModSecurity</h3><ul>
+<li>修改并且启用ModSecurity默认配置</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/modsecurity/modsecurity.conf</span><br><span class="line">SecRuleEngine On</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>添加CRS（OWASP Core Rule Set), 这是一个提供额外保护的规则集合。</p>
+</li>
+<li><p>开启CRS规则</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/share/modsecurity-crs/</span><br></pre></td></tr></table></figure>
+<ul>
+<li>编辑</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/apache2/mods-enabled/security2.conf</span><br></pre></td></tr></table></figure>
+<ul>
+<li>引入规则文件，activated_rules目录用来存放激活的规则</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">IncludeOptional /usr/share/modsecurity-crs/*.conf</span><br><span class="line">IncludeOptional /usr/share/modsecurity-crs/activated_rules/*.conf</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>查看activated_rules目录的README文件获得更多信息。</p>
+</li>
+<li><p>添加SQL注入保护</p>
+</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -s /usr/share/modsecurity-crs/base_rules/modsecurity_crs_41_sql_injection_attacks.conf /usr/share/modsecurity-crs/activated_rules/modsecurity_crs_41_sql_injection_attacks.conf</span><br></pre></td></tr></table></figure>
+<ul>
+<li>开启规则引擎</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/modsecurity/modsecurity.conf</span><br></pre></td></tr></table></figure>
+<p>将 <code>SecRuleEngine DetectionOnly</code> 改为 <code>SecRuleEngine On</code></p>
+<p><img src="/网络安全实验/网络对抗原理实验三/a1.png" alt="coin"></p>
+<ul>
+<li>重启apache</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service apache2 restart</span><br></pre></td></tr></table></figure>
+<ul>
+<li>实践演示</li>
+</ul>
+<p>当我们再次访问实验一中1.html进行万能密码注入时</p>
+<p><img src="/网络安全实验/网络对抗原理实验三/a2.png" alt="coin"></p>
+<p>我们可以看到CRS规则起效果了，它防御住了SQL注入攻击</p>
+<p><img src="/网络安全实验/网络对抗原理实验三/a3.png" alt="coin"></p>
+<h3 id="对特定扫描器w3af的-User-Agent-进行检测和报警，并在单个-IP-访问-数量超过一定门限后对来源-IP-进行封禁。"><a href="#对特定扫描器w3af的-User-Agent-进行检测和报警，并在单个-IP-访问-数量超过一定门限后对来源-IP-进行封禁。" class="headerlink" title="对特定扫描器w3af的 User-Agent 进行检测和报警，并在单个 IP 访问 数量超过一定门限后对来源 IP 进行封禁。"></a>对特定扫描器w3af的 User-Agent 进行检测和报警，并在单个 IP 访问 数量超过一定门限后对来源 IP 进行封禁。</h3><ul>
+<li><p>下载w3af</p>
+</li>
+<li><p>首先，我是用的是apt安装，但是下载完之后在安装包的依赖关系上会存在一些问题，所以我使用源代码安装。</p>
+</li>
+</ul>
+<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><ul>
+<li>下载</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/andresriancho/w3af.git</span><br><span class="line"><span class="built_in">cd</span> w3af/</span><br><span class="line">./w3af_console</span><br><span class="line">. /tmp/w3af_dependency_install.sh</span><br></pre></td></tr></table></figure>
+<p><img src="/网络安全实验/网络对抗原理实验三/aaa.png" alt="coin"></p>
+<ul>
+<li>然后出现了如下的问题</li>
+</ul>
+<p><img src="/网络安全实验/网络对抗原理实验三/bbb.png" alt="coin"></p>
+<ul>
+<li>运行</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./w3af_gui</span><br></pre></td></tr></table></figure>
+<p><img src="/网络安全实验/网络对抗原理实验三/ccc.png" alt="coin"></p>
+<p>按照提示安装好了后，就可以运行gui了。</p>
+<ul>
+<li>对目标进行扫描</li>
+</ul>
+<p><img src="/网络安全实验/网络对抗原理实验三/ddd.png" alt="coin"></p>
+<p>扫描结果显示如下    ，所以可以进行sqlmap爆库</p>
+<ul>
+<li>现在我们编写过滤规则</li>
+</ul>
+<p><img src="/网络安全实验/网络对抗原理实验三/eee.png" alt="coin"></p>
+<p>这里，我把阈值设置成10，设置时间区间为60秒，即在该段时间内最多发起请求10次。</p>
+<p>然后重启</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl apache2 restart</span><br></pre></td></tr></table></figure>
+<p>成功！</p>
+<ul>
+<li>另外，我还用了mod_limitipconn模块，这个模块是直接写在apache2.conf中比较麻烦，所以这里就用modsecurity</li>
+</ul>
+<p><img src="/网络安全实验/网络对抗原理实验三/fff.png" alt="coin"></p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ol>
+<li><a href="http://www.freebuf.com/articles/web/43559.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/web/43559.html</a></li>
 </ol>
-<h2 id="实验环境：Ubuntu-16-04"><a href="#实验环境：Ubuntu-16-04" class="headerlink" title="实验环境：Ubuntu 16.04"></a>实验环境：Ubuntu 16.04</h2><h2 id="安装并配置ldap"><a href="#安装并配置ldap" class="headerlink" title="安装并配置ldap"></a>安装并配置ldap</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install slapd ldap-utils</span><br><span class="line">sudo dpkg-reconfigure slapd</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Omit OpenLDAP server configuration? =&gt; No</p>
-</blockquote>
-<blockquote>
-<p>DNS domain name? =&gt; example.com</p>
-</blockquote>
-<blockquote>
-<p>Organization name? =&gt; example</p>
-</blockquote>
-<blockquote>
-<p>Administrator password? =&gt; {<strong>**</strong>}</p>
-</blockquote>
-<blockquote>
-<p>Database backend? =&gt; MDB</p>
-</blockquote>
-<blockquote>
-<p>Remove the database when slapd is purged? =&gt; No</p>
-</blockquote>
-<blockquote>
-<p>Move old database? =&gt; Yes</p>
-</blockquote>
-<blockquote>
-<p>Allow LDAPv2 protocol? =&gt; No</p>
-</blockquote>
-<blockquote>
-<p>Done!</p>
-</blockquote>
-<h3 id="防火墙允许通过ldap程序端口"><a href="#防火墙允许通过ldap程序端口" class="headerlink" title="防火墙允许通过ldap程序端口"></a>防火墙允许通过ldap程序端口</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw allow ldap</span><br></pre></td></tr></table></figure>
-<h3 id="测试是否安装成功"><a href="#测试是否安装成功" class="headerlink" title="测试是否安装成功"></a>测试是否安装成功</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ldapwhoami -H ldap:// -x</span><br></pre></td></tr></table></figure>
-<p>结果如下所示：</p>
-<p><img src="/网络安全实验/网络对抗原理实验二/F3F0911A-4F0D-4962-806C-E06676DFE1C3.png" alt="coin"></p>
-<p>输出为anonymous，所以ldap安装成功。</p>
-<h3 id="配置ldap"><a href="#配置ldap" class="headerlink" title="配置ldap"></a>配置ldap</h3><blockquote>
-<p>新建一个student.ldif写下如下内容</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">dn: ou=student,dc=example,dc=com</span><br><span class="line">objectclass: top</span><br><span class="line">objectclass: organizationalUnit</span><br><span class="line">ou: student</span><br><span class="line"></span><br><span class="line">dn: uid=stu1,ou=student,dc=example,dc=com</span><br><span class="line">objectclass: person</span><br><span class="line">cn: 15069130025</span><br><span class="line">sn: 15069130025</span><br><span class="line">telephonenumber: 18300000000</span><br><span class="line">userPassword: student1</span><br><span class="line">objectclass: organizationalPerson</span><br><span class="line">postalAddress: XD</span><br><span class="line">objectclass: inetOrgPerson</span><br><span class="line">uid: 001</span><br><span class="line"></span><br><span class="line">dn: uid=stu2,ou=student,dc=example,dc=com</span><br><span class="line">objectclass: person</span><br><span class="line">cn: 1234567</span><br><span class="line">sn: 1234567</span><br><span class="line">telephonenumber: 18900000000</span><br><span class="line">userPassword: student2</span><br><span class="line">objectclass: organizationalPerson</span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验二/E59F10B0-B7DB-4B22-B15D-4D2AE0F8F36A.png" alt="coin"></p>
-<h2 id="添加学生信息"><a href="#添加学生信息" class="headerlink" title="添加学生信息"></a>添加学生信息</h2><ul>
-<li>添加学生信息</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ldapadd -xWD &apos;cn=admin,dc=example,dc=com&apos; -f student.ldif</span><br></pre></td></tr></table></figure>
-<ul>
-<li>查询学生信息</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ldapsearch -xWD &apos;cn=admin,dc=example,dc=com&apos; -b &apos;uid=stu1,ou=student,dc=example,dc=com&apos;</span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验二/9BB67CE1-F306-4039-9BF2-E3E85C3621FE.png" alt="coin"></p>
-<h2 id="安装与配置apache服务器"><a href="#安装与配置apache服务器" class="headerlink" title="安装与配置apache服务器"></a>安装与配置apache服务器</h2><ul>
-<li>安装</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install apache2 apache2-dev</span><br><span class="line">sudo service apache2 restart</span><br><span class="line">sudo ufw allow in &quot;Apache Full&quot;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>配置Basic认证</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/apache2/sites-enabled/000-default.conf</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>配置如下所示</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory /var/www/html&gt;</span><br><span class="line">	Options Indexes FollowSymLinks</span><br><span class="line">	AllowOverride authconfig</span><br><span class="line">	Order allow,deny</span><br><span class="line">	allow from all</span><br><span class="line">	AuthType Basic</span><br><span class="line">	AuthName &apos;santu&apos;</span><br><span class="line">	AuthBasicProvider file</span><br><span class="line">	AuthUserFile /var/www/html/.valid_user</span><br><span class="line">	Require valid-user</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验二/EECCDE52-600D-4D75-8227-6FCC2DE943FA.png" alt="coin"></p>
-<blockquote>
-<p><strong>这里的注释是一会儿配置ldap时需要用到的</strong></p>
-</blockquote>
-<blockquote>
-<p><strong>建立basic认证的密钥文件</strong></p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo htpasswd -bc /var/www/html/.valid_user santu &#123;[PASSWD]&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>然后访问web</p>
-</blockquote>
-<p><img src="/网络安全实验/网络对抗原理实验二/E932B380-12F1-4B1F-BC8B-4214DDA0A7B9.png" alt="coin"></p>
-<h2 id="配置apache使用ldap认证"><a href="#配置apache使用ldap认证" class="headerlink" title="配置apache使用ldap认证"></a>配置apache使用ldap认证</h2><blockquote>
-<p>修改apache2.conf</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/apache2/apache2.conf</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>在apache2.conf文件开头中添加这一行导入模块</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Include mods-available/ldap.*</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>重启apache服务器，加载模块</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo service apache2 restart</span><br><span class="line">a2enmod ldap</span><br><span class="line">a2enmod authnz_ldap</span><br><span class="line">sudo service apache2 restart</span><br></pre></td></tr></table></figure>
-<p>我这里已经加载了<br><img src="/网络安全实验/网络对抗原理实验二/3D5F049E-2D23-45D3-9EA4-9C839675C189.png" alt="coin"></p>
-<blockquote>
-<p>接着，修改000-default.conf(就是上文中提到的那个注释),我这里选择这里选择注释掉AuthUserFile密钥文件，如果以后需要恢复basic认证时只需取消注释，并且将AuthBasicProvider后改为file即可</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory /var/www/html&gt;</span><br><span class="line">	Options Indexes FollowSymLinks</span><br><span class="line">	AllowOverride authconfig</span><br><span class="line">	Order allow,deny</span><br><span class="line">	allow from all</span><br><span class="line">	AuthType Basic</span><br><span class="line">	AuthName &apos;santu&apos;</span><br><span class="line">	AuthBasicProvider ldap</span><br><span class="line">	#AuthUserFile /var/www/html/.valid_user</span><br><span class="line">	AuthLDAPURL ldap://127.0.0.1/ou=student,dc=example,dc=com?uid</span><br><span class="line">	Require valid-user</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验二/CC055D81-8C43-41AD-B539-E60A03FA1337.png" alt="coin"></p>
-<blockquote>
-<p>重启服务器</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service apache2 restart</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>现在，就可以用student.ldif中的学生信息进行登录验证了</p>
-</blockquote>
-<p><img src="/网络安全实验/网络对抗原理实验二/09157948-F2BB-49B1-94C0-71C5AB30DE0F.png" alt="coin"></p>
-<h2 id="apache使用freeradius认证"><a href="#apache使用freeradius认证" class="headerlink" title="apache使用freeradius认证"></a>apache使用freeradius认证</h2><ul>
-<li>安装freeradius之前先要确保已经安装了mysql、因为后来要用到、没有安装使用apt-get来安装</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install mysql-server</span><br></pre></td></tr></table></figure>
-<ul>
-<li>安装freeradius的部件</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install libssl-dev libapache2-mod-auth-radius freeradius freeradius-ldap mysql-server freeradius-mysql</span><br></pre></td></tr></table></figure>
-<ul>
-<li>安装完成后freeradius就会自动启动了、由于我们要使用调试模式来启动freeradius、所以先关闭freeradius服务</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service freeradius stop</span><br></pre></td></tr></table></figure>
-<ul>
-<li>修改/etc/freeradius/下的users文件</li>
-</ul>
-<p><img src="/网络安全实验/网络对抗原理实验二/a.png" alt="coin"></p>
-<p>把这几行反注释、也就是使用一个名为steve、密码为testing的用户来测试一下是否通则登录freeradius服务器、保存后退出然后启动radius的调试模式。</p>
-<p><strong>注意点一</strong>：这里需要补充一点使用ubtuntu的apt-get方式来安装freeradius的位置会和源码不同、源码安装的默认位置是/usr/local/etc/raddb/而使用ubuntu的apt-get方式的配置文件则安置在/etc/freeradius/，我这里是使用apt-get来安装的，所以默认安装位置为/etc/freeradius/</p>
-<ul>
-<li>开启调试模式</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">freeradius –X</span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验二/b.png" alt="coin"></p>
-<ul>
-<li>然后打开另一个终端、使用radtest来测试用户是否能够通过</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">radtest steve testing localhost 1812 testing123</span><br></pre></td></tr></table></figure>
-<p>注意点：这里的测试就是上述的users文件里面默认的用户名和密码，只在还没启动mysql之前测试有效，而因为我已经启用了mysql中我自己的用户，所以这个就无效了。<br>这句前steve和testing代表用户和密码、localhost和1812则是freeradius的IP地址和端口号、testing123则是freeradius服务端与客户端之间通讯的key、由/etc/freeradius目录下的clients.conf定义、在client localhost字段的secret参数。<br>radtest成功通过后则会显示Access-Accept状态。另外，如果你一个不好运、确实在linux系统中存在steve的用户、这样子的话freeradius服务器则会跳过你现在的用户配置直接去查询系统的配置、这时的密码就会以系统密码为准、这里在users文件中定义的密码就会失效、而且如果改用户是禁止在linux上登录的话、则会直接把用户打回成 Access-Reject</p>
-<ul>
-<li>以下是我在mysql中创建了santu用户（下面会说）之后成功的验证</li>
-</ul>
-<p><img src="/网络安全实验/网络对抗原理实验二/c.png" alt="coin"></p>
-<ul>
-<li>服务器端代码为</li>
-</ul>
-<p><img src="/网络安全实验/网络对抗原理实验二/d.png" alt="coin"><br><img src="/网络安全实验/网络对抗原理实验二/e.png" alt="coin"><br><img src="/网络安全实验/网络对抗原理实验二/f.png" alt="coin"></p>
-<ul>
-<li>mysql与freeradius连接</li>
-</ul>
-<blockquote>
-<p>建立radius数据库</p>
-</blockquote>
-<p><img src="/网络安全实验/网络对抗原理实验二/g.png" alt="coin"></p>
-<blockquote>
-<p>然后建立radius数据库</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create database radius;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>之后使用exit退出mysql、然后建立一系统的表格、freeradius已经自带有sql脚本、我们执行这些脚本就可以自行建立了，首先定位到这些脚本所在目录</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/freeradius/sql/mysql</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>导入admin.sql</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p[PASSWORD] radius &lt; admin.sql</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>schema.sql同样也是照此格式来执行导入到数据库，如果结果正常的话，可以使用radius账户进入mysql数据库</p>
-</blockquote>
-<p><img src="/网络安全实验/网络对抗原理实验二/h.png" alt="coin"></p>
-<p>这里默认密码为radpass<br>这样我们就可以看到一些tables了</p>
-<blockquote>
-<p>配置freeradius</p>
-</blockquote>
-<ul>
-<li>修改/etc/freeradius/radiusd.conf 定位到该行</li>
-</ul>
-<p><img src="/网络安全实验/网络对抗原理实验二/i.png" alt="coin"></p>
-<p>将其反注释，启动sql.conf</p>
-<ul>
-<li>然后编辑/etc/freeradius/sql.conf</li>
-</ul>
-<p><img src="/网络安全实验/网络对抗原理实验二/j.png" alt="coin"></p>
-<p>默认情况下、使用apt-get命令来安装freeradius会自动检测到已经安装了mysql而自动把database设置为mysql、如果迩的不是这样显示请设置成mysql、然后再再看password这个参数、如果你之前已经更改了radius用户的密码、这里要做相应的修改、其余的参数就默认好了</p>
-<ul>
-<li>修改了sql.conf、再设置相应的设备通知其使用mysql作为数据存储设备</li>
-</ul>
-<p><img src="/网络安全实验/网络对抗原理实验二/k.png" alt="coin"></p>
-<p>把authorize{}字段下的file注释掉、反注释sql、这里的file指的就是usrs文件、将不再把用户信息写在users而使用mysql来存储用户信息 把accounting{} 字段下的sql反注释、启用sql来记录统计信息 把session{}字段下的sql反注释、启用用户同时登录限制功能、这里还需要修改其它地方、一会再说 把post-auth{} 字段的sql反注释、启用用户登录后进行数据记录功能</p>
-<ul>
-<li>接下来开启启用用户同时登录限制功能</li>
-</ul>
-<p><img src="/网络安全实验/网络对抗原理实验二/l.png" alt="coin"></p>
-<blockquote>
-<p>将这几行反注释</p>
-</blockquote>
-<p><img src="/网络安全实验/网络对抗原理实验二/m.png" alt="coin"></p>
-<p>这样整个对mysql的radius配置就已经完成了</p>
-<ul>
-<li>测试是否连接成功,在radius数据库建立几条用户信息以测试mysql+freeradius的用户认证是否成功，添上这几句</li>
-</ul>
-<p><img src="/网络安全实验/网络对抗原理实验二/n.png" alt="coin"></p>
-<blockquote>
-<p>结果为</p>
-</blockquote>
-<p><img src="/网络安全实验/网络对抗原理实验二/o.png" alt="coin"></p>
-<p>这就解释了一开始用radtest santu [<strong>**</strong>] localhost 1812 testing123命令会出现如下的应答</p>
-<p><img src="/网络安全实验/网络对抗原理实验二/p.png" alt="coin"></p>
-<p>注意：这些数据类型的属性值attribute都是特定的字符、不是随随便便自己写上去的、要查看定义这些属性的文件请查看迩当前配置文件的dictionary目录、其实里面也啥内容没定义到、只是写上了路径、一般会写上包含在</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$INCLUDE /usr/share/freeradius/dictionary</span><br></pre></td></tr></table></figure>
-<p>这里的意思就是整个dictionary文件被放置在这个文件中、其实这个文件也是个路径信息、所以真正定义的dictionary文件是放在/usr/share/freeradius/这个目录、比如Framed-IP-Address属性被定义在dictionary.rfc2865文件中、Cleartext-Password被定义在dictionary.freeradius.internal文件中</p>
-<p><strong>注意点</strong>：注意之前的freeradius服务必须先停掉、不然会出现冲突、然后再使用以上用户来测试</p>
-<p><img src="/网络安全实验/网络对抗原理实验二/q.png" alt="coin"></p>
-<p>返回Access-Accept状态的同时会返回相应reply表格的内容、先返回radreply的用户返回信息、再返回radgroupreply的所属组返回信息、返回成功就表示配置已经正确了。</p>
-<h2 id="配置freeradius-ldap"><a href="#配置freeradius-ldap" class="headerlink" title="配置freeradius-ldap"></a>配置freeradius-ldap</h2><ul>
-<li>配置/etc/freeradius/modules/ldap</li>
-</ul>
-<p><img src="/网络安全实验/网络对抗原理实验二/r.png" alt="coin"></p>
-<p>这里，apache2使用freeradius进行认证，并且radius和ldap连接，我们使用student.ldif中学生信息就可完成radtest认证。</p>
-<p><img src="/网络安全实验/网络对抗原理实验二/09157948-F2BB-49B1-94C0-71C5AB30DE0F.png" alt="coin"></p>
-<p>至此实验二大功告成！</p>
 
           
         
@@ -717,7 +607,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -765,7 +655,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -776,7 +666,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -787,7 +677,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -887,7 +777,7 @@
     
       <span class="post-meta-item-text">全站字数&#58;</span>
     
-    <span title="全站字数">11.5k</span>
+    <span title="全站字数">12.7k</span>
   
 </div>
 

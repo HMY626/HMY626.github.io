@@ -1904,7 +1904,7 @@ pre {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #54aa44;
+  background: #16282e;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3203,12 +3203,6 @@ span#inline-purple {
   vertical-align: baseline;
   border-radius: 0;
   background-color: #9954bb;
-}
-* {
-  cursor: url("http://om8u46rmb.bkt.clouddn.com/sword2.ico"), auto !important;
-}
-:active {
-  cursor: url("http://om8u46rmb.bkt.clouddn.com/sword1.ico"), auto !important;
 }
 body {
   background: url("/images/bg.jpg");
