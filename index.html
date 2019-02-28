@@ -323,7 +323,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hmy626.github.io/有趣的小程序/利用itchat分析微信社交圈/">
+    <link itemprop="mainEntityOfPage" href="https://hmy626.github.io/项目/Twitter社交网络中的实体搜索/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Santu">
@@ -342,7 +342,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/有趣的小程序/利用itchat分析微信社交圈/" itemprop="url">利用itchat分析微信社交圈</a></h1>
+                <a class="post-title-link" href="/项目/Twitter社交网络中的实体搜索/" itemprop="url">Twitter社交网络中的实体搜索</a></h1>
         
 
         <div class="post-meta">
@@ -354,8 +354,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-16T11:36:00+08:00">
-                2019-01-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-28T16:03:14+08:00">
+                2019-02-28
               </time>
             
 
@@ -370,7 +370,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-02-28T15:51:49+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-02-28T16:04:56+08:00">
                 2019-02-28
               </time>
             
@@ -389,8 +389,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/有趣的小程序/" itemprop="url" rel="index">
-                    <span itemprop="name">有趣的小程序</span>
+                  <a href="/categories/项目/" itemprop="url" rel="index">
+                    <span itemprop="name">项目</span>
                   </a>
                 </span>
 
@@ -420,7 +420,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.2k
+                  996
                 </span>
               
 
@@ -436,7 +436,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  3
                 </span>
               
             </div>
@@ -459,38 +459,34 @@
       
         
           
-            <blockquote>
-<p>原文链接：<a href="https://mp.weixin.qq.com/s/4EXgR4GkriTnAzVxluJxmg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/4EXgR4GkriTnAzVxluJxmg</a></p>
-</blockquote>
-<p>「itchat」一个开源的微信个人接口，今天我们就用itchat爬取微信好友信息，无图言虚空<br>三张图分别是「微信好友头像拼接图」、「性别统计图」、「个性签名统计图」  </p>
-<p>「微信好友头像拼接图」<br><img src="/有趣的小程序/利用itchat分析微信社交圈/all.png" alt="">  </p>
-<p>「性别统计图」<br><img src="/有趣的小程序/利用itchat分析微信社交圈/getsex.png" alt=""></p>
-<p>「个性签名统计图」<br><img src="/有趣的小程序/利用itchat分析微信社交圈/signature.png" alt=""></p>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install itchat</span><br></pre></td></tr></table></figure>
-<p>主要用到的方法：<br><code>itchat.login()</code> 微信扫描二维码登录<br><code>itchat.get_friends()</code> 返回完整的好友列表，每个好友为一个字典, 其中第一项为本人的账号信息，传入<code>update=True</code>, 将更新好友列表并返回, <code>get_friends(update=True)</code><br><code>itchat.get_head_img(userName=&quot;&quot;)</code> 根据<code>userName</code>获取好友头像</p>
-<h4 id="微信好友头像拼接图"><a href="#微信好友头像拼接图" class="headerlink" title="微信好友头像拼接图"></a>微信好友头像拼接图</h4><p>获取好友信息，<code>get_head_img</code>拿到每个好友的头像，保存文件，将头像缩小拼接至一张大图。<br>先获取好友头像：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">headImg</span><span class="params">()</span>:</span></span><br><span class="line">    itchat.login()</span><br><span class="line">    friends = itchat.get_friends(update=<span class="keyword">True</span>)</span><br><span class="line">    <span class="comment"># itchat.get_head_img() 获取到头像二进制，并写入文件，保存每张头像</span></span><br><span class="line">    <span class="keyword">for</span> count, f <span class="keyword">in</span> enumerate(friends):</span><br><span class="line">        <span class="comment"># 根据userName获取头像</span></span><br><span class="line">        img = itchat.get_head_img(userName=f[<span class="string">"UserName"</span>])</span><br><span class="line">        imgFile = open(<span class="string">"img/"</span> + str(count) + <span class="string">".jpg"</span>, <span class="string">"wb"</span>)</span><br><span class="line">        imgFile.write(img)</span><br><span class="line">        imgFile.close()</span><br></pre></td></tr></table></figure>
-<p>这里需要提前在同目录下新建了文件夹<code>img</code>，否则会报<code>No such file or directory</code>错误，<code>img</code>用于保存头像图片，遍历好友列表，根据下标<code>count</code>命名头像，到这里可以看到文件夹里已经保存了所有好友的头像。  </p>
-<p>接下来就是对头像进行拼接 </p>
-<p>遍历文件夹的图片，<code>random.shuffle(imgs)</code>将图片顺序打乱</p>
-<p>用640*640的大图来平均分每一张头像，计算出每张正方形小图的长宽，压缩头像，拼接图片，一行排满，换行拼接，好友头像多的话，可以适当增加大图的面积，具体代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">createImg</span><span class="params">()</span>:</span></span><br><span class="line">    x = <span class="number">0</span></span><br><span class="line">    y = <span class="number">0</span></span><br><span class="line">    imgs = os.listdir(<span class="string">"img"</span>)</span><br><span class="line">    random.shuffle(imgs)</span><br><span class="line">    <span class="comment"># 创建640*640的图片用于填充各小图片</span></span><br><span class="line">    newImg = Image.new(<span class="string">'RGBA'</span>, (<span class="number">640</span>, <span class="number">640</span>))</span><br><span class="line">    <span class="comment"># 以640*640来拼接图片，math.sqrt()开平方根计算每张小图片的宽高，</span></span><br><span class="line">    width = int(math.sqrt(<span class="number">640</span> * <span class="number">640</span> / len(imgs)))</span><br><span class="line">    <span class="comment"># 每行图片数</span></span><br><span class="line">    numLine = int(<span class="number">640</span> / width)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> imgs:</span><br><span class="line">        img = Image.open(<span class="string">"img/"</span> + i)</span><br><span class="line">        <span class="comment"># 缩小图片</span></span><br><span class="line">        img = img.resize((width, width), Image.ANTIALIAS)</span><br><span class="line">        <span class="comment"># 拼接图片，一行排满，换行拼接</span></span><br><span class="line">        newImg.paste(img, (x * width, y * width))</span><br><span class="line">        x += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> x &gt;= numLine:</span><br><span class="line">            x = <span class="number">0</span></span><br><span class="line">            y += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    newImg.save(<span class="string">"all.png"</span>)</span><br></pre></td></tr></table></figure>
-<p>好友头像图成型，头像是随机打乱拼接的  </p>
-<p><img src="/有趣的小程序/利用itchat分析微信社交圈/all.png" alt=""> </p>
-<h4 id="性别统计图"><a href="#性别统计图" class="headerlink" title="性别统计图"></a>性别统计图</h4><p>同样<code>itchat.login()</code>登录获取好友信息，根据<code>Sex</code>字段判断性别，1 代表男性（man），2 代表女性（women），3 未知（unknown）</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getSex</span><span class="params">()</span>:</span></span><br><span class="line">    itchat.login()</span><br><span class="line">    friends = itchat.get_friends(update=<span class="keyword">True</span>)</span><br><span class="line">    sex = dict()</span><br><span class="line">    <span class="keyword">for</span> f <span class="keyword">in</span> friends:</span><br><span class="line">        <span class="keyword">if</span> f[<span class="string">"Sex"</span>] == <span class="number">1</span>: <span class="comment">#男</span></span><br><span class="line">            sex[<span class="string">"man"</span>] = sex.get(<span class="string">"man"</span>, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> f[<span class="string">"Sex"</span>] == <span class="number">2</span>: <span class="comment">#女</span></span><br><span class="line">            sex[<span class="string">"women"</span>] = sex.get(<span class="string">"women"</span>, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>: <span class="comment">#未知</span></span><br><span class="line">            sex[<span class="string">"unknown"</span>] = sex.get(<span class="string">"unknown"</span>, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">    <span class="comment"># 柱状图展示</span></span><br><span class="line">    <span class="keyword">for</span> i, key <span class="keyword">in</span> enumerate(sex):</span><br><span class="line">        plt.bar(key, sex[key])</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
-<p>性别统计柱状图<br><img src="/有趣的小程序/利用itchat分析微信社交圈/getsex.png" alt=""></p>
-<h4 id="个性签名统计图"><a href="#个性签名统计图" class="headerlink" title="个性签名统计图"></a>个性签名统计图</h4><p>获取好友信息，<code>Signature</code>字段是好友的签名，将个性签名保存到.txt文件，部分签名里有表情之类的会变成emoji 类的词，将这些还有特殊符号的替换掉。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getSignature</span><span class="params">()</span>:</span></span><br><span class="line">    itchat.login()</span><br><span class="line">    friends = itchat.get_friends(update=<span class="keyword">True</span>)</span><br><span class="line">    file = open(<span class="string">'sign.txt'</span>, <span class="string">'a'</span>, encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">    <span class="keyword">for</span> f <span class="keyword">in</span> friends:</span><br><span class="line">        signature = f[<span class="string">"Signature"</span>].strip().replace(<span class="string">"emoji"</span>, <span class="string">""</span>).replace(<span class="string">"span"</span>, <span class="string">""</span>).replace(<span class="string">"class"</span>, <span class="string">""</span>)</span><br><span class="line">        <span class="comment"># 正则匹配</span></span><br><span class="line">        rec = re.compile(<span class="string">"1f\d+\w*|[&lt;&gt;/=]"</span>)</span><br><span class="line">        signature = rec.sub(<span class="string">""</span>, signature)</span><br><span class="line">        file.write(signature + <span class="string">"\n"</span>)</span><br></pre></td></tr></table></figure>
-<p><code>sign.txt</code>文件里写入了所有好友的个性签名，使用wordcloud包生成词云图，<code>pip install wordcloud</code><br>同样可以采用<code>jieba</code>分词生成词图，不使用分词的话就是句子展示，使用<code>jieba</code>分词的话可以适当把<code>max_font_size</code>属性调大，比如100。<br>需要注意的是运行不要在虚拟环境下，<code>deactivate</code> 退出虚拟环境再跑，详细代码如下：  </p>
-<h1 id="生成词云图"><a href="#生成词云图" class="headerlink" title="生成词云图"></a>生成词云图</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_word_cloud</span><span class="params">(filename)</span>:</span></span><br><span class="line">    <span class="comment"># 读取文件内容</span></span><br><span class="line">    text = open(<span class="string">"&#123;&#125;.txt"</span>.format(filename), encoding=<span class="string">'utf-8'</span>).read()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 注释部分采用结巴分词</span></span><br><span class="line">    <span class="comment"># wordlist = jieba.cut(text, cut_all=True)</span></span><br><span class="line">    <span class="comment"># wl = " ".join(wordlist)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 设置词云</span></span><br><span class="line">    wc = WordCloud(</span><br><span class="line">        <span class="comment"># 设置背景颜色</span></span><br><span class="line">        background_color=<span class="string">"white"</span>,</span><br><span class="line">        <span class="comment"># 设置最大显示的词云数</span></span><br><span class="line">        max_words=<span class="number">2000</span>,</span><br><span class="line">        <span class="comment"># 这种字体都在电脑字体中，window在C:\Windows\Fonts\下，mac下可选/System/Library/Fonts/PingFang.ttc 字体</span></span><br><span class="line">        font_path=<span class="string">'C:\\Windows\\Fonts\\simfang.ttf'</span>,</span><br><span class="line">        height=<span class="number">500</span>,</span><br><span class="line">        width=<span class="number">500</span>,</span><br><span class="line">        <span class="comment"># 设置字体最大值</span></span><br><span class="line">        max_font_size=<span class="number">60</span>,</span><br><span class="line">        <span class="comment"># 设置有多少种随机生成状态，即有多少种配色方案</span></span><br><span class="line">        random_state=<span class="number">30</span>,</span><br><span class="line">    )</span><br><span class="line">    myword = wc.generate(text)  <span class="comment"># 生成词云 如果用结巴分词的话，使用wl 取代 text， 生成词云图</span></span><br><span class="line">    <span class="comment"># 展示词云图</span></span><br><span class="line">    plt.imshow(myword)</span><br><span class="line">    plt.axis(<span class="string">"off"</span>)</span><br><span class="line">    plt.show()</span><br><span class="line">    wc.to_file(<span class="string">'signature.png'</span>)  <span class="comment"># 把词云保存下</span></span><br></pre></td></tr></table></figure>
-<p>句子图</p>
-<p><img src="/有趣的小程序/利用itchat分析微信社交圈/signature.png" alt=""></p>
-<p>由此看来，一个20多岁程序员小伙的朋友圈满满都是正能量啊，2333。  </p>
-<p>itchat 除了以上的信息，还有省市区等等信息都可以抓取，另外还可以实现机器人自动聊天等功能，这里就不一一概述了。</p>
-<blockquote>
-<p>具体代码请见<a href="https://github.com/HMY626/itchat_wechat" target="_blank" rel="noopener">https://github.com/HMY626/itchat_wechat</a></p>
-</blockquote>
+            <h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><p>进实验室以来的第一个项目，原来是搞安全出身的，现在研究的方向是社交网络中的数据挖掘，更偏向于CS，所以好好干！<br>详细代码请见我的github: <a href="https://github.com/HMY626/Entity-Search-On-Twitter" target="_blank" rel="noopener">https://github.com/HMY626/Entity-Search-On-Twitter</a></p>
+<h2 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h2><p>我原来是打算找一些开源的数据集，但是像Facebook, Twitter对个人隐私数据保护比较重视的平台，数据是不可能开源的。一开始打算用Facebook，但是FB官方连获取用户间点赞信息的权限都不给我，这就难受了，没数据挖掘个锤子？</p>
+<p>最后费劲周折，终于Twitter官方通过了对我的审核，况且推特不像FB，它可以单向发生联系(我可以关注你，不管我们是不是好友), 而FB却不行，选Twitter对于后续构建社交网络拓扑图也有很大的帮助。</p>
+<p>在一开始踩的一个雷：由于Twitter在 2018 年 6 月 19 日关闭了之前的API，导致原先的api不能用，而且更新之后Twitter对隐私保护更加重视，使得爬取Twitter数据有了很大的限制。</p>
+<p><img src="/项目/Twitter社交网络中的实体搜索/1.png" alt=""></p>
+<p>我参考了一些书目，最终采用申请Twitter开发者app应用权限的方式，官方审核通过之后，搜索了Twitter上全球热度榜的话题与全美热度的话题做交集，选出公共热度榜前Top10，并将这些话题以及他们关注者(followers)的<code>Twitter_ids</code>作为节点，构建社交网络拓扑图。如下图所示：</p>
+<p><img src="/项目/Twitter社交网络中的实体搜索/2.png" alt=""></p>
+<p>然后，我对已经构建好的社交网络拓扑图采用广度优先遍历的图搜索算法针对上图中一个重要的节点爬取用户的个人资料信息（user profile），并将其存入数据库中以便未来进行深度挖掘。由于Twitter在更新api之后对于api请求次数做了限制，一次只能发起最多5000次api请求，如果超过阈值就会对ip封禁15分钟，所以我搜索的深度只有2。</p>
+<p>接着，我查询上图中某个热门话题提取推文实体，进行了词频分析、语义丰富度分析、查找转推状态的用户、提取转推属性，存储用户发表的最新推文等深度数据挖掘与分析。以下选取了ianozsvald这个节点进行搜索事例：</p>
+<ol>
+<li><p>搜索热门推文</p>
+<p> <img src="/项目/Twitter社交网络中的实体搜索/3.png" alt=""></p>
+</li>
+<li><p>提取推文实体（以下只截取了5篇热门推文）</p>
+<p> <img src="/项目/Twitter社交网络中的实体搜索/4.png" alt=""></p>
+<p> <img src="/项目/Twitter社交网络中的实体搜索/5.png" alt=""></p>
+<p> <img src="/项目/Twitter社交网络中的实体搜索/6.png" alt=""></p>
+</li>
+<li><p>统计词频并计算语义丰富度</p>
+<p> <img src="/项目/Twitter社交网络中的实体搜索/7.png" alt=""></p>
+<p> <img src="/项目/Twitter社交网络中的实体搜索/8.png" alt=""></p>
+</li>
+</ol>
+<h2 id="数据集简介"><a href="#数据集简介" class="headerlink" title="数据集简介"></a>数据集简介</h2><p>数据集是爬取的包含有全球十大热门话题实体的推文元数据，数据集statuses.json样例如下图所示：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">&#123;</span><br><span class="line">    <span class="attr">"contributors"</span>: <span class="literal">null</span>,</span><br><span class="line">    <span class="attr">"truncated"</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">"text"</span>: <span class="string">"RT @BobbiSchutte: Thank you @hallmarkchannel @hallmarkmovie for making so many wonderful holiday movies in 2018! How great is the double fe\u2026"</span>,</span><br><span class="line">    <span class="attr">"is_quote_status"</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">"in_reply_to_status_id"</span>: <span class="literal">null</span>,</span><br><span class="line">    <span class="attr">"id"</span>: <span class="number">1076750033524011008</span>,</span><br><span class="line">    <span class="attr">"favorite_count"</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">"entities"</span>: &#123;</span><br><span class="line">        <span class="attr">"symbols"</span>: [],</span><br><span class="line">        <span class="attr">"user_mentions"</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"id"</span>: <span class="number">2400688206</span>,</span><br><span class="line">                <span class="attr">"indices"</span>: [</span><br><span class="line">                    <span class="number">3</span>,</span><br><span class="line">                    <span class="number">16</span></span><br><span class="line">                ],</span><br><span class="line">                <span class="attr">"id_str"</span>: <span class="string">"2400688206"</span>,</span><br><span class="line">                <span class="attr">"screen_name"</span>: <span class="string">"BobbiSchutte"</span>,</span><br><span class="line">                <span class="attr">"name"</span>: <span class="string">"Bobbi Schutte"</span></span><br><span class="line">            &#125;,</span><br><span class="line">…………</span><br></pre></td></tr></table></figure>
+<h2 id="网络建模方法"><a href="#网络建模方法" class="headerlink" title="网络建模方法"></a>网络建模方法</h2><p>我采用的是无标度网络的建模方法，因为在Twitter的社交网络拓扑图中大部分节点只有少数几个链接，而某些节点例如下图中的几大热门话题节点：<code>[localben, lovedaybrooke, brouberol, ianozsvald, morconsulting, jameshaycock, markpriestley]</code> 却拥有与其他节点的大量链接，所以才用无标度网络的建模方法。</p>
+<p><img src="/项目/Twitter社交网络中的实体搜索/2.png" alt=""></p>
+<h2 id="用户建模方法"><a href="#用户建模方法" class="headerlink" title="用户建模方法"></a>用户建模方法</h2><p>在本次项目中我采用用户所处地区、用户的关注话题、用户发表推文的语义丰富度进行建模，以此来找出某个时间段某个地区大家所讨论的热门话题；并且通过计算用户推文的语义丰富度来分析大众对于某一话题观点是否一致性。由于对用户建模方法了解得还不是很多，所以建模比较粗浅，不过在后续的学习过程中应该会慢慢改善。</p>
 
           
         
@@ -534,7 +530,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -582,7 +578,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -593,7 +589,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -604,7 +600,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -704,7 +700,7 @@
     
       <span class="post-meta-item-text">全站字数&#58;</span>
     
-    <span title="全站字数">12.7k</span>
+    <span title="全站字数">13.7k</span>
   
 </div>
 

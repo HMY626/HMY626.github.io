@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hmy626.github.io/"/>
-  <updated>2019-02-28T07:51:49.578Z</updated>
+  <updated>2019-02-28T08:04:56.158Z</updated>
   <id>https://hmy626.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Twitter社交网络中的实体搜索</title>
+    <link href="https://hmy626.github.io/%E9%A1%B9%E7%9B%AE/Twitter%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E5%AE%9E%E4%BD%93%E6%90%9C%E7%B4%A2/"/>
+    <id>https://hmy626.github.io/项目/Twitter社交网络中的实体搜索/</id>
+    <published>2019-02-28T08:03:14.000Z</published>
+    <updated>2019-02-28T08:04:56.158Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;序言&quot;&gt;&lt;a href=&quot;#序言&quot; class=&quot;headerlink&quot; title=&quot;序言&quot;&gt;&lt;/a&gt;序言&lt;/h1&gt;&lt;p&gt;进实验室以来的第一个项目，原来是搞安全出身的，现在研究的方向是社交网络中的数据挖掘，更偏向于CS，所以好好干！&lt;br&gt;详细代码请见我的git
+      
+    
+    </summary>
+    
+      <category term="项目" scheme="https://hmy626.github.io/categories/%E9%A1%B9%E7%9B%AE/"/>
+    
+    
+      <category term="数据挖掘" scheme="https://hmy626.github.io/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
+    
+      <category term="实体搜索" scheme="https://hmy626.github.io/tags/%E5%AE%9E%E4%BD%93%E6%90%9C%E7%B4%A2/"/>
+    
+      <category term="Twitter" scheme="https://hmy626.github.io/tags/Twitter/"/>
+    
+  </entry>
   
   <entry>
     <title>利用itchat分析微信社交圈</title>
