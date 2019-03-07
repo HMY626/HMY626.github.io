@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hmy626.github.io/"/>
-  <updated>2019-02-28T08:04:56.158Z</updated>
+  <updated>2019-03-07T07:15:45.312Z</updated>
   <id>https://hmy626.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>P、NP、NPC、NP-Hard问题科普</title>
+    <link href="https://hmy626.github.io/CS%E5%B9%B2%E8%B4%A7/P%E3%80%81NP%E3%80%81NPC%E3%80%81NP-Hard%E9%97%AE%E9%A2%98%E7%A7%91%E6%99%AE/"/>
+    <id>https://hmy626.github.io/CS干货/P、NP、NPC、NP-Hard问题科普/</id>
+    <published>2019-03-07T07:13:10.000Z</published>
+    <updated>2019-03-07T07:15:45.312Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;P、NP、NPC、NP-Hard问题科普&quot;&gt;&lt;a href=&quot;#P、NP、NPC、NP-Hard问题科普&quot; class=&quot;headerlink&quot; title=&quot;P、NP、NPC、NP-Hard问题科普&quot;&gt;&lt;/a&gt;P、NP、NPC、NP-Hard问题科普&lt;/h1&gt;&lt;
+      
+    
+    </summary>
+    
+      <category term="CS干货" scheme="https://hmy626.github.io/categories/CS%E5%B9%B2%E8%B4%A7/"/>
+    
+    
+      <category term="NP" scheme="https://hmy626.github.io/tags/NP/"/>
+    
+  </entry>
   
   <entry>
     <title>Twitter社交网络中的实体搜索</title>

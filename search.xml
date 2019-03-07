@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[P、NP、NPC、NP-Hard问题科普]]></title>
+    <url>%2FCS%E5%B9%B2%E8%B4%A7%2FP%E3%80%81NP%E3%80%81NPC%E3%80%81NP-Hard%E9%97%AE%E9%A2%98%E7%A7%91%E6%99%AE%2F</url>
+    <content type="text"><![CDATA[P、NP、NPC、NP-Hard问题科普最近看paper时经常能看到NP问题这个字眼，然后突然想彻底弄明白它，顺便分享一下。 P问题如果一个问题可以找到一个能在多项式的时间复杂度里解决它的算法，那么这个问题就属于P问题。 NP问题NP问题不是非P类问题。NP问题是指可以在多项式的时间里验证一个解的问题，NP问题的另一个定义是，可以在多项式的时间里猜出一个解的问题。通俗地来讲，P类问题就是指那些计算机比较容易算出答案的问题；NP类问题就是指那些已知答案以后计算机可以比较容易地验证答案的问题。 NPC问题NPC问题，又被称为NP完全问题。是指：存在这样一个NP问题，所有的NP问题都可以约化成它。换句话说，只要解决了这个问题，那么所有的NP问题都解决了。其定义要满足2个条件： 首先，它得是一个NP问题； 然后，所有的NP问题都可以约化到它。 NP-Hard问题NP困难问题(NP-hard问题): NP-Hard问题是这样一种问题，它满足NPC问题定义的第二条但不一定要满足第一条(就是说，NP-Hard问题要比NPC问题的范围广, NP-Hard问题没有限定属于NP), 即所有的NP问题都能约化到它, 但是它不一定是一个NP问题。NP-Hard问题同样难以找到多项式的算法, 但它不列入我们的研究范围, 因为它不一定是NP问题。即使NPC问题发现了多项式级的算法, NP-Hard问题有可能仍然无法得到多项式级的算法。事实上, 由于NP-Hard放宽了限定条件, 它将有可能比所有的NPC问题的时间复杂度更高从而更难以解决。 总结]]></content>
+      <categories>
+        <category>CS干货</category>
+      </categories>
+      <tags>
+        <tag>NP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Twitter社交网络中的实体搜索]]></title>
     <url>%2F%E9%A1%B9%E7%9B%AE%2FTwitter%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E5%AE%9E%E4%BD%93%E6%90%9C%E7%B4%A2%2F</url>
     <content type="text"><![CDATA[序言进实验室以来的第一个项目，原来是搞安全出身的，现在研究的方向是社交网络中的数据挖掘，更偏向于CS，所以好好干！详细代码请见我的github: https://github.com/HMY626/Entity-Search-On-Twitter 实验过程我原来是打算找一些开源的数据集，但是像Facebook, Twitter对个人隐私数据保护比较重视的平台，数据是不可能开源的。一开始打算用Facebook，但是FB官方连获取用户间点赞信息的权限都不给我，这就难受了，没数据挖掘个锤子？ 最后费劲周折，终于Twitter官方通过了对我的审核，况且推特不像FB，它可以单向发生联系(我可以关注你，不管我们是不是好友), 而FB却不行，选Twitter对于后续构建社交网络拓扑图也有很大的帮助。 在一开始踩的一个雷：由于Twitter在 2018 年 6 月 19 日关闭了之前的API，导致原先的api不能用，而且更新之后Twitter对隐私保护更加重视，使得爬取Twitter数据有了很大的限制。 我参考了一些书目，最终采用申请Twitter开发者app应用权限的方式，官方审核通过之后，搜索了Twitter上全球热度榜的话题与全美热度的话题做交集，选出公共热度榜前Top10，并将这些话题以及他们关注者(followers)的Twitter_ids作为节点，构建社交网络拓扑图。如下图所示： 然后，我对已经构建好的社交网络拓扑图采用广度优先遍历的图搜索算法针对上图中一个重要的节点爬取用户的个人资料信息（user profile），并将其存入数据库中以便未来进行深度挖掘。由于Twitter在更新api之后对于api请求次数做了限制，一次只能发起最多5000次api请求，如果超过阈值就会对ip封禁15分钟，所以我搜索的深度只有2。 接着，我查询上图中某个热门话题提取推文实体，进行了词频分析、语义丰富度分析、查找转推状态的用户、提取转推属性，存储用户发表的最新推文等深度数据挖掘与分析。以下选取了ianozsvald这个节点进行搜索事例： 搜索热门推文 提取推文实体（以下只截取了5篇热门推文） 统计词频并计算语义丰富度 数据集简介数据集是爬取的包含有全球十大热门话题实体的推文元数据，数据集statuses.json样例如下图所示： 1234567891011121314151617181920212223[&#123; "contributors": null, "truncated": false, "text": "RT @BobbiSchutte: Thank you @hallmarkchannel @hallmarkmovie for making so many wonderful holiday movies in 2018! How great is the double fe\u2026", "is_quote_status": false, "in_reply_to_status_id": null, "id": 1076750033524011008, "favorite_count": 0, "entities": &#123; "symbols": [], "user_mentions": [ &#123; "id": 2400688206, "indices": [ 3, 16 ], "id_str": "2400688206", "screen_name": "BobbiSchutte", "name": "Bobbi Schutte" &#125;,………… 网络建模方法我采用的是无标度网络的建模方法，因为在Twitter的社交网络拓扑图中大部分节点只有少数几个链接，而某些节点例如下图中的几大热门话题节点：[localben, lovedaybrooke, brouberol, ianozsvald, morconsulting, jameshaycock, markpriestley] 却拥有与其他节点的大量链接，所以才用无标度网络的建模方法。 用户建模方法在本次项目中我采用用户所处地区、用户的关注话题、用户发表推文的语义丰富度进行建模，以此来找出某个时间段某个地区大家所讨论的热门话题；并且通过计算用户推文的语义丰富度来分析大众对于某一话题观点是否一致性。由于对用户建模方法了解得还不是很多，所以建模比较粗浅，不过在后续的学习过程中应该会慢慢改善。]]></content>
